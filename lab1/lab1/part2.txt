@@ -1,0 +1,36 @@
+ex1:
+
+take list x and int n
+declare i, t, j = n
+s = 1 (true), 
+
+while s == 1 (true):
+s = 0 (false)
+do j times (n times)
+if x[i] less than previous index
+    swap 2 items in list
+    then s = 1 (repeat proccess)
+    decrease j, to stop checking end of list, as it is the known highest value
+
+otherwise do nothing.
+
+This is a basic sorting alg
+
+Main prints a list, then sorts, then prints sorted list
+
+---------------------
+
+ex2:
+take 2 numbers num, ctr and 1 PBR number r
+
+for i = 2, i <= half of num (rounded down), i++
+if num modulo i has no remainder
+    increase counter and break out of for
+
+if counter is 0 and num was not 1
+    return 1 via PBR
+
+else return 0
+
+Checks if number is prime by checking all possible factors
+

@@ -1,0 +1,5 @@
+1. A reference to the paramater is passed in, making it mutable.
+
+2. yes, this will update the value of the paramater via reference.
+
+3. Pass by value takes the value of the argument and uses it throghout the funciton, while PBR actually changes the variable within the variable's original scope.
