@@ -107,6 +107,7 @@ int generate_racks(int moneyball, int player) {
         }
         out += score_rack(rack, ctr);
     }
+    cout << endl <<"Total Score: " << out << endl;
     cout << "+--------------------+" << endl;
     return out;
 }
@@ -151,7 +152,7 @@ void final_score(int* scores, int len) {
         }
     }
 
-    if (tie || len == 1) {cout << "Winner was player " << winner + 1 << " with score " << highscore << endl;}
+    if (!tie || len == 1) {cout << "Winner was player " << winner + 1 << " with score " << highscore << endl;}
     else {cout << "There was a tie, the highest score was " << highscore << endl;}
 }
 
