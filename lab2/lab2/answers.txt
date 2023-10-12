@@ -7,14 +7,12 @@ Part 2
     operator:
         *s = "stuff"
 
-    3. & refers to the memory address of the target
-    while *var = &x creates a pointer to that
-    memory address
+    3. & shares the memory address of the target,
+    while a pointer just points to the memory address of the target
 
     Diagram:
         let x be var with memory address 0x10, ptr be pointer
 
         ptr = &x ----->  *ptr == contents of 0x10
         &x == 0x10 ----> &x++ == 0x11
-
 
