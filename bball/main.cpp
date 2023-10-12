@@ -47,12 +47,12 @@ int init(){
 }
 
 
-char score_ball(int ctr, int moneyball) {
+char score_ball(int ctr, int moneyball, int ball) {
     //checks if ball is starry or money, then assigns value. only called on hits
     if (ctr == 3 || ctr == 5) {
         return 'w';
     }
-    else if (ctr == moneyball) {
+    else if (ctr == moneyball || ball == 4) {
         return 'm';
     }
     else {
@@ -99,7 +99,7 @@ int generate_racks(int moneyball, int player) {
         (ctr == 3 || ctr == 5) ? lim = 1 : lim = 5;
         for (int i = 0; i < lim; i++) {
             if (rand() % 2) {
-                rack[i] = score_ball(ctr, moneyball);
+                rack[i] = score_ball(ctr, moneyball, i);
             }
             else {
                 rack[i] = 'x';
