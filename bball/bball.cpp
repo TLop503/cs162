@@ -105,12 +105,15 @@ int score_rack(char rack[5], int ctr){
 
 
 int generate_racks(int moneyball, int player) {
-    /*
-        generates each rack in succession. racks 3 and 5 are of size 1 b/c starry ball
-        takes moneyball rack position as input
-        printing and scoring is done in score_rack()
-    */
+    /*********************************************************************
+    ** Function: genereate_racks
+    ** Description: populate each rack with made/missed shots
+    ** Parameters: player number and moneyball location
+    ** Pre-Conditions: user chooses moneyball rack
+    ** Post-Conditions: returns total score
+    *********************************************************************/
 
+   //increment player number BEFORE printing it b/c index is 1 less than player number
     cout << "+--------------------+" << endl << "Player " << ++player << ": " << endl;
     
     int out;
@@ -128,6 +131,8 @@ int generate_racks(int moneyball, int player) {
         }
         out += score_rack(rack, ctr);
     }
+
+    // total score is stored in an array so the winner can be determined.
     cout << endl <<"Total Score: " << out << endl;
     cout << "+--------------------+" << endl;
     return out;
@@ -135,7 +140,13 @@ int generate_racks(int moneyball, int player) {
 
 
 int ask_moneyball(){
-    //asks where to place the moneyball rack
+    /*********************************************************************
+    ** Function: ask_moneyball
+    ** Description: prompts user to choose rack of moneyballs
+    ** Parameters: n/a
+    ** Pre-Conditions: player's turn has started
+    ** Post-condtions: returns moneyball locaction
+    *********************************************************************/
     int out;
     cout << "Which rack should be all moneyballs? (1-5)" << endl;
     out = check_int(1,5);
@@ -158,10 +169,18 @@ int ask_moneyball(){
 
 
 void final_score(int* scores, int len) {
+    /*********************************************************************
+    ** Function: final score
+    ** Description: find largest score and print winner
+    ** Parameters: dynarray of scores, total players (len)
+    ** Pre-Conditions: assumes score array is populated; otherwise returns tie with score 0
+    ** Post-Conditions: game is complete
+    *********************************************************************/
     int highscore = 0;
     int winner = 0;
     int tie = false;
 
+    //find highest score in array, note it there is a tie
     for (int i = 0; i < len; i++) {
         if (scores[i] > highscore) {
             highscore = scores[i];
@@ -173,11 +192,20 @@ void final_score(int* scores, int len) {
         }
     }
 
+    //one-liners for brevity. winner is incremented b/c index is 1 less than player number
     if (!tie || len == 1) {cout << "Winner was player " << winner + 1 << " with score " << highscore << endl;}
     else {cout << "There was a tie, the highest score was " << highscore << endl;}
 }
 
+
 bool play_again() {
+    /*********************************************************************
+    ** Function: play_again
+    ** Description: ask if player wants to play again, follows logic of int input validator
+    ** Parameters: n/a
+    ** Pre-Conditions: game has ended
+    ** Post-Conditions: program may terminate
+    *********************************************************************/
     string in;
     cout << "Would you like to play again? " << endl;
     do {
@@ -191,18 +219,26 @@ bool play_again() {
 
 
 int main () {
-    //seed random based on time
+    //main function, see program header for details
+
+    //seed rand based on time
     srand(time(nullptr));
     do {
         int players = init();
+        //create dynarray with length equal to number of players
         int *scoreboard = new int[players];
 
+        //for each player generate racks of balls based on moneyball location
+        //and add score to corresponding spot on scoreboard
         for (int i = 0; i < players; i++) {
             scoreboard[i] = generate_racks(ask_moneyball(), i);
         }
 
+        //calculate final score
         final_score(scoreboard, players);
+        //free up memory
         delete[] scoreboard;
 
+    //while player wants to play again
     } while (play_again());
 }
