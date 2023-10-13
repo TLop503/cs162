@@ -1,23 +1,25 @@
-#include <iostream>
+/*********************************************************************
+** Program Filename: bball.cpp
+** Author: Troy Lopez
+** Date: 10/13/23
+** Description: Simulates a simple, wii sports resort style basketball game
+** Input: Ints for player number and moneyrack position, y/b for play again
+** Output: Scores, prompts for input, winner
+*********************************************************************/
 
-/*
-######################################
-As of Monday generating everything works for 1 player but is not pretty
-error checking is needed-- don't allow negative numbers
-*/
+#include <iostream>
 
 using namespace std; 
 
-
 int check_int(int low, int high) {
-    /*
-        Checks if a user input is within the specified range.
-        Re-prompts for more input if needed.
+    /*********************************************************************
+    ** Function: check_int
+    ** Description: Checks if entered value is in range, and prompts for input if needed
+    ** Parameters: upper and lower bounds
+    ** Pre-Conditions: assumes user has been told what to input
+    ** Post-Conditions: valid input is returned
+    *********************************************************************/
 
-        Takes ints for upper and lower bounds (inclusive)
-        returns verified int
-    */
-    
     int in;
     cin >> in;
 
@@ -33,10 +35,13 @@ int check_int(int low, int high) {
 
 
 int init(){
-    /*
-        first thing called by main, prints out introduction and asks for the total number
-        of players. Calls check_int() to validate input.
-    */
+    /*********************************************************************
+    ** Function: init
+    ** Description: Asks for player count and verifys input
+    ** Parameters: n/a
+    ** Pre-Conditions: n/a
+    ** Post-Conditions: returns total players
+    *********************************************************************/
     int out;
 
     cout << "Welcome to lame basketball!" << endl;
@@ -48,28 +53,44 @@ int init(){
 
 
 char score_ball(int ctr, int moneyball, int ball) {
-    //checks if ball is starry or money, then assigns value. only called on hits
-    if (ctr == 3 || ctr == 5) {
+    /*********************************************************************
+    ** Function: score_ball
+    ** Description: based on the current rack and type of ball return correct ball notation
+    ** Parameters: ctr - current rack, moneyball - rack of moneyballs, ball - ball number in rack
+    ** Pre-Conditions: ball generated was a successful shot
+    ** Post-Conditions: returns ball in notation
+    *********************************************************************/    
+    if (ctr == 3 || ctr == 5) { //moneyball pedestals
         return 'w';
     }
-    else if (ctr == moneyball || ball == 4) {
+    else if (ctr == moneyball || ball == 4) { //moneyball rack or ball is 5th on rack
         return 'm';
     }
-    else {
+    else { //regular ball
         return 'o';
     }
 }
 
 
 int score_rack(char rack[5], int ctr){
-    /*
-        input takes a rack, checks if it is a starry ball, and scores accordingly
-    */
+    /*********************************************************************
+    ** Function: score rack
+    ** Description: iterate through a rack of balls (may be starry) and generate each ball
+    ** Parameters: the array of scored balls, the current rack number
+    ** Pre-Conditions: rack array has been populated with scored balls [o x x o m]
+    ** Post-Conditions: returns score to be added to running total
+    *********************************************************************/
     int score = 0;
+
+    //if the current rack is a starryball pedestal, only score the first ball
     if (ctr == 3 || ctr == 5) {
         cout << "Starryball shot: " << rack[0] << endl;
+
+        //ternary operator to streamline score printing
         cout << (rack[0] == 'w' ? "3 pts" : "0 pts") << endl << endl;
+        if (rack[0] == 'w') {score += 3;}
     }
+
     else {
         //note size is hardcoded here
         for (int i = 0; i < 5; i++) {
