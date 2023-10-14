@@ -96,7 +96,7 @@ int score_rack(char rack[5], int ctr){
         for (int i = 0; i < 5; i++) {
             cout << rack[i] << " ";
             if (rack[i] == 'o') {score++;}
-            else if (rack[i] == 'm') {score +=2;}
+            else if (rack[i] == 'm') {score += 2;}
         }
         cout << endl << "Rack Score is: " << score << endl << endl;
     }
@@ -116,7 +116,7 @@ int generate_racks(int moneyball, int player) {
    //increment player number BEFORE printing it b/c index is 1 less than player number
     cout << "+--------------------+" << endl << "Player " << ++player << ": " << endl;
     
-    int out;
+    int out = 0;
     char rack[5];
     for (int ctr = 1; ctr < 7; ctr++){
         int lim;
