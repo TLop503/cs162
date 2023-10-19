@@ -1,17 +1,7 @@
 #include <iostream>
+#include "multdiv.h"
 
 using namespace std;
-
-struct multdiv_entry {
-	int mult;
-	float div;
-};
-
-
-//function prototypes
-multdiv_entry** create_table(int row, int col);
-void print_table(multdiv_entry** tables, int row, int col);
-void delete_table(multdiv_entry** tables, int row);
 
 //generate table
 multdiv_entry** create_table(int row, int col){
@@ -54,25 +44,3 @@ void delete_table(multdiv_entry** tables, int row){
 	delete[] tables;
 }
 
-int main()
-{
-	string in = "no";
-	do {
-		//Your code here:
-		int row, col;
-		
-		cout << "row, column" << endl;
-		cin >> row;
-		cin >> col;
-
-		multdiv_entry** table = create_table(row, col);
-		print_table(table, row, col);
-		cout << "again?" << endl;
-		cin >> in;
-		delete_table(table, row);
-	}
-	while (in == "y");
-
-
-	return 0;
-}
