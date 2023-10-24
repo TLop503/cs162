@@ -2,6 +2,22 @@
 
 using namespace std;
 
+int init(ifstream& reader){
+    /*
+    takes reader obj
+    returns teamsize
+    */
+
+    string filename = "";
+    string teamsize;
+    
+    cout << "specify file name: ";
+    //TODO: error handling
+    cin >> filename;
+    reader.open(filename);
+    reader >> teamsize;
+    return stoi(teamsize);
+}
 
 /**************************************************
  * Name: create_teams()
@@ -11,7 +27,10 @@ using namespace std;
  * Pre-conditions: none
  * Post-conditions: a Team array of requested size is created and return
  ***********************************************/
-Team* create_teams(int);
+Team* create_teams(int teamsize) {
+    Team* array = new Team[teamsize];
+    return array;
+}
 
 
 /**************************************************
@@ -25,7 +44,21 @@ Team* create_teams(int);
                    provided index is less than the array size
  * Post-conditions: a Team at provided index is populated
  ***********************************************/
-void populate_team_data(Team*, int, ifstream &); 
+void populate_team_data(Team* teamarr, int index, ifstream& reader) {
+    //the easy stuff
+    reader >> teamarr[index].name;
+    reader >> teamarr[index].owner;
+    reader >> teamarr[index].market_value;
+    reader >> teamarr[index].num_player;
+    
+    //create player arr and assign to team struct
+    teamarr.Player(create_players(teamarr[index].num_player));
+    //populate players
+    for (int i = 0; i < teamarr[index].num_player; i++) {
+        //note reader may need to be PBR again
+        populate_player_data(teamarr[index].Player, i, reader);
+    }
+} 
 
 
 /**************************************************
@@ -37,10 +70,8 @@ void populate_team_data(Team*, int, ifstream &);
  * Post-conditions: a Player array of requested size is created and return
  ***********************************************/
 Player* create_players(int size) {
-    out = new Player*[size];
-    for (int i = 0; i < size; i++) {
-        populate_player_data
-    }
+    Player* players = new Player[size];
+    return players;
 }
 
 
@@ -69,3 +100,4 @@ void delete_info(Team* team, int){
     delete[] team.Player;
     delete team;
 }
+
