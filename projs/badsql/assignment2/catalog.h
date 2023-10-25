@@ -23,6 +23,7 @@ struct Player {
 };
 
 int init(ifstream&);
+void test_team(Team t);
 
 
 /**************************************************

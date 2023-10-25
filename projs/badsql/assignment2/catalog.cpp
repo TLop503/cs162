@@ -2,21 +2,24 @@
 
 using namespace std;
 
+/**************************************************
+ * Name: init()
+ * Description: This function will fetch the number of teams needed)
+ * Parameters: reader - ifsteram
+ * Pre-conditions: ifstream exists
+ * Post-conditions: returns team count
+ ***********************************************/
 int init(ifstream& reader){
-    /*
-    takes reader obj
-    returns teamsize
-    */
 
     string filename = "";
-    string teamsize;
-    
+    string count;
+
     cout << "specify file name: ";
     //TODO: error handling
     cin >> filename;
     reader.open(filename);
-    reader >> teamsize;
-    return stoi(teamsize);
+    reader >> count;
+    return stoi(count);
 }
 
 /**************************************************
@@ -107,3 +110,13 @@ void delete_info(Team* team, int index){
     delete team;
 }
 
+/**************************************************
+ * Name: test_team()
+ * Description: cout teams for troubleshooting
+ * Parameters: Team - the Team
+ * Pre-conditions: team arr exists
+ * Post-conditions: simple couts
+ ***********************************************/
+void test_team(Team t){
+    cout << t.p[0].name;
+}
