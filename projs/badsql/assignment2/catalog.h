@@ -22,6 +22,8 @@ struct Player {
   float fg;         //field goal percentage
 };
 
+int init(ifstream&);
+
 
 /**************************************************
  * Name: create_teams()

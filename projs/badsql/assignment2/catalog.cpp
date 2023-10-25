@@ -28,8 +28,8 @@ int init(ifstream& reader){
  * Post-conditions: a Team array of requested size is created and return
  ***********************************************/
 Team* create_teams(int teamsize) {
-    Team* array = new Team[teamsize];
-    return array;
+    Team* t_array = new Team[teamsize];
+    return t_array;
 }
 
 
@@ -52,11 +52,11 @@ void populate_team_data(Team* teamarr, int index, ifstream& reader) {
     reader >> teamarr[index].num_player;
     
     //create player arr and assign to team struct
-    teamarr.Player(create_players(teamarr[index].num_player));
+    teamarr[index].p = (create_players(teamarr[index].num_player));
     //populate players
     for (int i = 0; i < teamarr[index].num_player; i++) {
         //note reader may need to be PBR again
-        populate_player_data(teamarr[index].Player, i, reader);
+        populate_player_data(teamarr[index].p, i, reader);
     }
 } 
 
@@ -86,7 +86,13 @@ Player* create_players(int size) {
                    provided index is less than the array size
  * Post-conditions: a Player at provided index is populated
  ***********************************************/
-void populate_player_data(Player*, int, ifstream &); 
+void populate_player_data(Player* player, int index, ifstream& reader) {
+    reader >> player[index].name;
+    reader >> player[index].age;
+    reader >> player[index].nation;
+    reader >> player[index].ppg;
+    reader >> player[index].fg;
+}
 
 
 /**************************************************
@@ -96,8 +102,8 @@ void populate_player_data(Player*, int, ifstream &);
  * Pre-conditions: the provided Team array hasn't been freed yet
  * Post-conditions: the Team struct, with all Players inside, is freed
  ***********************************************/
-void delete_info(Team* team, int){
-    delete[] team.Player;
+void delete_info(Team* team, int index){
+    delete[] team[index].p;
     delete team;
 }
 
