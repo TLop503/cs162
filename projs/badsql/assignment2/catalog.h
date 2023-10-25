@@ -1,3 +1,6 @@
+#ifndef CAT_H
+#define CAT_H
+
 #include <iostream>
 #include <fstream>
 
@@ -84,3 +87,6 @@ void populate_player_data(Player*, int, ifstream &);
  * Post-conditions: the Team array, with all Players inside, is freed
  ***********************************************/
 void delete_info(Team*, int);
+
+
+#endif
