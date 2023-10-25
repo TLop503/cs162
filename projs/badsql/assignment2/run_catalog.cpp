@@ -15,7 +15,10 @@ int main()
 		populate_team_data(teams, i, reader);
 	}
 
-	test_team(teams[0]);
+	//TODO: delete before submitting
+	//test_team(teams[0]);
+
+	
 
 	return 0;
 }

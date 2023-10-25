@@ -120,3 +120,69 @@ void delete_info(Team* team, int index){
 void test_team(Team t){
     cout << t.p[0].name;
 }
+
+void team_to_file(team t){
+
+}
+
+void player_to_cout(player p) {
+    cout << p.name << ": " << endl;
+    cout << "Age: " << p.age << endl;
+    cout << "Nation: " << p.nation << endl;
+    cout << "Points per Game: " << p.ppg << endl;
+    cout << "Field goal percentage" << p.fg << endl << endl;
+}
+
+void team_to_cout(team t){
+    cout << "Team Name: " << t.name << endl;
+    cout << "Team Owner: " << t.owner << endl;
+    cout << "Team Market Value: " << t.market_value << endl;
+    cout << "Team Player Count: " << t.num_player; << endl;
+    cout << "Players for :" << t.name << endl;
+    
+    for (int i = 0; i < t.num_player; i++){
+        player_to_cout(t.p[i]);
+    }
+
+    cout << "Total Points per game: " << t.total_ppg << endl;
+}
+
+void query_name_out(Team t) {
+    string choice = "-1"; //dummy
+    cout <<"Would you like the data as a file [1] or via the console [2]" << endl;
+    do {
+        cout << "(enter 1 or 2): ";
+        cin >> choice;
+    } while (choice != "1" || choice != "2");
+
+    if (choice == "1") {
+        team_to_file(t);
+    }
+    else if (choice == "2") {
+        team_to_cout(t);
+    }
+    else {
+        cout << "Error, was looking for 1 or 2 but got: " << choice << endl;
+    }
+}
+
+void query_name(Team* teams, int num_teams) {
+    string name;
+    
+    cout << "Submit valid name of team: ";
+    cin >> name;
+
+    bool index = -1;
+
+    for (int i = 0; i < num_teams; i++) {
+        if (teams[i].name == name) {
+            index = i;
+        }
+    }
+    if (index != -1) {
+        cout << "Invalid team name" <<  endl;
+    }
+    else {
+        query_name_out(teams[index])
+    }
+}
