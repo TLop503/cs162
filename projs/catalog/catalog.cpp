@@ -119,9 +119,23 @@ void delete_info(Team* team, int size){
     }
 }
 
+void player_to_file(ofstream writer, Player p) {
+    writer << p.name << ": " << endl;
+    writer << "Age: " << p.age << endl;
+    writer << "Nation: " << p.nation << endl;
+    writer << "Points per Game: " << p.ppg << endl;
+    writer << "Field goal percentage: " << p.fg << endl << endl;
+}
 
 void team_to_file(Team t){
-    cout << "Placeholder, write ttf" << endl;
+    ofstream writer;
+    string in;
+    cout << "Please enter name for output file: ";
+    cin >> in;
+    writer.open(in + ".txt", ios::app);
+    for (int i = 0; i < t.num_player; i++){
+        player_to_file(t.p[i]);
+    }
 }
 
 void player_to_cout(Player p) {
@@ -200,7 +214,19 @@ void top_score_to_cout(Team team, Player player, int score, bool tie) {
 }
 
 void top_score_to_file(Team team, Player player, int score, bool tie) {
-
+    ofstream writer;
+    string in;
+    cout << "Please enter name for output file: ";
+    cin >> in;
+    writer.open(in + ".txt", ios::app);
+    if (!tie) {
+        writer << "Top score on team " << team.name << " is ";
+        writer << score << " by player " << player.name << endl;
+    }
+    else {
+        writer << "Top score on team " << team.name << " was a tie ";
+        writer << " of " << score << " points" << endl;
+    }
 }
 
 bool query_top_scorers_out() {
@@ -275,7 +301,16 @@ void nationality_to_cout(Player* players, int size) {
 }
 
 void nationality_to_file(Player* players, int size) {
-
+    ofstream writer;
+    string in;
+    cout << "Please enter name for output file: ";
+    cin >> in;
+    writer.open(in + ".txt", ios::app);
+    writer << "Players from " << players[0].nation << ": " << endl;
+    for (int i = 0; i < size; i++) {
+        writer << players[i].name << endl;
+    }
+    writer.close();
 }
 
 void query_nationality_out(Player* players, int size) {
