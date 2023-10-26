@@ -26,8 +26,14 @@ struct Player {
 };
 
 int init(ifstream&);
-void test_team(Team t);
-
+void team_to_file(Team);
+void team_to_cout(Team);
+void query_name_out(Team);
+void query_name(Team*, int);
+void top_score_to_cout(Team, Player, int, bool);
+void top_score_to_file(Team, Player, int, bool);
+bool query_top_scorers_out();
+void query_top_scorers(Team*, int);
 
 /**************************************************
  * Name: create_teams()
