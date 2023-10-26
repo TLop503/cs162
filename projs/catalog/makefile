@@ -1,5 +1,5 @@
 CC=g++
-EXE_FILE=badsql
+EXE_FILE=catalog
 
 all: $(EXE_FILE)
 

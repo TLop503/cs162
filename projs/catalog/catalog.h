@@ -12,7 +12,7 @@ struct Team {
   string owner;       //owner of the team
   int market_value;   //market value of the team
   int num_player;     //number of players in the team
-  struct Player *p;   //an array that holds all players
+  struct Player* p;   //an array that holds all players
   float total_ppg;    //total points per game
 };
 
@@ -34,6 +34,13 @@ void top_score_to_cout(Team, Player, int, bool);
 void top_score_to_file(Team, Player, int, bool);
 bool query_top_scorers_out();
 void query_top_scorers(Team*, int);
+int sum_nationality_matches(Team*, int, string);
+void nationality_to_cout(Player*, int);
+void nationality_to_file(Player*, int);
+void query_nationlity_out(Player*, int);
+void query_nationality(Team*, int);
+bool runner (string, Team*, int);
+void handler(Team*, int);
 
 /**************************************************
  * Name: create_teams()

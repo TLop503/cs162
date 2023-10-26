@@ -19,7 +19,11 @@ int main()
 	//test_team(teams[0]);
 	//team_to_cout(teams[0]);
 	//query_name(teams, teams_count);
-	query_top_scorers(teams, teams_count);
+	//query_top_scorers(teams, teams_count);
+	//query_nationality(teams, teams_count);
+	handler(teams, teams_count);
 
+	delete_info(teams, teams_count);
+	cout << teams[0].name;
 	return 0;
 }

@@ -112,9 +112,13 @@ void populate_player_data(Player* player, int index, ifstream& reader) {
  * Pre-conditions: the provided Team array hasn't been freed yet
  * Post-conditions: the Team struct, with all Players inside, is freed
  ***********************************************/
-void delete_info(Team* team, int index){
-    delete[] team[index].p;
-    delete team;
+void delete_info(Team* team, int size){
+    for (int i = 0; i < size; i++) {
+        cout << "deleting players on team" << i << endl;
+        delete[] team[i].p;
+    }
+    cout << "deleting team array" << endl;
+    delete[] team;
 }
 
 
@@ -173,7 +177,6 @@ void query_name(Team* teams, int num_teams) {
     bool index = -1;
 
     for (int i = 0; i < num_teams; i++) {
-        cout << teams[i].name << endl;
         if (teams[i].name == name) {
             index = i;
         }
@@ -256,17 +259,21 @@ int sum_nationality_matches(Team* teams, int num_teams, string nationality) {
     int out = 0;
     for (int i = 0; i < num_teams; i++) {
         for (int j = 0; j < teams[i].num_player; j++) {
-            if (teams[i].p[j].nationality == nationality) {
+            if (teams[i].p[j].nation == nationality) {
                 out++;
             }
         }
     }
-
+    if (out == 0) {
+        cout << "Error: no playes with this nationality found." << endl;
+    }
     return out;
 }
-
 void nationality_to_cout(Player* players, int size) {
-
+    cout << "Players from " << players[0].nation << ": " << endl;
+    for (int i = 0; i < size; i++) {
+        cout << players[i].name << endl;
+    }
 }
 
 void nationality_to_file(Player* players, int size) {
@@ -277,7 +284,7 @@ void query_nationality_out(Player* players, int size) {
     string choice = "-1"; //dummy
     cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
     do {
-        cout << "(enter 1 or 2): ";
+        cout << "(enter a or b): ";
         cin >> choice;
         cout << endl; //newline for nicer formatting in term
     } while (choice != "a" && choice != "b");
@@ -293,18 +300,60 @@ void query_nationality_out(Player* players, int size) {
     }
 }
 
-void query_nationality(Team* teams, int num_teams, string nationality) {
+string fetch_nationality(){
+    string out;
+    cout << "Enter nationality: " << endl;
+    cin >> out;
+    return out;
+}
+
+void query_nationality(Team* teams, int num_teams) {
     //team
-    Player* matches = new int[sum_nationality_matches(teams, num_teams, nationality)];
-    index = 0;
+    string nationality = fetch_nationality();
+    int size = sum_nationality_matches(teams, num_teams, nationality);
+    Player* matches = new Player[size];
+    int index = 0;
 
     for (int i = 0; i < num_teams; i++) {
         for (int j = 0; j < teams[i].num_player; j++) {
-            if (teams[i].p[j].nationality == nationality) {
+            if (teams[i].p[j].nation == nationality) {
                 //set next index in array to player matching criteria
                 matches[index] = teams[i].p[j];
                 index++;
             }
         }
     }
+    query_nationality_out(matches, size);
+    delete[] matches;
+}
+
+bool runner(string in, Team* teams, int size){
+    if (in == "1") {
+        query_name(teams, size);
+    }
+    else if (in == "2") {
+        query_top_scorers(teams, size);
+    }
+    else if (in == "3") {
+        query_nationality(teams, size);
+    }
+    else if (in == "4") {
+        cout << "quitting..." << endl;
+        return false;
+    }
+    else {
+        cout << "Unknown selection slipped through checker in handler. fixme" << endl;
+    }
+    return true;
+}
+
+void handler(Team* teams, int size){
+    string in;
+    do {
+        do {
+            cout << "Please select a menu option (must be in range 1-4)" << endl;
+            cout << "1. Search by team name" << endl << "2. List top scorers" << endl << "3. Search Players by nationality" << endl << "4. Quit" << endl;
+            cin >> in;
+        } while (!(in == "1" || in == "2" || in == "3" || in == "4"));
+    } while (runner(in, teams, size));
 }
