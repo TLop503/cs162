@@ -367,11 +367,12 @@ void query_top_scorers(Team* teams, int num_teams) {
 
 
 /**************************************************
- * Name: 
- * Description: 
- * Parameters: 
- * Pre-conditions: 
- * Post-conditions: 
+ * Name: sum_nationality_matches
+ * Description: count how many players fit the requested nationality so a dynamic array can be created
+ * Parameters: Team* teams - team arr, int num_teams - size of team arr, string nationality - nationality being searched for
+ * Pre-conditions: structs are populated
+ * Post-conditions: returns number of players matching criteria. It would be a lot more efficient to just find each player and
+ *  print to file or cout but I didn't see a fast way to do that in 15 lines so now the whole nationality search takes 2 passes.
  ***********************************************/
 int sum_nationality_matches(Team* teams, int num_teams, string nationality) {
     int out = 0;
@@ -387,6 +388,15 @@ int sum_nationality_matches(Team* teams, int num_teams, string nationality) {
     }
     return out;
 }
+
+
+/**************************************************
+ * Name: nationality_to_cout()
+ * Description: prints players in array
+ * Parameters: player* players - list of players to be printed, int size (size)
+ * Pre-conditions: array has been populated
+ * Post-conditions: will be pritned to stdio
+ ***********************************************/
 void nationality_to_cout(Player* players, int size) {
     cout << "Players from " << players[0].nation << ": " << endl;
     for (int i = 0; i < size; i++) {
@@ -394,6 +404,14 @@ void nationality_to_cout(Player* players, int size) {
     }
 }
 
+
+/**************************************************
+ * Name: nationality_to_file()
+ * Description: Print all players in list to file
+ * Parameters: player* players - list of players to be printed, int size (size)
+ * Pre-conditions: array has been populated
+ * Post-conditions: will be pritned to file
+ ***********************************************/
 void nationality_to_file(Player* players, int size) {
     ofstream writer;
     string in;
@@ -407,6 +425,14 @@ void nationality_to_file(Player* players, int size) {
     writer.close();
 }
 
+
+/**************************************************
+ * Name: query_nationality_out()
+ * Description: asks where to print nationality data
+ * Parameters: player* players - list of players to be printed, int size (size)
+ * Pre-conditions: array has been populated
+ * Post-conditions: calls subproccesses
+ ***********************************************/
 void query_nationality_out(Player* players, int size) {
     string choice = "-1"; //dummy
     cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
@@ -427,6 +453,14 @@ void query_nationality_out(Player* players, int size) {
     }
 }
 
+
+/**************************************************
+ * Name: fetch_nationality()
+ * Description: asks which nationality to look for
+ * Parameters:
+ * Pre-conditions:
+ * Post-conditions: returns user string
+ ***********************************************/
 string fetch_nationality(){
     string out;
     cout << "Enter nationality: " << endl;
@@ -434,6 +468,14 @@ string fetch_nationality(){
     return out;
 }
 
+
+/**************************************************
+ * Name: query_nationality()
+ * Description: searches data for nationalities matching request
+ * Parameters: Team* teams - arr of teams, int num_teams - size
+ * Pre-conditions: struct is populated
+ * Post-conditions: calls subproccesses and eventually dumps data to file or stdio
+ ***********************************************/
 void query_nationality(Team* teams, int num_teams) {
     //team
     string nationality = fetch_nationality();
@@ -454,6 +496,14 @@ void query_nationality(Team* teams, int num_teams) {
     delete[] matches;
 }
 
+
+/**************************************************
+ * Name: runner()
+ * Description: given user selection call subproccess
+ * Parameters: string in - user choice, Team* teams - team arr, int size - size
+ * Pre-conditions: struct has been populated
+ * Post-conditions: will return to handler w/ whether or not to end program
+ ***********************************************/
 bool runner(string in, Team* teams, int size){
     if (in == "1") {
         query_name(teams, size);
@@ -474,6 +524,14 @@ bool runner(string in, Team* teams, int size){
     return true;
 }
 
+
+/**************************************************
+ * Name: handler()
+ * Description: asks for user selection
+ * Parameters: Team* teams - team arr, int size - size
+ * Pre-conditions: struct has been populated
+ * Post-conditions: will end once user chooses 4.
+ ***********************************************/
 void handler(Team* teams, int size){
     string in;
     do {
