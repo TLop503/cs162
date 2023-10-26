@@ -251,3 +251,60 @@ void query_top_scorers(Team* teams, int num_teams) {
 
     }
 }
+
+int sum_nationality_matches(Team* teams, int num_teams, string nationality) {
+    int out = 0;
+    for (int i = 0; i < num_teams; i++) {
+        for (int j = 0; j < teams[i].num_player; j++) {
+            if (teams[i].p[j].nationality == nationality) {
+                out++;
+            }
+        }
+    }
+
+    return out;
+}
+
+void nationality_to_cout(Player* players, int size) {
+
+}
+
+void nationality_to_file(Player* players, int size) {
+
+}
+
+void query_nationality_out(Player* players, int size) {
+    string choice = "-1"; //dummy
+    cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
+    do {
+        cout << "(enter 1 or 2): ";
+        cin >> choice;
+        cout << endl; //newline for nicer formatting in term
+    } while (choice != "a" && choice != "b");
+
+    if (choice == "a") {
+        nationality_to_file(players, size);
+    }
+    else if (choice == "b") {
+        nationality_to_cout(players, size);
+    }
+    else {
+        cout << "Error, was looking for a or b but got: " << choice << endl;
+    }
+}
+
+void query_nationality(Team* teams, int num_teams, string nationality) {
+    //team
+    Player* matches = new int[sum_nationality_matches(teams, num_teams, nationality)];
+    index = 0;
+
+    for (int i = 0; i < num_teams; i++) {
+        for (int j = 0; j < teams[i].num_player; j++) {
+            if (teams[i].p[j].nationality == nationality) {
+                //set next index in array to player matching criteria
+                matches[index] = teams[i].p[j];
+                index++;
+            }
+        }
+    }
+}
