@@ -20,6 +20,10 @@ int init(ifstream& reader){
     //TODO: error handling
     cin >> filename;
     reader.open(filename);
+    if (!(reader.is_open())) {
+        cout << "Invalid Filename, quitting" << endl;
+        return 0;
+    }
     reader >> count;
     return stoi(count);
 }
@@ -119,7 +123,7 @@ void delete_info(Team* team, int size){
     }
 }
 
-void player_to_file(ofstream writer, Player p) {
+void player_to_file(ofstream &writer, Player p) {
     writer << p.name << ": " << endl;
     writer << "Age: " << p.age << endl;
     writer << "Nation: " << p.nation << endl;
@@ -134,7 +138,7 @@ void team_to_file(Team t){
     cin >> in;
     writer.open(in + ".txt", ios::app);
     for (int i = 0; i < t.num_player; i++){
-        player_to_file(t.p[i]);
+        player_to_file(writer, t.p[i]);
     }
 }
 
@@ -164,7 +168,7 @@ void query_name_out(Team t) {
     string choice = "-1"; //dummy
     cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
     do {
-        cout << "(enter 1 or 2): ";
+        cout << "(enter a or b): ";
         cin >> choice;
         cout << endl; //newline for nicer formatting in term
     } while (choice != "a" && choice != "b");
@@ -194,7 +198,7 @@ void query_name(Team* teams, int num_teams) {
         }
     }
     if (index == -1) {
-        cout << "Invalid team name" <<  endl;
+        cout << "Invalid team name. Please try again." <<  endl;
     }
     else {
         query_name_out(teams[index]);
@@ -213,12 +217,10 @@ void top_score_to_cout(Team team, Player player, int score, bool tie) {
     }
 }
 
-void top_score_to_file(Team team, Player player, int score, bool tie) {
+void top_score_to_file(Team team, Player player, int score, bool tie, string file) {
     ofstream writer;
-    string in;
-    cout << "Please enter name for output file: ";
-    cin >> in;
-    writer.open(in + ".txt", ios::app);
+    
+    writer.open(file + ".txt", ios::app);
     if (!tie) {
         writer << "Top score on team " << team.name << " is ";
         writer << score << " by player " << player.name << endl;
@@ -229,16 +231,18 @@ void top_score_to_file(Team team, Player player, int score, bool tie) {
     }
 }
 
-bool query_top_scorers_out() {
+bool query_top_scorers_out(string &filename) {
     string choice = "-1"; //dummy
     cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
     do {
-        cout << "(enter 1 or 2): ";
+        cout << "(enter a or b): ";
         cin >> choice;
         cout << endl; //newline for nicer formatting in term
     } while (choice != "a" && choice != "b");
 
     if (choice == "a") {
+        cout << "Please enter name for output file: ";
+        cin >> filename;
         return true;
     }
     else if (choice == "b") {
@@ -254,7 +258,8 @@ void query_top_scorers(Team* teams, int num_teams) {
     //this is so scuffed but we aren't being graded on efficiency
 
     //for each team
-    bool out = query_top_scorers_out();
+    string filename;
+    bool out = query_top_scorers_out(filename);
     for (int i = 0; i < num_teams; i++) {
         int top = 0, plr = -1;
         bool tie = 0;
@@ -273,7 +278,7 @@ void query_top_scorers(Team* teams, int num_teams) {
             top_score_to_cout(teams[i], teams[i].p[plr], top, tie);
         }
         else {
-            top_score_to_file(teams[i], teams[i].p[plr], top, tie);
+            top_score_to_file(teams[i], teams[i].p[plr], top, tie, filename);
         }
 
     }

@@ -5,3 +5,49 @@ Ethan_Davis
 Marcus_Rodriguez
 Dame_Dolla
 Sharp_Shooter
+Alex_Johnson: 
+Age: 28
+Nation: USA
+Points per Game: 22.5
+Field goal percentage: 0.46
+
+Samantha_White: 
+Age: 24
+Nation: Canada
+Points per Game: 20.3
+Field goal percentage: 0.48
+
+Daniel_Brown: 
+Age: 30
+Nation: Australia
+Points per Game: 18.9
+Field goal percentage: 0.53
+
+Sophia_Davis: 
+Age: 26
+Nation: Spain
+Points per Game: 8.4
+Field goal percentage: 0.35
+
+Nathan_Turner: 
+Age: 27
+Nation: France
+Points per Game: 15.7
+Field goal percentage: 0.4
+
+Top score on team Thunder_Strikers is 22 by player Alex_Johnson
+Top score on team Phoenix_Flames is 38 by player James_Bryant
+Top score on team Blizzard_Bears is 26 by player Ethan_Davis
+Top score on team Galaxy_Guardians is 32 by player Dame_Dolla
+Top score on team Thunder_Strikers is 22 by player Alex_Johnson
+Top score on team Phoenix_Flames is 38 by player James_Bryant
+Top score on team Blizzard_Bears is 26 by player Ethan_Davis
+Top score on team Galaxy_Guardians is 32 by player Dame_Dolla
+Top score on team Thunder_Strikers is 22 by player Alex_Johnson
+Top score on team Phoenix_Flames is 38 by player James_Bryant
+Top score on team Blizzard_Bears is 26 by player Ethan_Davis
+Top score on team Galaxy_Guardians is 32 by player Dame_Dolla
+Top score on team Thunder_Strikers is 22 by player Alex_Johnson
+Top score on team Phoenix_Flames is 38 by player James_Bryant
+Top score on team Blizzard_Bears is 26 by player Ethan_Davis
+Top score on team Galaxy_Guardians is 32 by player Dame_Dolla

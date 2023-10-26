@@ -8,19 +8,23 @@ int main()
 {
 	//create file reader
 	ifstream reader;
-	//create teams based on the number of players from reader
+	//create teams based on the number of players from reader. 
+	//returns 0 if file was bad
 	int teams_count = init(reader);
-	Team* teams = create_teams(teams_count);
-	for (int i = 0; i < teams_count; i++) {
-		populate_team_data(teams, i, reader);
+	if (teams_count != 0){
+		//create things
+		Team* teams = create_teams(teams_count);
+		for (int i = 0; i < teams_count; i++) {
+			populate_team_data(teams, i, reader);
+		}
+
+		//presents menu, etc
+		handler(teams, teams_count);
+
+		//cleanup
+		delete_info(teams, teams_count);
+		delete[] teams;
+		reader.close();
 	}
-
-	//TODO: delete before submitting
-	
-	handler(teams, teams_count);
-
-	delete_info(teams, teams_count);
-	delete[] teams;
-	reader.close();
 	return 0;
 }
