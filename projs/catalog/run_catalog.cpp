@@ -24,6 +24,6 @@ int main()
 	handler(teams, teams_count);
 
 	delete_info(teams, teams_count);
-	cout << teams[0].name;
+	delete[] teams;
 	return 0;
 }

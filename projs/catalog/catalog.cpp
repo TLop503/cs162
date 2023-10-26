@@ -115,10 +115,8 @@ void populate_player_data(Player* player, int index, ifstream& reader) {
 void delete_info(Team* team, int size){
     for (int i = 0; i < size; i++) {
         cout << "deleting players on team" << i << endl;
-        delete[] team[i].p;
+        delete[] (team[i].p);
     }
-    cout << "deleting team array" << endl;
-    delete[] team;
 }
 
 
