@@ -123,6 +123,14 @@ void delete_info(Team* team, int size){
     }
 }
 
+
+/**************************************************
+ * Name: player_to_file()
+ * Description: prints data for each player to a file
+ * Parameters: &writer - writer object, Player P - player struct to write about
+ * Pre-conditions: player is populated and struct exists
+ * Post-conditions: file will be written
+ ***********************************************/
 void player_to_file(ofstream &writer, Player p) {
     writer << p.name << ": " << endl;
     writer << "Age: " << p.age << endl;
@@ -131,6 +139,14 @@ void player_to_file(ofstream &writer, Player p) {
     writer << "Field goal percentage: " << p.fg << endl << endl;
 }
 
+
+/**************************************************
+ * Name: team_to_file()
+ * Description: given a team, call player_to_file for each player
+ * Parameters: Team t - a team struct instance
+ * Pre-conditions: struct is populated
+ * Post-conditions: players will have been run through player_to_file
+ ***********************************************/
 void team_to_file(Team t){
     ofstream writer;
     string in;
@@ -142,6 +158,14 @@ void team_to_file(Team t){
     }
 }
 
+
+/**************************************************
+ * Name: player_to_cout()
+ * Description: print data for player to stdio
+ * Parameters: Player p - the player struct
+ * Pre-conditions: struct is populated
+ * Post-conditions: will be printed
+ ***********************************************/
 void player_to_cout(Player p) {
     cout << p.name << ": " << endl;
     cout << "Age: " << p.age << endl;
@@ -150,6 +174,14 @@ void player_to_cout(Player p) {
     cout << "Field goal percentage: " << p.fg << endl << endl;
 }
 
+
+/**************************************************
+ * Name: team_to_cout()
+ * Description: given a team, call player_to_cout for each player
+ * Parameters: Team t - a team struct instance
+ * Pre-conditions: struct is populated
+ * Post-conditions: players will have been run through player_to_cout
+ ***********************************************/
 void team_to_cout(Team t){
     cout << "Team Name: " << t.name << endl;
     cout << "Team Owner: " << t.owner << endl;
@@ -164,6 +196,14 @@ void team_to_cout(Team t){
     cout << "Total Points per game: " << t.total_ppg << endl;
 }
 
+
+/**************************************************
+ * Name: query_name_out()
+ * Description: given a team, output each player. works as subproccess of query_name
+ * Parameters: Team t - a team struct instance
+ * Pre-conditions: struct is populated
+ * Post-conditions: players will be outputted via cout or file
+ ***********************************************/
 void query_name_out(Team t) {
     string choice = "-1"; //dummy
     cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
@@ -184,6 +224,14 @@ void query_name_out(Team t) {
     }
 }
 
+
+/**************************************************
+ * Name: query_name()
+ * Description: ask for a team and locate it's players
+ * Parameters: Team* teams - arr of structs, num_teams - size of arr
+ * Pre-conditions: struct is populated
+ * Post-conditions: will run query_name_out if team is found
+ ***********************************************/
 void query_name(Team* teams, int num_teams) {
     string name;
     
@@ -197,6 +245,7 @@ void query_name(Team* teams, int num_teams) {
             index = i;
         }
     }
+    //if team was not found
     if (index == -1) {
         cout << "Invalid team name. Please try again." <<  endl;
     }
@@ -205,8 +254,15 @@ void query_name(Team* teams, int num_teams) {
     }
 }
 
+
+/**************************************************
+ * Name: top_score_to_cout()
+ * Description: print top scoring player or tie
+ * Parameters: Team team - team being analyzed, Player player - player that did best, score - hiscore, tie - yes or no
+ * Pre-conditions: best player OR tie has been found. Note player is found IFF no tie
+ * Post-conditions: prints out best scoring player or that there was a tie
+ ***********************************************/
 void top_score_to_cout(Team team, Player player, int score, bool tie) {
-    // absurd one liner, probably should fix
     if (!tie) {
         cout << "Top score on team " << team.name << " is ";
         cout << score << " by player " << player.name << endl;
@@ -217,6 +273,14 @@ void top_score_to_cout(Team team, Player player, int score, bool tie) {
     }
 }
 
+
+/**************************************************
+ * Name: top_score_to_file()
+ * Description: print top scoring player or tie
+ * Parameters: Team team - team being analyzed, Player player - player that did best, score - hiscore, tie - yes or no, file - output file name
+ * Pre-conditions: best player OR tie has been found. Note player is found IFF no tie
+ * Post-conditions: prints out best scoring player or that there was a tie
+ ***********************************************/
 void top_score_to_file(Team team, Player player, int score, bool tie, string file) {
     ofstream writer;
     
@@ -231,6 +295,15 @@ void top_score_to_file(Team team, Player player, int score, bool tie, string fil
     }
 }
 
+
+/**************************************************
+ * This is a mess but it works. Slightly over the line limit but only because I tried to add error messages incase something theoretically impossible occured.
+ * Name: query_top_scorers_out()
+ * Description: subproccess of query_top_scorers that determines output type and sets filename via pbr so that it only needs to be asked for once.
+ * Parameters: string &filename - pbr to update filename if user wants to write to a file
+ * Pre-conditions: query has been called
+ * Post-conditions: returns bool corresponding to type of output
+ ***********************************************/
 bool query_top_scorers_out(string &filename) {
     string choice = "-1"; //dummy
     cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
@@ -254,6 +327,14 @@ bool query_top_scorers_out(string &filename) {
     }
 }
 
+
+/**************************************************
+ * Name: query_top_scorers()
+ * Description: locate top scoring player for each team
+ * Parameters: team* teams -- arr of teams, int num_teams -- size of arr
+ * Pre-conditions: struct is full
+ * Post-conditions: calls output subproccess
+ ***********************************************/
 void query_top_scorers(Team* teams, int num_teams) {
     //this is so scuffed but we aren't being graded on efficiency
 
@@ -284,6 +365,14 @@ void query_top_scorers(Team* teams, int num_teams) {
     }
 }
 
+
+/**************************************************
+ * Name: 
+ * Description: 
+ * Parameters: 
+ * Pre-conditions: 
+ * Post-conditions: 
+ ***********************************************/
 int sum_nationality_matches(Team* teams, int num_teams, string nationality) {
     int out = 0;
     for (int i = 0; i < num_teams; i++) {
