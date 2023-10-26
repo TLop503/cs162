@@ -52,3 +52,26 @@ void honor(Student* students, int size) {
         }
     }
 }
+
+//code stolen from w3schools
+void exc(Student* st, int size) {
+    int i, j;
+    int n = size;
+    bool swapped;
+    for (i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (j = 0; j < n - i - 1; j++) {
+            if (st[j].id > st[j + 1].id) {
+                swap(st[j], st[j + 1]);
+                swapped = true;
+            }
+        }
+ 
+    }
+    ofstream writer;
+    writer.open("output.txt", ios::app);
+    writer << "SORTED IDS: " << endl;
+    for (int l = 0; l < size; l++) {
+        writer << st[l].id << endl;
+    }
+}

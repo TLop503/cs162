@@ -20,5 +20,6 @@ void populate_student_db_info(Student*, int, ifstream&);
 void delete_student_info(Student*&);
 void search_by_ln(Student*, int);
 void honor(Student*, int);
+void exc(Student*, int);
 
 #endif

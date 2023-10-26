@@ -1,0 +1,119 @@
+NAME QUERY RESULTS: 
+ID: 199922007
+First Name: C.J.
+Last Name: Cregg
+Major: Political_Science
+GPA: 3.62
+
+HONOR ROLL: 
+ID: 199922007
+First Name: C.J.
+Last Name: Cregg
+Major: Political_Science
+GPA: 3.62
+
+ID: 199922006
+First Name: Toby
+Last Name: Ziegler
+Major: Communications
+GPA: 4
+
+ID: 200722013
+First Name: Walter
+Last Name: Bishop
+Major: General_Sciences
+GPA: 3.85
+
+SORTED IDS: 
+199822007
+199922004
+199922006
+199922007
+200722013
+200822013
+200922015
+NAME QUERY RESULTS: 
+ID: 200922015
+First Name: Leslie
+Last Name: Knope
+Major: Public_and_Environmental_Affairs
+GPA: 3.22
+
+HONOR ROLL: 
+ID: 199922007
+First Name: C.J.
+Last Name: Cregg
+Major: Political_Science
+GPA: 3.62
+
+ID: 199922006
+First Name: Toby
+Last Name: Ziegler
+Major: Communications
+GPA: 4
+
+ID: 200722013
+First Name: Walter
+Last Name: Bishop
+Major: General_Sciences
+GPA: 3.85
+
+SORTED IDS: 
+199822007
+199922004
+199922006
+199922007
+200722013
+200822013
+200922015
+
+////////////////////////////////////////////SORTED IDS: 
+199822007
+199922004
+199922006
+199922007
+200722013
+200822013
+200922015
+NAME QUERY RESULTS: 
+ID: 200922015
+First Name: Leslie
+Last Name: Knope
+Major: Public_and_Environmental_Affairs
+GPA: 3.22
+
+HONOR ROLL: 
+ID: 199922007
+First Name: C.J.
+Last Name: Cregg
+Major: Political_Science
+GPA: 3.62
+
+ID: 199922006
+First Name: Toby
+Last Name: Ziegler
+Major: Communications
+GPA: 4
+
+ID: 200722013
+First Name: Walter
+Last Name: Bishop
+Major: General_Sciences
+GPA: 3.85
+
+SORTED IDS: 
+199822007
+199922004
+199922006
+199922007
+200722013
+200822013
+200922015
+SORTED IDS: 
+199822007
+199922004
+199922006
+199922007
+200722013
+200822013
+200922015

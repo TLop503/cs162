@@ -24,6 +24,28 @@ int main(){
     Student* db = create_student_db(size);
     populate_student_db_info(db, size, reader);
 
-    search_by_ln(db, size);
-    honor(db, size);
+    ///////////////////////
+    string quit;
+    string input;
+    do {
+        do {
+            cout << "Options:\n 1. Search by Name \n 2. Display Honor Roll \n 3. Sort ID numbers" << endl;
+            cin >> input;
+        } while (!(input == "1" || input == "2" || input == "3"));
+        if (input == "1") {
+            search_by_ln(db, size);
+        }
+        if (input == "2") {
+            honor(db, size);
+        }
+        if (input == "3") {
+            exc(db, size);
+        }
+        do {
+            cout << "Want to quit? y/n: ";
+            cin >> quit;
+        } while (!(quit == "y" || quit == "n"));
+    } while (quit != "y");
+
+    delete_student_info(db);
 }
