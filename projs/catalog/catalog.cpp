@@ -118,7 +118,7 @@ void populate_player_data(Player* player, int index, ifstream& reader) {
  ***********************************************/
 void delete_info(Team* team, int size){
     for (int i = 0; i < size; i++) {
-        cout << "deleting players on team" << i << endl;
+        //cout << "deleting players on team" << i << endl;
         delete[] (team[i].p);
     }
 }
@@ -152,7 +152,13 @@ void team_to_file(Team t){
     string in;
     cout << "Please enter name for output file: ";
     cin >> in;
+    writer << "Team Name: " << t.name << endl;
+    writer << "Team Owner: " << t.owner << endl;
+    writer << "Team Market Value: " << t.market_value << endl;
+    writer << "Team Player Count: " << t.num_player << endl;
+    writer << "Players for: " << t.name << endl << endl;
     writer.open(in + ".txt", ios::app);
+    writer << t.name << ": " << endl;
     for (int i = 0; i < t.num_player; i++){
         player_to_file(writer, t.p[i]);
     }
@@ -188,7 +194,6 @@ void team_to_cout(Team t){
     cout << "Team Market Value: " << t.market_value << endl;
     cout << "Team Player Count: " << t.num_player << endl;
     cout << "Players for: " << t.name << endl << endl;
-    
     for (int i = 0; i < t.num_player; i++){
         player_to_cout(t.p[i]);
     }
@@ -233,15 +238,15 @@ void query_name_out(Team t) {
  * Post-conditions: will run query_name_out if team is found
  ***********************************************/
 void query_name(Team* teams, int num_teams) {
-    string name;
+    string iname;
     
     cout << "Submit valid name of team: ";
-    cin >> name;
+    cin >> iname;
 
-    bool index = -1;
+    int index = -1;
 
     for (int i = 0; i < num_teams; i++) {
-        if (teams[i].name == name) {
+        if (teams[i].name == iname) {
             index = i;
         }
     }
