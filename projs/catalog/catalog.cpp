@@ -12,12 +12,10 @@ using namespace std;
  * Post-conditions: returns team count
  ***********************************************/
 int init(ifstream& reader){
-
-    string filename = "";
+    string filename;
     string count;
 
     cout << "specify file name: ";
-    //TODO: error handling
     cin >> filename;
     reader.open(filename);
     if (!(reader.is_open())) {
@@ -44,12 +42,12 @@ Team* create_teams(int teamsize) {
 
 /**************************************************
  * Name: populate_team_data()
- * Description: This function will fill a single team struct 
+ * Description: This function will fill a single team struct
                 with information that is read in from the file
  * Parameters:  Team* - pointer to the Team array
-                int - index of the Team in the array to be filled 
+                int - index of the Team in the array to be filled
                 ifstream& - input file to get information from
- * Pre-conditions: Team array has been allocated; 
+ * Pre-conditions: Team array has been allocated;
                    provided index is less than the array size
  * Post-conditions: a Team at provided index is populated
  ***********************************************/
@@ -59,7 +57,7 @@ void populate_team_data(Team* teamarr, int index, ifstream& reader) {
     reader >> teamarr[index].owner;
     reader >> teamarr[index].market_value;
     reader >> teamarr[index].num_player;
-    
+
     //create player arr and assign to team struct
     teamarr[index].p = (create_players(teamarr[index].num_player));
     float ppg = 0;
@@ -71,8 +69,7 @@ void populate_team_data(Team* teamarr, int index, ifstream& reader) {
     }
 
     teamarr[index].total_ppg = ppg;
-    
-} 
+}
 
 
 /**************************************************
@@ -91,12 +88,12 @@ Player* create_players(int size) {
 
 /**************************************************
  * Name: populate_player_data()
- * Description: This function will fill a single player struct 
+ * Description: This function will fill a single player struct
                 with information that is read in from the file
  * Parameters:  Player* - pointer to the Player array
-                int - index of the Player in the array to be filled 
+                int - index of the Player in the array to be filled
                 ifstream& - input file to get information from
- * Pre-conditions: Player array has been allocated; 
+ * Pre-conditions: Player array has been allocated;
                    provided index is less than the array size
  * Post-conditions: a Player at provided index is populated
  ***********************************************/
@@ -159,9 +156,13 @@ void team_to_file(Team t){
     writer << "Players for: " << t.name << endl << endl;
     writer.open(in + ".txt", ios::app);
     writer << t.name << ": " << endl;
+
+    //write each player
     for (int i = 0; i < t.num_player; i++){
         player_to_file(writer, t.p[i]);
     }
+
+    writer << "Total Points per game: " << t.total_ppg << endl;
 }
 
 
@@ -194,6 +195,8 @@ void team_to_cout(Team t){
     cout << "Team Market Value: " << t.market_value << endl;
     cout << "Team Player Count: " << t.num_player << endl;
     cout << "Players for: " << t.name << endl << endl;
+
+    //write each player
     for (int i = 0; i < t.num_player; i++){
         player_to_cout(t.p[i]);
     }
@@ -239,7 +242,7 @@ void query_name_out(Team t) {
  ***********************************************/
 void query_name(Team* teams, int num_teams) {
     string iname;
-    
+
     cout << "Submit valid name of team: ";
     cin >> iname;
 
@@ -288,7 +291,7 @@ void top_score_to_cout(Team team, Player player, int score, bool tie) {
  ***********************************************/
 void top_score_to_file(Team team, Player player, int score, bool tie, string file) {
     ofstream writer;
-    
+
     writer.open(file + ".txt", ios::app);
     if (!tie) {
         writer << "Top score on team " << team.name << " is ";
@@ -360,6 +363,7 @@ void query_top_scorers(Team* teams, int num_teams) {
                 tie = 1;
             }
         }
+        //16 lines b/c I didn't want to make this an absurdly long ternary operator
         if (!out) {
             top_score_to_cout(teams[i], teams[i].p[plr], top, tie);
         }
