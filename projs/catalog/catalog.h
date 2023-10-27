@@ -41,6 +41,9 @@ void query_nationlity_out(Player*, int);
 void query_nationality(Team*, int);
 bool runner (string, Team*, int);
 void handler(Team*, int);
+void sort(Team*, int);
+void cout_ppg(Team*, int);
+void file_ppg(Team*, int);
 
 /**************************************************
  * Name: create_teams()

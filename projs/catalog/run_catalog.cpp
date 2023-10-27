@@ -19,6 +19,7 @@ int main()
 		}
 
 		//presents menu, etc
+		sort(teams, teams_count);
 		handler(teams, teams_count);
 
 		//cleanup

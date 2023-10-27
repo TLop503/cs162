@@ -507,6 +507,58 @@ void query_nationality(Team* teams, int num_teams) {
 
 
 /**************************************************
+ * Name: cout_ppg()
+ * Description: prints sorted teams by ppg
+ * Parameters: Team* teams - arr of teams, int num_teams - size
+ * Pre-conditions: struct is populated, sorted
+ * Post-conditions: dumps to cout
+ ***********************************************/
+void cout_ppg(Team* t, int size) {
+    for (int i = 0; i < size; i++) {
+        cout << t[i].name << " Points: " << t[i].total_ppg << endl;
+    }
+}
+
+
+/**************************************************
+ * Name: file_ppg()
+ * Description: prints sorted teams by ppg
+ * Parameters: Team* teams - arr of teams, int num_teams - size
+ * Pre-conditions: struct is populated, sorted
+ * Post-conditions: dumps to file
+ ***********************************************/
+void file_ppg(Team* t, int size) {
+    ofstream writer;
+    string in;
+    cout << "Please enter name for output file: ";
+    cin >> in;
+    writer.open(in + ".txt", ios::app);
+    for (int i = 0; i < size; i++) {
+        writer << t[i].name << " Points: " << t[i].total_ppg << endl;
+    }
+}
+
+/**************************************************
+ * Name: sort()
+ * Description: sorts teams by ppg
+ * Parameters: Team* teams - arr of teams, int num_teams - size
+ * Pre-conditions: struct is populated
+ * Post-conditions: dumps to cout or file
+ ***********************************************/
+void sort(Team* t, int size) {
+    int i, j;
+    for (i = 0; i < size - 1; i++) {
+        for (j = 0; j < size - i - 1; j++) {
+            if (t[j].total_ppg > t[j + 1].total_ppg)
+            swap(t[j], t[j+1]);
+        }
+    }
+    cout_ppg(t, size);
+
+}
+
+
+/**************************************************
  * Name: runner()
  * Description: given user selection call subproccess
  * Parameters: string in - user choice, Team* teams - team arr, int size - size
