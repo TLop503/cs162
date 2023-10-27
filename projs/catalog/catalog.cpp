@@ -1,4 +1,15 @@
+/******************************************************
+** Program: catalog.cpp
+** Author: Troy Lopez
+** Date: 10/30/2023
+** Description: Functions for handling bulk of work for program.
+    Users can search by nationality, team name, top score, or sort the players
+** Input: called by run_catalog.cpp
+** Output: varies wildly but ultimately gives the ok to quit
+******************************************************/
+
 #include "catalog.h"
+
 
 using namespace std;
 
@@ -553,8 +564,19 @@ void sort(Team* t, int size) {
             swap(t[j], t[j+1]);
         }
     }
-    cout_ppg(t, size);
+    cout <<"Would you like the data as a file [a] or via the console [b]" << endl;
+    do {
+        cout << "(enter a or b): ";
+        cin >> choice;
+        cout << endl; //newline for nicer formatting in term
+    } while (choice != "a" && choice != "b");
 
+    if (choice == "a") {
+        file_ppg(t, size);
+    }
+    else if (choice == "b") {
+        file_cout(t, size);
+    }
 }
 
 
@@ -576,6 +598,9 @@ bool runner(string in, Team* teams, int size){
         query_nationality(teams, size);
     }
     else if (in == "4") {
+        sort(teams, size);
+    }
+    else if (in == "5") {
         cout << "quitting..." << endl;
         return false;
     }
@@ -597,9 +622,9 @@ void handler(Team* teams, int size){
     string in;
     do {
         do {
-            cout << "Please select a menu option (must be in range 1-4)" << endl;
-            cout << "1. Search by team name" << endl << "2. List top scorers" << endl << "3. Search Players by nationality" << endl << "4. Quit" << endl;
+            cout << "Please select a menu option (must be in range 1-5)" << endl;
+            cout << "1. Search by team name" << endl << "2. List top scorers" << endl << "3. Search Players by nationality" << endl << "4. Sort by PPG" << endl << "5. Quit" << endl;
             cin >> in;
-        } while (!(in == "1" || in == "2" || in == "3" || in == "4"));
+        } while (!(in == "1" || in == "2" || in == "3" || in == "4" || in == "5"));
     } while (runner(in, teams, size));
 }

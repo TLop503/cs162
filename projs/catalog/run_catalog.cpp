@@ -1,3 +1,10 @@
+/******************************************************
+** Program: run_catalog.h
+** Author: Troy Lopez
+** Date: 10/30/2023
+** Description: main entry point, creates dynarray and delegates functionality
+*******************************************************/
+
 #include "catalog.h"
 #include <fstream>
 #include <iostream>
