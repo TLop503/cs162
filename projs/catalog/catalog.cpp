@@ -281,7 +281,7 @@ void query_name(Team* teams, int num_teams) {
  * Pre-conditions: best player OR tie has been found. Note player is found IFF no tie
  * Post-conditions: prints out best scoring player or that there was a tie
  ***********************************************/
-void top_score_to_cout(Team team, Player player, int score, bool tie) {
+void top_score_to_cout(Team team, Player player, float score, bool tie) {
     if (!tie) {
         cout << "Top score on team " << team.name << " is ";
         cout << score << " by player " << player.name << endl;
@@ -300,7 +300,7 @@ void top_score_to_cout(Team team, Player player, int score, bool tie) {
  * Pre-conditions: best player OR tie has been found. Note player is found IFF no tie
  * Post-conditions: prints out best scoring player or that there was a tie
  ***********************************************/
-void top_score_to_file(Team team, Player player, int score, bool tie, string file) {
+void top_score_to_file(Team team, Player player, float score, bool tie, string file) {
     ofstream writer;
 
     writer.open(file + ".txt", ios::app);
@@ -361,7 +361,8 @@ void query_top_scorers(Team* teams, int num_teams) {
     string filename;
     bool out = query_top_scorers_out(filename);
     for (int i = 0; i < num_teams; i++) {
-        int top = 0, plr = -1;
+        float top = 0;
+        int plr = -1;
         bool tie = 0;
         //for each player
         for (int j = 0; j < teams[i].num_player; j++) {
@@ -544,6 +545,7 @@ void file_ppg(Team* t, int size) {
     cout << "Please enter name for output file: ";
     cin >> in;
     writer.open(in + ".txt", ios::app);
+    writer << "\nSorted PPG:" << endl;
     for (int i = 0; i < size; i++) {
         writer << t[i].name << " Points: " << t[i].total_ppg << endl;
     }
@@ -558,6 +560,7 @@ void file_ppg(Team* t, int size) {
  ***********************************************/
 void sort(Team* t, int size) {
     int i, j;
+    string choice;
     for (i = 0; i < size - 1; i++) {
         for (j = 0; j < size - i - 1; j++) {
             if (t[j].total_ppg > t[j + 1].total_ppg)
@@ -575,7 +578,7 @@ void sort(Team* t, int size) {
         file_ppg(t, size);
     }
     else if (choice == "b") {
-        file_cout(t, size);
+        cout_ppg(t, size);
     }
 }
 
@@ -622,7 +625,7 @@ void handler(Team* teams, int size){
     string in;
     do {
         do {
-            cout << "Please select a menu option (must be in range 1-5)" << endl;
+            cout << "\nPlease select a menu option (must be in range 1-5)" << endl;
             cout << "1. Search by team name" << endl << "2. List top scorers" << endl << "3. Search Players by nationality" << endl << "4. Sort by PPG" << endl << "5. Quit" << endl;
             cin >> in;
         } while (!(in == "1" || in == "2" || in == "3" || in == "4" || in == "5"));
