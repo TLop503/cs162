@@ -25,4 +25,4 @@ coffee.o: coffee.h
 	$(CC) -c coffee.cpp
 
 clean:
-	rm -sf *.o
+	rm -f *.o
