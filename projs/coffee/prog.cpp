@@ -12,12 +12,12 @@ int main()
 	//populate your Shop:
 	//your code here:
 
-	while (choice != QUIT){
-		choice = get_choice();
-		perform_action(s, choice);
-	}
+	// while (choice != QUIT){
+	// 	choice = get_choice();
+	// 	perform_action(s, choice);
+	// }
 
-	cout << "Bye!" << endl;
+	// cout << "Bye!" << endl;
 
 	return 0;
 }

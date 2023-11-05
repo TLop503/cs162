@@ -1,5 +1,8 @@
 #include "menu.h"
 
+#include <iostream>
+#include <fstream>
+
 using namespace std;
 
 //function defintions from menu.h goes here
@@ -44,25 +47,32 @@ void Menu::remove_from_menu(int index_of_coffee_on_menu){
 
 //populates menu object with data from input file
 void Menu::init(string input_file){
-	ofstream reader;
-	reader.open(input_file)
+	ifstream reader;
+	reader.open(input_file);
 
-	reader >> m.num_coffee;;
-	m.coffee_arr = new Coffee[m.num_coffee];
-	for (int i = 0; i < menu_size; i++) {
-		reader >> m.coffee_arr[i].name;
-		reader >> m.coffee_arr[i].small_cost;
-		reader >> m.coffee_arr[i].medium_cost;
-		reader >> m.coffee_arr[i].large_cost;
+	reader >> num_coffee;;
+	coffee_arr = new Coffee[num_coffee];
+	for (int i = 0; i < num_coffee; i++) {
+		string name;
+		float price;
+		reader >> name;
+		coffee_arr[i].set_name(name);
+
+		reader >> price;
+		coffee_arr[i].set_small_cost(price);
+		reader >> price;
+		coffee_arr[i].set_medium_cost(price);
+		reader >> price;
+		coffee_arr[i].set_large_cost(price);
 	}
 	///////////////////////////////////////////////
-	cout << "BEGIN DEBUG MESSAGE:" << endl;
-	cout << m.num_coffee << endl;
-	for (int i = 0; i < menu_size; i++) {
-		cout << m.coffee_arr[i].name << endl;
-		cout << m.coffee_arr[i].small_cost << endl;
-		cout << m.coffee_arr[i].medium_cost << endl;
-		cout << m.coffee_arr[i].large_cost << endl;
-	}
-	cout << "END DEBUG" << endl;
+	// cout << "BEGIN DEBUG MESSAGE:" << endl;
+	// cout << num_coffee << endl;
+	// for (int i = 0; i < num_coffee; i++) {
+	// 	cout << coffee_arr[i].get_name() << endl;
+	// 	cout << coffee_arr[i].get_small_cost() << endl;
+	// 	cout << coffee_arr[i].get_medium_cost() << endl;
+	// 	cout << coffee_arr[i].get_large_cost() << endl;
+	// }
+	// cout << "END DEBUG" << endl;
 }

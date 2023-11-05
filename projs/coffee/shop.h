@@ -22,6 +22,9 @@ class Shop {
     //need to include constructors and destructors where appropriate
     //need to use 'const' when appropriate
 
+    //default constructor calls load data
+    Shop();
+
     //Suggested functions
     void load_data(); //reads from files to correctly populate coffee, menu, etc.
     void view_shop_detail();

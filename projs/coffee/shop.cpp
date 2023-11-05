@@ -1,16 +1,20 @@
 #include "shop.h"
-#include <ofstream>
+#include <fstream>
 
 using namespace std;
 
 //function defintions from shop.h goes here
 
+Shop::Shop() {
+	load_data();
+}
+
 void Shop::load_data(){
 	//reads from files to correctly populate coffee, menu, etc.
 	//Your code goes here: 
-	cout << "Shop::load_data() not implemented..." << endl;
+	cout << "Shop::load_data() not fully implemented..." << endl;
 
-	m.init(menu.txt);
+	m.init("menu.txt");
 
 	return;
 }
