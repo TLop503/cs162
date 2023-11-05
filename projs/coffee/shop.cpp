@@ -1,4 +1,5 @@
 #include "shop.h"
+#include <ofstream>
 
 using namespace std;
 
@@ -8,6 +9,8 @@ void Shop::load_data(){
 	//reads from files to correctly populate coffee, menu, etc.
 	//Your code goes here: 
 	cout << "Shop::load_data() not implemented..." << endl;
+
+	m.init(menu.txt);
 
 	return;
 }

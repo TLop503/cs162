@@ -41,3 +41,28 @@ void Menu::remove_from_menu(int index_of_coffee_on_menu){
 
 	return;
 } 
+
+//populates menu object with data from input file
+void Menu::init(string input_file){
+	ofstream reader;
+	reader.open(input_file)
+
+	reader >> m.num_coffee;;
+	m.coffee_arr = new Coffee[m.num_coffee];
+	for (int i = 0; i < menu_size; i++) {
+		reader >> m.coffee_arr[i].name;
+		reader >> m.coffee_arr[i].small_cost;
+		reader >> m.coffee_arr[i].medium_cost;
+		reader >> m.coffee_arr[i].large_cost;
+	}
+	///////////////////////////////////////////////
+	cout << "BEGIN DEBUG MESSAGE:" << endl;
+	cout << m.num_coffee << endl;
+	for (int i = 0; i < menu_size; i++) {
+		cout << m.coffee_arr[i].name << endl;
+		cout << m.coffee_arr[i].small_cost << endl;
+		cout << m.coffee_arr[i].medium_cost << endl;
+		cout << m.coffee_arr[i].large_cost << endl;
+	}
+	cout << "END DEBUG" << endl;
+}

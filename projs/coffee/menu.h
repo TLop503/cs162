@@ -22,7 +22,7 @@ class Menu {
     Menu search_coffee_by_price(float budget); 
     void add_to_menu(Coffee& coffee_to_add); //add a coffee object into the Menu
     void remove_from_menu(int index_of_coffee_on_menu); //remove a coffee object from the Menu
-
+    void Menu::init(string input_file);
     // feel free to add more member functions
 };
 
