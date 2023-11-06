@@ -76,3 +76,14 @@ void Menu::init(string input_file){
 	// }
 	// cout << "END DEBUG" << endl;
 }
+
+
+//GETTERS
+int Menu::get_num_coffee() const {
+	return num_coffee;
+}
+
+
+Coffee Menu::get_coffee(int index) const {
+	return coffee_arr[index];
+}

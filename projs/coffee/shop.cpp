@@ -32,10 +32,10 @@ void Shop::load_data(){
 	}
 	cout << "Done" << endl;
 
-	cout << "BEGIN DEBUG MESSAGE: " << endl;
-	cout << phone << endl;
-	cout << address << endl;
-	cout << "END DEBUG MESSAGE" << endl;
+	// cout << "BEGIN DEBUG MESSAGE: " << endl;
+	// cout << phone << endl;
+	// cout << address << endl;
+	// cout << "END DEBUG MESSAGE" << endl;
 	return;
 }
 
@@ -44,7 +44,27 @@ void Shop::view_shop_detail(){
 	//handle "View shop detail" option
 	//print shop address, phone number, revenue, menu, and order
 	//Your code goes here: 
-	cout << "Shop::view_shop_detail() not implemented..." << endl;
+
+	//if over 15 lines it's because they are almost all couts
+	cout << "Phone: " << phone << endl;
+	cout << "Address: " << address << endl;
+	cout << "Revenue: $" << revenue << endl;
+	cout << endl;
+	cout << "Orders: " << endl;
+
+	if (num_orders == 0) {
+		cout << "No orders yet" << endl;
+	}
+	for (int i = 0; i < num_orders; i++) {
+		order_arr[i].spill_coffee();
+	}
+	cout << endl;
+	
+	cout << "Menu: " << endl;
+	for (int i = 0; i < m.get_num_coffee(); i++) {
+		m.get_coffee(i).print_coffee();
+		cout << endl;
+	}
 
 
 	return;

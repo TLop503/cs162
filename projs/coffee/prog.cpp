@@ -6,9 +6,10 @@ using namespace std;
 int main()
 {
 	//your main function lives here
-	cout << "Welcome to Coffee++" << endl;
+	cout << endl << "Welcome to Java++" << endl;
 	int choice = -1;
 	Shop s;
+	s.view_shop_detail();
 	//populate your Shop:
 	//your code here:
 
