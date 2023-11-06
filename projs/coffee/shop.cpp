@@ -7,15 +7,35 @@ using namespace std;
 
 Shop::Shop() {
 	load_data();
+	revenue = 0; //set this up now so += will work later
 }
 
 void Shop::load_data(){
 	//reads from files to correctly populate coffee, menu, etc.
 	//Your code goes here: 
-	cout << "Shop::load_data() not fully implemented..." << endl;
-
+	cout << "Loading menu data..." << endl;
 	m.init("menu.txt");
+	cout << "Done" << endl;
+	
+	cout << "Loading shop data..." << endl;
+	ifstream reader;
+	reader.open("shop_info.txt");
+	reader >> phone;
 
+	//address is 3 items so we have to append things
+	//This will leave a trailing whitespace that I'll clean if required
+	string middleman;
+	for (int i = 0; i < 3; i++) {
+		reader >> middleman;
+		address.append(middleman);
+		address.append(" ");
+	}
+	cout << "Done" << endl;
+
+	cout << "BEGIN DEBUG MESSAGE: " << endl;
+	cout << phone << endl;
+	cout << address << endl;
+	cout << "END DEBUG MESSAGE" << endl;
 	return;
 }
 
