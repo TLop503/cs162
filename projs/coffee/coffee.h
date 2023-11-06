@@ -19,7 +19,7 @@ class Coffee {
     //need to use 'const' when appropriate
 
     Coffee(); //Coffee constructor
-    Coffee(string name); //alt con
+    Coffee(string name, float sm, float me, float lg); //alt con
     void set_name (const string);
     void set_small_cost(const float);
     void set_medium_cost(const float);

@@ -31,10 +31,30 @@ Menu Menu::search_coffee_by_price(float budget){
 }
 
 void Menu::add_to_menu(Coffee& coffee_to_add){
-	//add a coffee object into the Menu
-	//Your code goes here: 
+	//upadte menu source file
+	ofstream writer;
+	
+	writer.open("menu.txt");
+	//increment coffee count
+	writer << (num_coffee + 1);
 
-	return;
+	for (int i = 0; i < num_coffee; i++) {
+		writer << endl;
+		writer << coffee_arr[i].get_name() << " ";
+		writer << coffee_arr[i].get_small_cost() << " ";
+		writer << coffee_arr[i].get_medium_cost() << " ";
+		writer << coffee_arr[i].get_large_cost() << " ";
+	}
+	writer << endl;
+	writer << coffee_to_add.get_name() << " ";
+	writer << coffee_to_add.get_small_cost() << " ";
+	writer << coffee_to_add.get_medium_cost() << " ";
+	writer << coffee_to_add.get_large_cost() << " ";
+	writer.close();
+
+	//nuke and pave
+	delete[] coffee_arr;
+	init("menu.txt");
 } 
 
 

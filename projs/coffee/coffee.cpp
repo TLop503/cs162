@@ -13,11 +13,11 @@ Coffee::Coffee() {
 
 }
 
-Coffee::Coffee(string name) {
+Coffee::Coffee(string name, float sm, float me, float lg) {
     this->name = name;
-    small_cost = 0;
-    medium_cost = 0;
-    large_cost = 0;
+    small_cost = sm;
+    medium_cost = me;
+    large_cost = lg;
     cout << "Coffee " << this->name << " created" << endl;
 }
 

@@ -1,4 +1,6 @@
 #include "shop.h"
+
+#include <algorithm>
 #include <fstream>
 
 using namespace std;
@@ -75,6 +77,28 @@ void Shop::add_to_menu(){
 	//Hint: call Menu::add_to_menu(Coffee& coffee_to_add);
 	//Your code goes here: 
 	cout << "Shop::add_to_menu() not implemented..." << endl;
+
+	string name;
+	string prices_o[3] = {"small", "medium", "large"};
+	float prices_i[3];
+
+	cout << "Enter name for a drink: ";
+	cin >> name;
+	//if user has any spaces swap them for underscores
+
+	//get each price
+	cout << "Enter prices:" << endl;
+	//super hacky way to minimize lines of code lol
+	for (int i = 0; i < 3; i++) {
+		cout << prices_o[i] << ": ";
+		cin >> prices_i[i]; 
+	}
+
+	Coffee out = Coffee(name, prices_i[0], prices_i[1], prices_i[2]);
+	//cast prices to floats
+	cout << "test";
+	cout << out.get_name();
+	m.add_to_menu(out);
 
 	return;
 }
