@@ -8,13 +8,22 @@ using namespace std;
 //function defintions from menu.h goes here
 
 
-Coffee Menu::search_coffee_by_name(string name) {
-	Coffee found; 
+void Menu::search_coffee_by_name(string name) {
 	//search coffee with a specific name 
 	//return the coffee if found 
 	//Your code goes here: 
+	bool found = 0;
 
-	return found;
+	for (int i = 0; i < num_coffee; i++) {
+		if (coffee_arr[i].get_name() == name) {
+			coffee_arr[i].print_coffee();
+			found = 1;
+		}
+	}
+
+	if (!found) {
+		cout << "Sorry, we do not have any products with that name right now" << endl;
+	}
 }
 
 

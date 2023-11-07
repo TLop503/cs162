@@ -107,7 +107,6 @@ void Shop::remove_from_menu(){
 	//Your code goes here: 
 	int choice;
 
-	cout << "Shop::remove_from_menu() not fully implemented..." << endl;
 	cout << "Which of our drinks would you like to remove from the menu?" << endl;
 	cout << "1 - " << m.get_num_coffee() << endl;
 
@@ -133,8 +132,12 @@ void Shop::search_by_name(){
 	//handle "Search by coffee name" option
 	//Hint: call Menu::search_coffee_by_name(string name);
 	//Your code goes here: 
-	cout << "Shop::search_by_name() not implemented..." << endl;
+	string in;
+	
+	cout << "Enter a name (1 word) to search for: ";
+	cin >> in;
 
+	m.search_coffee_by_name(in);
 	return;
 }
 
