@@ -61,9 +61,29 @@ void Menu::add_to_menu(Coffee& coffee_to_add){
 void Menu::remove_from_menu(int index_of_coffee_on_menu){
 	//remove a coffee object from the Menu
 	//Your code goes here: 
+	ifstream reader;
+	reader.open("menu.txt");
+	ofstream writer;
+	writer.open("tmp.txt");
 
-	return;
-} 
+	//middleman for transferring things
+	string liminal;
+	getline(reader, liminal); //skip header
+	writer << (num_coffee - 1) << endl;
+
+	for (int i = 1; i <= num_coffee; i++) {
+		getline(reader, liminal);
+		if (i != index_of_coffee_on_menu) {
+			writer << liminal << endl;
+		}
+	}
+
+	remove("menu.txt");
+	rename("tmp.txt", "menu.txt");
+
+	delete[] coffee_arr;
+	init("menu.txt");
+}
 
 //populates menu object with data from input file
 void Menu::init(string input_file){

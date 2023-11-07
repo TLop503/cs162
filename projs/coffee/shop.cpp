@@ -76,8 +76,6 @@ void Shop::add_to_menu(){
 	//handle "Add coffee to menu" option
 	//Hint: call Menu::add_to_menu(Coffee& coffee_to_add);
 	//Your code goes here: 
-	cout << "Shop::add_to_menu() not implemented..." << endl;
-
 	string name;
 	string prices_o[3] = {"small", "medium", "large"};
 	float prices_i[3];
@@ -107,8 +105,26 @@ void Shop::remove_from_menu(){
 	//handle "Remove coffee from menu" option
 	//Hint: call Menu::remove_from_menu(int index_of_coffee_on_menu);
 	//Your code goes here: 
-	cout << "Shop::remove_from_menu() not implemented..." << endl;
+	int choice;
 
+	cout << "Shop::remove_from_menu() not fully implemented..." << endl;
+	cout << "Which of our drinks would you like to remove from the menu?" << endl;
+	cout << "1 - " << m.get_num_coffee() << endl;
+
+	for (int i = 0; i < m.get_num_coffee(); i++) {
+		//print menu with only names
+		cout << (i + 1) << ". " << m.get_coffee(i).get_name() << endl;
+	}
+
+	do {
+		cout << "Enter number in range: ";
+		cin >> choice;
+
+		//while negative or too big ask again
+	} while (choice < 0 || choice >= (m.get_num_coffee() + 1));
+	
+	//choice is 1 larger than array index but will match file line number
+	m.remove_from_menu(choice);
 	return;
 }
 
