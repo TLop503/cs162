@@ -23,7 +23,7 @@ class Menu {
     void add_to_menu(Coffee& coffee_to_add); //add a coffee object into the Menu
     void remove_from_menu(int index_of_coffee_on_menu); //remove a coffee object from the Menu
     void init(string input_file);
-    
+
     //getters
     int get_num_coffee() const;
     Coffee get_coffee(int index) const;
