@@ -26,5 +26,6 @@ public:
 	string get_name() const;
 	char get_size() const;
 	int get_quantity() const;
+
 };
 #endif

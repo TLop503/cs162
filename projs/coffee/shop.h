@@ -34,7 +34,10 @@ class Shop {
     void search_by_price();
     void place_order();
     Shop clone_shop();
-    
+
+    //big 3
+    ~Shop();
+
 };
 
 #endif

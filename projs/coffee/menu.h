@@ -27,6 +27,12 @@ class Menu {
     //getters
     int get_num_coffee() const;
     Coffee get_coffee(int index) const;
+
+    //con
+    Menu();
+
+    //big 3
+    ~Menu();
 };
 
 #endif

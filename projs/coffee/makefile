@@ -4,7 +4,7 @@ EXE_FILE = coffee
 all: $(EXE_FILE)
 
 $(EXE_FILE): prog.o display.o shop.o menu.o order.o coffee.o
-	$(CC) prog.o display.o shop.o menu.o order.o coffee.o -o $(EXE_FILE)
+	$(CC) -g prog.o display.o shop.o menu.o order.o coffee.o -o $(EXE_FILE)
 
 prog.o: display.h
 	$(CC) -c prog.cpp

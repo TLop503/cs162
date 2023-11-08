@@ -6,7 +6,9 @@
 using namespace std;
 
 //function defintions from menu.h goes here
-
+Menu::Menu(){
+	coffee_arr = nullptr;
+}
 
 void Menu::search_coffee_by_name(string name) {
 	//search coffee with a specific name 
@@ -110,7 +112,8 @@ void Menu::init(string input_file){
 	ifstream reader;
 	reader.open(input_file);
 
-	reader >> num_coffee;;
+	reader >> num_coffee;
+	delete[] coffee_arr;
 	coffee_arr = new Coffee[num_coffee];
 	for (int i = 0; i < num_coffee; i++) {
 		string name;
@@ -137,7 +140,7 @@ void Menu::init(string input_file){
 	// cout << "END DEBUG" << endl;
 }
 
-
+//////////////////////////////////////////////////////
 //GETTERS
 int Menu::get_num_coffee() const {
 	return num_coffee;
@@ -146,4 +149,13 @@ int Menu::get_num_coffee() const {
 
 Coffee Menu::get_coffee(int index) const {
 	return coffee_arr[index];
+}
+
+/////////////////////////////////////////////////////
+//big 3
+
+Menu::~Menu() {
+	coffee_arr = nullptr;
+	delete[] coffee_arr;
+	cout << "Menu Destructed" << endl;
 }

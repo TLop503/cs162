@@ -147,9 +147,6 @@ void Shop::search_by_price(){
 	//Your code goes here: 
 	float in;
 
-
-	cout << "Shop::search_by_price() not fully implemented..." << endl;
-
 	cout << "Enter the price you'd like to search at or below: ";
 	cin >> in;
 	m.search_coffee_by_price(in);
@@ -178,4 +175,16 @@ Shop Shop::clone_shop() {
     cout << "Shop cloned successfully!" << endl; 
 
     return cloned_shop;
+}
+
+/////////////////////////////////////////////////////
+//big 3
+
+Shop::~Shop() {
+	order_arr = nullptr;
+    if (num_orders != 0) {
+		delete[] order_arr;
+	}
+	cout << "Shop Destructed" << endl;
+
 }
