@@ -145,7 +145,14 @@ void Shop::search_by_price(){
 	//handle "Search by coffee price" option
 	//Hint: call Menu::search_coffee_by_price(float budget);
 	//Your code goes here: 
-	cout << "Shop::search_by_price() not implemented..." << endl;
+	float in;
+
+
+	cout << "Shop::search_by_price() not fully implemented..." << endl;
+
+	cout << "Enter the price you'd like to search at or below: ";
+	cin >> in;
+	m.search_coffee_by_price(in);
 
 	return;
 }

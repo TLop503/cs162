@@ -29,6 +29,7 @@ class Coffee {
     float get_medium_cost () const;
     float get_large_cost () const;
     void print_coffee() const; //print the coffee object
+    void print_coffee(char size) const;
 };
 
 #endif

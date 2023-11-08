@@ -59,3 +59,13 @@ void Coffee::print_coffee() const{
     cout << "Medium Cost: $" << medium_cost << endl;
     cout << "Large Cost: $" << large_cost << endl;
 } //print the coffee object
+
+//size is limit of drinks in price range
+void Coffee::print_coffee(char size) const{
+    cout << "Coffee name: " << name << endl;
+    cout << "Small Cost: $" << small_cost << endl;
+    //if size is medium print medium
+    if  (size == 'm') {
+        cout << "Medium Cost: $" << medium_cost << endl;
+    }
+} //print the coffee object

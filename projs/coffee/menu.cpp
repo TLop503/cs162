@@ -27,16 +27,27 @@ void Menu::search_coffee_by_name(string name) {
 }
 
 
-Menu Menu::search_coffee_by_price(float budget){
-	Menu temp;
-	//search coffee with a specific budget 
-	//return all coffee that is under the budget
-	//Hint: Since a Menu object contains an array of coffee
-	//      You may return a Menu object that contains all valid coffees
-	//Your code goes here: 
-
-	return temp;
-
+void Menu::search_coffee_by_price(float budget){
+	bool found = 0;
+	for (int i = 0; i < num_coffee; i++) {
+		cout << endl;
+		if (coffee_arr[i].get_large_cost() <= budget) {
+			coffee_arr[i].print_coffee();
+			found = true;
+		}
+		else if (coffee_arr[i].get_medium_cost() <= budget) {
+			coffee_arr[i].print_coffee('m');
+			found = true;
+		}
+		else if (coffee_arr[i].get_small_cost() <= budget) {
+			coffee_arr[i].print_coffee('s');
+			found = true;
+		}
+		cout << endl;
+	}
+	if (!found) {
+		cout << "Sorry, we do not have any drinks for that price" << endl;
+	}
 }
 
 void Menu::add_to_menu(Coffee& coffee_to_add){
