@@ -16,6 +16,10 @@ Shop::Shop() {
 	load_data();
 }
 
+void Shop::check() {
+	cout << &order_arr << endl;
+}
+
 void Shop::load_data(){
 	//reads from files to correctly populate coffee, menu, etc.
 	//Your code goes here: 

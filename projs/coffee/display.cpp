@@ -57,6 +57,8 @@ void perform_action(Shop& s, int choice) {
 		case 7:
 			//Your code goes here:
 			Shop test = s.clone_shop();
+			s.check();
+			//test.check();
 			break;
 	}
 

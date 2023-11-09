@@ -36,6 +36,7 @@ class Shop {
     Shop clone_shop();
     void enter_order(int choice, int quan, string size);
     void write_orders();
+    void check();
 
     //big 3
     ~Shop();
