@@ -10,8 +10,6 @@ int main()
 	int choice = -1;
 	Shop s;
 
-	s.load_data();
-
 	while (choice != QUIT){
 		choice = get_choice();
 	 	perform_action(s, choice);

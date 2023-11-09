@@ -35,8 +35,11 @@ class Shop {
     void place_order();
     Shop clone_shop();
 
+
     //big 3
     ~Shop();
+    void operator=(const Shop& s);
+    Shop(const Shop& s);
 
 };
 

@@ -8,8 +8,11 @@ using namespace std;
 //function defintions from shop.h goes here
 
 Shop::Shop() {
+	revenue = 0;
+	phone = "";
+	address = "";
+	num_orders = 0;
 	load_data();
-	revenue = 0; //set this up now so += will work later
 }
 
 void Shop::load_data(){
@@ -182,9 +185,40 @@ Shop Shop::clone_shop() {
 
 Shop::~Shop() {
 	order_arr = nullptr;
-    if (num_orders != 0) {
-		delete[] order_arr;
-	}
+	delete[] order_arr;
 	cout << "Shop Destructed" << endl;
 
+}
+
+void Shop::operator=(const Shop& s) {
+	m = s.m;
+	phone = s.phone;
+	address = s.address;
+	revenue = s.revenue;
+	num_orders = s.num_orders;
+
+	if (num_orders != s.num_orders) {
+		delete[] order_arr; //free up any existing space
+		order_arr = new Order[num_orders];
+	}
+
+	for (int i = 0; i < num_orders; i++ ) {
+		order_arr[i] = s.order_arr[i];
+	}
+
+}
+
+Shop::Shop(const Shop& s) {
+	m = s.m;
+	phone = s.phone;
+	address = s.address;
+	revenue = s.revenue;
+	num_orders = s.num_orders;
+
+	order_arr = new Order[num_orders];
+
+	for (int i = 0; i < num_orders; i++ ) {
+		order_arr[i] = s.order_arr[i];
+	}
+	
 }

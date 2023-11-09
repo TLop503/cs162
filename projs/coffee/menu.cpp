@@ -7,6 +7,7 @@ using namespace std;
 
 //function defintions from menu.h goes here
 Menu::Menu(){
+	num_coffee = 0;
 	coffee_arr = nullptr;
 }
 
@@ -113,7 +114,6 @@ void Menu::init(string input_file){
 	reader.open(input_file);
 
 	reader >> num_coffee;
-	delete[] coffee_arr;
 	coffee_arr = new Coffee[num_coffee];
 	for (int i = 0; i < num_coffee; i++) {
 		string name;
