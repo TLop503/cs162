@@ -269,6 +269,29 @@ void Shop::place_order() {
 
 	enter_order(choice, quan, size);
 
+
+	for (int i = 0; i < m.get_num_coffee(); i++) {
+		m.get_coffee(i).print_coffee();
+	}
+
+	int in;
+	do {
+	cout << "Pick a coffee: " << endl;
+	cin >> in;
+	} while (!search_by_name(in));
+
+	string size;
+	do {
+		cout << "Pick a size (s , m, l)" << endl;
+		cin >> size;
+	} while (!(size == "s" || size == "m" || size == "l"));
+
+	int quan;
+	cout << "Enter quantity: " << endl;
+	cin >> quan;
+
+
+	cout << "Order placed!" << endl;
 	return;
 }
 
@@ -363,6 +386,7 @@ Shop Shop::clone_shop() {
 
     cout << "Shop cloned successfully!" << endl;
 
+	cout << &*this << " " << &cloned_shop << " " << &cloned_shop2 << endl;
     return cloned_shop;
 }
 
@@ -383,7 +407,6 @@ Shop::~Shop() {
 	}
 	order_arr = nullptr;
 	cout << "Shop Destructed" << endl;
-
 }
 
 

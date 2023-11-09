@@ -48,6 +48,8 @@ void Menu::search_coffee_by_name(string name) {
 	if (!found) {
 		cout << "Sorry, we do not have any products with that name right now" << endl;
 	}
+
+	return found;
 }
 
 

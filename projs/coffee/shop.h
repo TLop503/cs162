@@ -109,6 +109,7 @@ class Shop {
    * Post-conditions: returns cloned shop object
    ***********************************************/
     Shop clone_shop();
+    void build_orders();
 
 
     /**************************************************
