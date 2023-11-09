@@ -1,0 +1,1 @@
+I noticed the user's do-while loop does things while the unfavourable condition is true, so it ends immediately. I wrapped it in a !(), and this resolved the issue. I didn't use a debugger for this since it was pretty surface level.

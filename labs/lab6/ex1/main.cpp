@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
 	//read info from file into Garage g
 	Garage g;
 	file >> g.num_cars;
-	Car* car_arr = create_cars(g.num_cars);
+	g.car_arr = create_cars(g.num_cars);
 
 	populate_garage(g, file);
 	

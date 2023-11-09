@@ -1,0 +1,7 @@
+I used valgrind to find the issue was coming from the attempt to
+ populate an array with no allocated memory.
+I backtracked and found that the array was being set
+ to a new var instead of the garage's array. 
+Then, the populate function was being called on the car array, and
+ not the cars in the array, so I added [i] and removed the 
+ unneccessary pointer.

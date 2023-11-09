@@ -35,11 +35,11 @@ void shop::buy_cookie() {
 }
 
 bool shop::out_of_lemonades() const {
-	return n_lemonades <= 0;
+	return (n_lemonades <= 0);
 }
 
 bool shop::out_of_cookies() const {
-	return n_cookies <= 0;
+	return (n_cookies <= 0);
 }
 
 bool shop::out_of_stock() const {

@@ -14,7 +14,7 @@ void display_menu() {
 
 void menu_loop() {
 	shop s;
-	int option;
+	string option;
 	// This loop should keep running until either
 	// A. The user types "3",
 	// OR
@@ -24,13 +24,13 @@ void menu_loop() {
 		display_menu();
 		cin >> option;
 
-		if (option == 1) {
+		if (option == "1") {
 			if (s.out_of_lemonades()) {
 				cout << "Sorry! We're out of stock" << endl;
 			} else {
 				s.buy_lemonade();
 			}
-		} else if (option == 2) {
+		} else if (option == "2") {
 			if (s.out_of_cookies()) {
 				cout << "Sorry! We're out of stock" << endl;
 			} else {
@@ -38,5 +38,5 @@ void menu_loop() {
 			}
 		}
 		cout << endl << endl;
-	} while (option == 3 || s.out_of_stock());
+	} while (!(option == "3" || s.out_of_stock()));
 }

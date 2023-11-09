@@ -12,7 +12,8 @@ Car* create_cars(int size){
 
 //populate a single car object
 void populate_car (Car& c, ifstream& fin){
-	fin >> c.brand >> c.num_passenger;
+	fin >> c.brand;
+	fin >> c.num_passenger;
 }
 
 //populate the garage object
@@ -21,7 +22,7 @@ void populate_garage(Garage& g, ifstream& fin){
 	//loop through number of cars
 	for (int i = 0; i < g.num_cars; ++i)
 	{
-		populate_car(*g.car_arr, fin);
+		populate_car(g.car_arr[i], fin);
 	}
 }
 
