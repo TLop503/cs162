@@ -163,19 +163,20 @@ Menu::~Menu() {
 }
 
 void Menu::operator=(const Menu& m) {
-	num_coffee = m.num_coffee;
+    if (this != &m) { // Check for self-assignment
+        num_coffee = m.num_coffee;
 
-	if (num_coffee != m.num_coffee) {
-		delete[] coffee_arr;
-		coffee_arr = nullptr;
-	}
+        delete[] coffee_arr;
+        coffee_arr = nullptr;
 
-	coffee_arr = new Coffee[num_coffee];
+        coffee_arr = new Coffee[num_coffee];
 
-	for (int i = 0; i < num_coffee; i++) {
-		coffee_arr[i] = m.coffee_arr[i];
-	}
+        for (int i = 0; i < num_coffee; i++) {
+            coffee_arr[i] = m.coffee_arr[i];
+        }
+    }
 }
+
 
 Menu::Menu(const Menu& m) {
 	num_coffee = m.num_coffee;
