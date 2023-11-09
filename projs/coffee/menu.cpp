@@ -155,7 +155,34 @@ Coffee Menu::get_coffee(int index) const {
 //big 3
 
 Menu::~Menu() {
-	delete[] coffee_arr;
+	if (coffee_arr != nullptr) {
+		delete[] coffee_arr;
+	}
 	coffee_arr = nullptr;
 	cout << "Menu Destructed" << endl;
+}
+
+void Menu::operator=(const Menu& m) {
+	num_coffee = m.num_coffee;
+
+	if (num_coffee != m.num_coffee) {
+		delete[] coffee_arr;
+		coffee_arr = nullptr;
+	}
+
+	coffee_arr = new Coffee[num_coffee];
+
+	for (int i = 0; i < num_coffee; i++) {
+		coffee_arr[i] = m.coffee_arr[i];
+	}
+}
+
+Menu::Menu(const Menu& m) {
+	num_coffee = m.num_coffee;
+
+	coffee_arr = new Coffee[num_coffee];
+
+	for (int i = 0; i < num_coffee; i++) {
+		coffee_arr[i] = m.coffee_arr[i];
+	}
 }

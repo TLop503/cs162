@@ -12,6 +12,7 @@ Shop::Shop() {
 	phone = "";
 	address = "";
 	num_orders = 0;
+	order_arr = nullptr;
 	load_data();
 }
 
@@ -254,7 +255,9 @@ Shop Shop::clone_shop() {
 //big 3
 
 Shop::~Shop() {
-	delete[] order_arr;
+	if (order_arr != nullptr) {
+		delete[] order_arr;
+	}
 	order_arr = nullptr;
 	cout << "Shop Destructed" << endl;
 

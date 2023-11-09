@@ -33,6 +33,8 @@ class Menu {
 
     //big 3
     ~Menu();
+    void operator=(const Menu& m);
+    Menu(const Menu& m);
 };
 
 #endif
