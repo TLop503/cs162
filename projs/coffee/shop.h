@@ -34,7 +34,8 @@ class Shop {
     void search_by_price();
     void place_order();
     Shop clone_shop();
-
+    void enter_order(int choice, int quan, string size);
+    void write_orders();
 
     //big 3
     ~Shop();

@@ -155,7 +155,7 @@ Coffee Menu::get_coffee(int index) const {
 //big 3
 
 Menu::~Menu() {
-	coffee_arr = nullptr;
 	delete[] coffee_arr;
+	coffee_arr = nullptr;
 	cout << "Menu Destructed" << endl;
 }

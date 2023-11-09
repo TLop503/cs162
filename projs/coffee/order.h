@@ -27,5 +27,7 @@ public:
 	char get_size() const;
 	int get_quantity() const;
 
+	Order();
+	Order(int id, string coffee_name, char coffee_size, int quantity);
 };
 #endif

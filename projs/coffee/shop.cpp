@@ -160,10 +160,80 @@ void Shop::search_by_price(){
 void Shop::place_order() {
 	//handle "Place order" option
 	//Your code goes here: 
-	cout << "Shop::place_order() not implemented..." << endl;
+	int choice, quan;
+	string size;
+
+	for (int i = 0; i < m.get_num_coffee(); i++ ) {
+		cout << i << ": ";
+		m.get_coffee(i).print_coffee();
+		cout << endl;
+	}
+
+	do {
+		cout << "Enter number in range: ";
+		cin >> choice;
+		//while negative or too big ask again
+	} while (choice < 0 || choice >= (m.get_num_coffee() + 1));
+
+	do {
+	cout << "Enter Size (s, m, l): ";
+	cin >> size;
+	//while negative or too big ask again
+	} while (!(size == "s" || size == "m" || size == "l"));
+
+	do {
+		cout << "Enter quanitity: ";
+		cin >> quan;	//type checking isn't required
+	} while (quan < 1);
+
+	enter_order(choice, quan, size);
 
 	return;
 }
+
+void Shop::enter_order(int choice, int quan, string size) {
+	//create new array and clone values
+	Order *temp = new Order[num_orders];
+	for (int i = 0; i < num_orders; i++) {
+		temp[i] = order_arr[i];
+	}
+
+	//cleanup
+	delete[] order_arr;
+	order_arr = new Order[num_orders + 1];
+
+	for (int i = 0; i < num_orders; i++ ) {
+		order_arr[i] = temp[i];
+	}
+
+	delete[] temp;
+
+	//since num_of_orders is 1 larger than old index count
+	// this will fill new order index
+	order_arr[num_orders] = Order(num_orders + 1, m.get_coffee(choice).get_name(), size[0], quan);
+	num_orders++;
+
+	write_orders();
+}
+
+void Shop::write_orders() {
+	ofstream writer;
+	writer.open("orders.txt"); //intentionally overwrite old text
+
+	writer << num_orders << endl;
+	
+	for (int i = 0; i < num_orders; i++) {
+		writer <<
+		order_arr[i].get_id() << ". " <<
+		order_arr[i].get_quantity() << " " <<
+		order_arr[i].get_size() << " " <<
+		order_arr[i].get_name() <<
+		endl;
+	}
+	
+	writer.close();
+}
+
 
 Shop Shop::clone_shop() {
 	//handle "Clone a shop" option
@@ -184,8 +254,8 @@ Shop Shop::clone_shop() {
 //big 3
 
 Shop::~Shop() {
-	order_arr = nullptr;
 	delete[] order_arr;
+	order_arr = nullptr;
 	cout << "Shop Destructed" << endl;
 
 }
