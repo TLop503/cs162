@@ -18,16 +18,36 @@ public:
     //need to include constructors and destructors where appropriate
     //need to use 'const' when appropriate
 	
-	//print to cout
+	/**************************************************
+	 * Name: spill_coffee()
+	 * Description: prints out order info
+	 * Parameters: n/a
+	 * Pre-conditions: order has populated member vars
+	 * Post-conditions: will print to cout
+	 ***********************************************/
 	void spill_coffee() const;
 
-	//getters
+	/**************************************************
+	 * Name: getters
+	 * Description: accessors for private member vars
+	 * Parameters: n/a
+	 * Pre-conditions: values exist
+	 * Post-conditions: values are returned
+	 ***********************************************/
 	int get_id() const;
 	string get_name() const;
 	char get_size() const;
 	int get_quantity() const;
 
 	Order();
+
+	/**************************************************
+	 * Name: Order(int id, string coffee_name, char coffee_size, int quantity)
+	 * Description: constructor
+	 * Parameters: int id of order, string coffee_name, char coffee_size, int quantity of coffees
+	 * Pre-conditions: n/a
+	 * Post-conditions: values are populated
+	 * ***********************************************/
 	Order(int id, string coffee_name, char coffee_size, int quantity);
 };
 #endif
