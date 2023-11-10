@@ -344,9 +344,9 @@ Shop Shop::clone_shop() {
 	//note: the purpose of this option is to test
 	//your big three implementation
 	Shop cloned_shop;
-
+	cout << "AOO:" << endl;
 	cloned_shop = *this; // test AOO
-
+	cout << "CC:" << endl;
     Shop cloned_shop2 = *this; // test CC
 
     cout << "Shop cloned successfully!" << endl;
@@ -383,21 +383,22 @@ Shop::~Shop() {
  * Post-conditions: deletes order_arr and copies values from s
  ***********************************************/
 void Shop::operator=(const Shop& s) {
-	m = s.m;
-	phone = s.phone;
-	address = s.address;
-	revenue = s.revenue;
-	num_orders = s.num_orders;
+    if (this != &s) {
+        m = s.m;
+        phone = s.phone;
+        address = s.address;
+        revenue = s.revenue;
 
-	if (num_orders != s.num_orders) {
-		delete[] order_arr; //free up any existing space
-		order_arr = new Order[num_orders];
-	}
+        if (num_orders != s.num_orders) {
+            delete[] order_arr; //free up any existing space
+            num_orders = s.num_orders; // update num_orders before allocating new memory
+            order_arr = new Order[num_orders];
+        }
 
-	for (int i = 0; i < num_orders; i++ ) {
-		order_arr[i] = s.order_arr[i];
-	}
-
+        for (int i = 0; i < num_orders; i++ ) {
+            order_arr[i] = s.order_arr[i];
+        }
+    }
 }
 
 
