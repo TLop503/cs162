@@ -4,7 +4,13 @@
 
 using namespace std;
 
-//default con, values are 0
+/**************************************************
+ * Name: Coffee()
+ * Description: default constructor
+ * Parameters: none
+ * Pre-conditions: object created
+ * Post-conditions: values will be set to 0/""
+ ***********************************************/
 Coffee::Coffee() {
     name = "";
     small_cost = 0;
@@ -13,6 +19,14 @@ Coffee::Coffee() {
 
 }
 
+
+/**************************************************
+ * Name: Coffee(string name, float sm, float me, float lg)
+ * Description: constructor
+ * Parameters: string name of coffee, prices: float sm, float me, float lg
+ * Pre-conditions: object created
+ * Post-conditions: values will be set to params
+ ***********************************************/
 Coffee::Coffee(string name, float sm, float me, float lg) {
     this->name = name;
     small_cost = sm;
@@ -22,12 +36,16 @@ Coffee::Coffee(string name, float sm, float me, float lg) {
 }
 
 
-//Coffee constructor
+/**************************************************
+ * Name: Setters
+ * Description: mutate private members
+ * Parameters: new value
+ * Pre-conditions: 
+ * Post-conditions: value will be updated
+ ***********************************************/
 void Coffee::set_name (const string name){
     this->name = name;
 }
-
-//setters
 void Coffee::set_small_cost(const float cost){
     small_cost = cost;
 }
@@ -38,7 +56,14 @@ void Coffee::set_large_cost(const float cost){
     large_cost = cost;
 }
 
-//getters
+
+/**************************************************
+ * Name: Getters
+ * Description: access private members
+ * Parameters: none
+ * Pre-conditions: 
+ * Post-conditions: value will be returned
+ ***********************************************/
 string Coffee::get_name() const{
     return name;
 }
@@ -52,7 +77,14 @@ float Coffee::get_large_cost () const{
     return large_cost;
 }
 
-//print
+
+/**************************************************
+ * Name: print_coffee()
+ * Description: print coffee object
+ * Parameters: none
+ * Pre-conditions: 
+ * Post-conditions: value will be returned
+ ***********************************************/
 void Coffee::print_coffee() const{
     cout << "Coffee name: " << name << endl;
     cout << "Small Cost: $" << small_cost << endl;
@@ -60,7 +92,14 @@ void Coffee::print_coffee() const{
     cout << "Large Cost: $" << large_cost << endl;
 } //print the coffee object
 
-//size is limit of drinks in price range
+
+/**************************************************
+ * Name: print_coffee(char size)
+ * Description: print coffee object
+ * Parameters: char size
+ * Pre-conditions: 
+ * Post-conditions: value will be returned
+ ***********************************************/
 void Coffee::print_coffee(char size) const{
     cout << "Coffee name: " << name << endl;
     cout << "Small Cost: $" << small_cost << endl;

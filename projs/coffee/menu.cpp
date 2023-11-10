@@ -5,16 +5,30 @@
 
 using namespace std;
 
-//function defintions from menu.h goes here
+/**************************************************
+ * Name: Menu()
+ * Description: default constructor
+ * Parameters: n/a
+ * Pre-conditions: object created
+ * Post-conditions: values populated to 0/nullptr
+ ***********************************************/
 Menu::Menu(){
 	num_coffee = 0;
 	coffee_arr = nullptr;
 }
 
+
+/**************************************************
+ * Name: search_coffee_by_name(string name)
+ * Description: for each coffee if name matches query print coffee
+ * Parameters: string name of coffee
+ * Pre-conditions: coffee array populated
+ * Post-conditions: will print coffee if found
+ ***********************************************/
 void Menu::search_coffee_by_name(string name) {
-	//search coffee with a specific name 
-	//return the coffee if found 
-	//Your code goes here: 
+	//search coffee with a specific name
+	//return the coffee if found
+	//Your code goes here:
 	bool found = 0;
 
 	for (int i = 0; i < num_coffee; i++) {
@@ -30,6 +44,13 @@ void Menu::search_coffee_by_name(string name) {
 }
 
 
+/**************************************************
+ * Name: search_coffee_by_price(float budget)
+ * Description: for each coffee if price is less than budget print coffee
+ * Parameters: float budget
+ * Pre-conditions: coffee array populated
+ * Post-conditions: will print coffee if found, using size paramater to specify
+ ***********************************************/
 void Menu::search_coffee_by_price(float budget){
 	bool found = 0;
 	for (int i = 0; i < num_coffee; i++) {
@@ -53,10 +74,18 @@ void Menu::search_coffee_by_price(float budget){
 	}
 }
 
+
+/**************************************************
+ * Name: add_to_menu(Coffee& coffee_to_add)
+ * Description: add a coffee object to the Menu
+ * Parameters: Coffee& coffee_to_add
+ * Pre-conditions: coffee array populated, paramter is a valid coffee object
+ * Post-conditions: coffee array will be updated
+ ***********************************************/
 void Menu::add_to_menu(Coffee& coffee_to_add){
 	//upadte menu source file
 	ofstream writer;
-	
+
 	writer.open("menu.txt");
 	//increment coffee count
 	writer << (num_coffee + 1);
@@ -78,12 +107,19 @@ void Menu::add_to_menu(Coffee& coffee_to_add){
 	//nuke and pave
 	delete[] coffee_arr;
 	init("menu.txt");
-} 
+}
 
 
+/**************************************************
+ * Name: remove_from_menu(int index_of_coffee_on_menu)
+ * Description: rebuild menu with every coffee except the one you want to delete
+ * Parameters: int index_of_coffee_on_menu - used to get coffee to skip
+ * Pre-conditions: coffee array populated, index is valid
+ * Post-conditions: coffee array will be updated
+ ***********************************************/
 void Menu::remove_from_menu(int index_of_coffee_on_menu){
 	//remove a coffee object from the Menu
-	//Your code goes here: 
+	//Your code goes here:
 	ifstream reader;
 	reader.open("menu.txt");
 	ofstream writer;
@@ -108,7 +144,14 @@ void Menu::remove_from_menu(int index_of_coffee_on_menu){
 	init("menu.txt");
 }
 
-//populates menu object with data from input file
+
+/**************************************************
+ * Name: init(string input_file)
+ * Description: read from file to populate coffee array
+ * Parameters: string input_file - menu.txt usually
+ * Pre-conditions: input_file is valid
+ * Post-conditions: coffee array will be populated
+ ***********************************************/
 void Menu::init(string input_file){
 	ifstream reader;
 	reader.open(input_file);
@@ -140,20 +183,33 @@ void Menu::init(string input_file){
 	// cout << "END DEBUG" << endl;
 }
 
-//////////////////////////////////////////////////////
-//GETTERS
+
+/**************************************************
+ * Name: getters
+ * Description: access private members
+ * Parameters: index for arrays
+ * Pre-conditions: everything is non-garbage
+ * Post-conditions: returns value
+ ***********************************************/
 int Menu::get_num_coffee() const {
 	return num_coffee;
 }
-
-
 Coffee Menu::get_coffee(int index) const {
 	return coffee_arr[index];
 }
 
+
 /////////////////////////////////////////////////////
 //big 3
+/////////////////////////////////////////////////////
 
+/**************************************************
+ * Name: ~Menu()
+ * Description: destructor
+ * Parameters: n/a
+ * Pre-conditions: menu object exists
+ * Post-conditions: menu object is destroyed
+ ***********************************************/
 Menu::~Menu() {
 	if (coffee_arr != nullptr) {
 		delete[] coffee_arr;
@@ -162,6 +218,14 @@ Menu::~Menu() {
 	cout << "Menu Destructed" << endl;
 }
 
+
+/**************************************************
+ * Name: operator=(const Menu& m)
+ * Description: assignment operator
+ * Parameters: const Menu& m - menu object to copy
+ * Pre-conditions: menu object exists
+ * Post-conditions: menu object is assigned
+ ***********************************************/
 void Menu::operator=(const Menu& m) {
     if (this != &m) { // Check for self-assignment
         num_coffee = m.num_coffee;
@@ -178,6 +242,13 @@ void Menu::operator=(const Menu& m) {
 }
 
 
+/**************************************************
+ * Name: Menu(const Menu& m)
+ * Description: copy constructor
+ * Parameters: const Menu& m - menu object to copy
+ * Pre-conditions: menu object exists
+ * Post-conditions: menu object is copied
+ ***********************************************/
 Menu::Menu(const Menu& m) {
 	num_coffee = m.num_coffee;
 

@@ -23,6 +23,13 @@ void print_options() {
 	cout << endl;
 }
 
+
+/* name: get_choice()
+ * description: get the user's choice and verify it is in range
+ * parameters: none
+ * pre-condition: none
+ * post-conditon: none
+ */
 int get_choice() {
 	int choice = -1; 
 	do {
@@ -34,6 +41,13 @@ int get_choice() {
 	return choice; 
 }
 
+
+/* name: perform_action()
+ * description: perform the user's desired action
+ * parameters: Shop& s, int choice
+ * pre-condition: none
+ * post-conditon: none
+ */
 void perform_action(Shop& s, int choice) {
 	switch (choice){
 		case 1:

@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// stock from assignemnt skeleton code
 int main()
 {
 	//your main function lives here
