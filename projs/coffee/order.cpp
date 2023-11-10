@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program Filename: order.cpp
+** Author: Troy Lopez
+** Date: 11/10/23
+** Description: order class implementation, stored in shnp class
+*********************************************************************/
+
 #include "order.h"
 
 #include <iostream>

@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program Filename: coffee.cpp
+** Author: Troy Lopez
+** Date: 11/10/23
+** Description: coffee class implementation, stored in menu class
+*********************************************************************/
+
 #include "coffee.h"
 
 #include <iostream>

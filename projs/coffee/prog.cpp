@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program Filename: prog.cpp
+** Author: skeleton code, mostly
+** Date: 11/10/23
+** Description: main access point for program
+*********************************************************************/
+
 #include <iostream>
 #include "display.h"
 

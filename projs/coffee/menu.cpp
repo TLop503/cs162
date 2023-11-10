@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program Filename: menu.cpp
+** Author: Troy Lopez
+** Date: 11/10/23
+** Description: menu class implementation, stored in shop class
+*********************************************************************/
+
 #include "menu.h"
 
 #include <iostream>

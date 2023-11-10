@@ -1,3 +1,11 @@
+/*********************************************************************
+** Program Filename: shop.cpp
+** Author: Troy Lopez
+** Date: 11/10/23
+** Description: shop class implementation
+**** central nervous system of program, delegates tasks to other classes
+*********************************************************************/
+
 #include "shop.h"
 
 #include <algorithm>

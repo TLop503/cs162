@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program Filename: display.cpp
+** Author: skeleteon code, mostly
+** Date: 11/10/23
+** Description: funcs for managing user choices from main menu
+*********************************************************************/
+
 #include <iostream>
 #include "display.h"
 
