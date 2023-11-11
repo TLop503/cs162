@@ -302,6 +302,18 @@ void Shop::enter_order(int choice, int quan, string size) {
 	order_arr[num_orders] = Order(num_orders + 1, m.get_coffee(choice).get_name(), size[0], quan);
 	num_orders++;
 
+	//slightly over line limit b/c of revenue logic, this could have been an attrocious
+	//ternary instead but I split it for readability.
+	if (size[0] == 's') {
+		revenue += m.get_coffee(choice).get_small_cost() * quan;
+	}
+	else if (size[0] == 'm') {
+		revenue += m.get_coffee(choice).get_medium_cost() * quan;
+	}
+	else if (size[0] == 'l') {
+		revenue += m.get_coffee(choice).get_large_cost() * quan;
+	}
+
 	write_orders();
 }
 
@@ -344,9 +356,9 @@ Shop Shop::clone_shop() {
 	//note: the purpose of this option is to test
 	//your big three implementation
 	Shop cloned_shop;
-	cout << "AOO:" << endl;
+	cout << "AOO..." << endl;
 	cloned_shop = *this; // test AOO
-	cout << "CC:" << endl;
+	cout << "CC..." << endl;
     Shop cloned_shop2 = *this; // test CC
 
     cout << "Shop cloned successfully!" << endl;
