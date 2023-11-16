@@ -18,16 +18,63 @@ Game::Game(){
 Game::~Game(){
 	//Game destructor
 	//Your code here:
+	for (int i = 0; i < 5; i++) {
+		cout << "checking: " << this->events[i];
+		if (events[i] != nullptr) {
+			delete events[i];
+		}
+	}
 
 }
 
 
+
+void unique_rands(int (&x)[5], int (&y)[5], int xlim, int ylim) {
+	//setup initial index
+	x[0] = rand() % xlim;
+	y[0] = rand() % ylim;
+
+	//cout << x[0] << ", " << y[0] << endl;
+
+	//for remaining indexes
+	for (int i = 1; i < 5; i++){
+		bool valid = false;
+		do {
+			valid = true;
+
+			//generate more coords
+			x[i] = rand() % xlim;
+			y[i] = rand() % ylim;
+
+			//cout << x[i] << ", " << y[i] << endl;
+
+
+			//and iterate through rest of array to make sure it isn't a dupe
+			for (int j = (i - 1); j >=0; j--) {
+				if (x[i] == x[j] && y[i] == y[j]) {
+					valid = false;
+				}
+			}
+		} while (!valid);
+	}
+
+	// cout << "DEBUG: " << endl;
+	// for (int i = 0; i < 5; i++) {
+	// 	cout << x[i] << ", " << y[i] << endl;
+	// }
+}
+
+
 void Game::set_up(int l, int w){
+	//going a few lines over b/c each event needs to be declared,
+	//but there aren't enough to justify iteration
+
 	//set up the game
 	this->length = l;
 	this->width = w;
 
-	this->num_arrows = 3; 	//start with 3 arrows
+	//start with 3 arrows
+	this->num_arrows = 3;
 
 	// Populate the game board: 2D vector of Room objects
 	for (int i = 0; i < l; i++) {
@@ -42,25 +89,32 @@ void Game::set_up(int l, int w){
 	// randomly insert events (2 bats, 2 stalactites, 1 wumpus, 1 gold)
 	// into the board
 	srand(time(NULL));
-	for (int i = 0; i < 5; i++){
-		xseed[i] = rand() % l;
-		yseed[i] = rand() % w;
-	}
-	/*
-	events[0] = Bat(xseed[0], yseed[0]);
-	events[1] = Bat(xseed[1], yseed[1]);
-	events[2] = Stalactite(xseed[2], yseed[2]);
-	events[3] = Stalactite(xseed[3], yseed[3]);
-	events[4] = Wumpus(xseed[4], yseed[4]);
-	*/
+	// for (int i = 0; i < 5; i++){
+	// 	xseed[i] = rand() % l;
+	// 	yseed[i] = rand() % w;
+	// }
+	unique_rands(xseed, yseed, l, w);
 
+	events[0] = new Bats(xseed[0], yseed[0]);
+	//events[0]->assert_type();
+	events[1] = new Bats(xseed[1], yseed[1]);
+	//events[1]->assert_type();
+	events[2] = new Stalactites(xseed[2], yseed[2]);
+	//events[2]->assert_type();
+	events[3] = new Stalactites(xseed[3], yseed[3]);
+	//events[3]->assert_type();
+	events[4] = new Wumpus(xseed[4], yseed[4]);
+	//events[4]->assert_type();
+
+	//cout << "DEBUG: set_up() complete" << endl;
 }
+
 
 //Note: you need to modify this function
 void Game::display_game() const{
 	cout << endl << endl;
 	cout << "Arrows remaining: " << this->num_arrows << endl;
-	
+
 	string line = "";
 	for (int i = 0; i < this->width; ++i)
 		line += "-----";
@@ -77,12 +131,12 @@ void Game::display_game() const{
 
 			//Fix the following
 			cout << " ";
-			
+
 
 			//The next two chars indicate the event in the room
 			//if the room does not have an event, print "  ||" (2 spaces + ||)
-			
-			//else, 
+
+			//else,
 				//if debug_view is true
 					//print the corresponding char of the event
 				//else
@@ -96,14 +150,14 @@ void Game::display_game() const{
 	}
 	cout << line << endl;
 
-	//example output (when finished): 
+	//example output (when finished):
 	// --------------------
 	//  B || G || B ||   ||
 	// --------------------
 	//    || W ||   || S ||
-	// --------------------   
+	// --------------------
 	//    ||   ||   || S ||
-	// --------------------   
+	// --------------------
 	// *  ||   ||   ||   ||
 	// --------------------
 }
@@ -113,7 +167,7 @@ bool Game::check_win() const{
 	//Your code here:
 
 	cout << "Game::check_win() is not implemented..." << endl;
-	return false;
+	return true;
 }
 
 void Game::move_up() {
@@ -153,14 +207,14 @@ void Game::move_right() {
 char Game::get_dir(){
 	//get direction of arrow:
 	char dir;
-	//Note: error checking is needed!! 
+	//Note: error checking is needed!!
 	//Your code here:
 	cout << "Fire an arrow...." << endl;
 	cout << "W-up" << endl;
 	cout << "A-left" << endl;
 	cout << "S-down" << endl;
 	cout << "D-right" << endl;
-	
+
 
 	cout << "Enter direction: " << endl;
 	cin >> dir;
@@ -172,12 +226,12 @@ char Game::get_dir(){
 void Game::wumpus_move(){
 	//after a missed arrow, 75% chance that the wumpus is moved to a different room
 
-	//How to get 75%? 
+	//How to get 75%?
 	//Hint: generate a random number from 0-3, if the number is not 0, then move
 
 	//Your code here:
 	cout << "Game::wumpus_move() is not implemented..." << endl;
-	
+
 	return;
 }
 
@@ -231,7 +285,7 @@ char Game::get_input(){
 	cin >> c;
 	cin.ignore(256, '\n');
 
-	
+
 	return c;
 }
 
@@ -243,7 +297,7 @@ void Game::play_game(int w, int l, bool d){
 	this->debug_view = d;
 
 	char input, arrow_input;
-	
+
 	while (Game::check_win() == false){
 		//print game board
 		Game::display_game();
@@ -262,8 +316,8 @@ void Game::play_game(int w, int l, bool d){
 		//Your code here:
 
 	}
-	
-	
+
+
 	return;
 
 }
@@ -279,7 +333,7 @@ void Game::get_size(int& x, int& y, bool& debug) {
 	cout << "Please enter length of gameboard" << endl;
 	cin >> y;
 
-	cout << "would you like to play in debug mode? enter y for yes, anything else for no" << endl; 
+	cout << "would you like to play in debug mode? enter y for yes, anything else for no" << endl;
 	cin >> temp;
 	debug = (temp == "y"); //if temp is y then use debug mode
 

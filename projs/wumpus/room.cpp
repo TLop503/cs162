@@ -8,6 +8,6 @@ Room::Room(int x, int y) {
     this->y = y;
 }
 
-void Room::set_event(Event e) {
+void Room::set_event(Event* e) {
     this->eve = e;
 }

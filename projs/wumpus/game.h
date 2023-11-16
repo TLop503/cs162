@@ -24,7 +24,7 @@ private:
 	int xseed[5]; //array of ints used for rand
 	int yseed[5];
 
-	Event events[5];
+	Event* events[5];// = {nullptr, nullptr, nullptr, nullptr, nullptr};
 
 public:
 

@@ -14,11 +14,11 @@ class Room
 private: 
     int x;
     int y;
-    Event eve;
+    Event* eve = nullptr;
 public:
     Room(int x, int y);
 	
-    void set_event(Event e);
+    void set_event(Event* e);
 
 };
 

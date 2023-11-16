@@ -10,9 +10,14 @@ class Event
 {
 
 protected:
-	
+	int x;
+    int y;
 
 public:
+    Event();
+    Event(int x, int y);
+    
+    virtual void assert_type();
 	
 	
 };
