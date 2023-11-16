@@ -19,7 +19,6 @@ Game::~Game(){
 	//Game destructor
 	//Your code here:
 	for (int i = 0; i < 5; i++) {
-		cout << "checking: " << this->events[i];
 		if (events[i] != nullptr) {
 			delete events[i];
 		}
@@ -28,7 +27,7 @@ Game::~Game(){
 }
 
 
-
+//helper function for set_up()
 void unique_rands(int (&x)[5], int (&y)[5], int xlim, int ylim) {
 	//setup initial index
 	x[0] = rand() % xlim;
