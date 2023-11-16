@@ -19,9 +19,12 @@ private:
 	int width;  			//width of the board
 	int num_arrows; 		//keep track of number of errors remaining
 	bool debug_view;		//debug mode or not
+	vector<vector<Room>> grid;
 
+	int xseed[5]; //array of ints used for rand
+	int yseed[5];
 
-	//feel free to add more variables...
+	Event events[5];
 
 public:
 

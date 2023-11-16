@@ -12,9 +12,13 @@ using namespace std;
 class Room
 {
 private: 
-	
+    int x;
+    int y;
+    Event eve;
 public:
+    Room(int x, int y);
 	
+    void set_event(Event e);
 
 };
 

@@ -29,14 +29,30 @@ void Game::set_up(int l, int w){
 
 	this->num_arrows = 3; 	//start with 3 arrows
 
-	// Finish the remaining...
-	//Your code here:
-	
-	// Create the game board: 2D vector of Room objects
+	// Populate the game board: 2D vector of Room objects
+	for (int i = 0; i < l; i++) {
+		vector<Room> row;
+		for (int j = 0; j < w; j++) {
+			Room temp(i, j);
+			row.push_back(temp);
+		}
+		grid.push_back(row);
+	}
 
 	// randomly insert events (2 bats, 2 stalactites, 1 wumpus, 1 gold)
 	// into the board
-	
+	srand(time(NULL));
+	for (int i = 0; i < 5; i++){
+		xseed[i] = rand() % l;
+		yseed[i] = rand() % w;
+	}
+	/*
+	events[0] = Bat(xseed[0], yseed[0]);
+	events[1] = Bat(xseed[1], yseed[1]);
+	events[2] = Stalactite(xseed[2], yseed[2]);
+	events[3] = Stalactite(xseed[3], yseed[3]);
+	events[4] = Wumpus(xseed[4], yseed[4]);
+	*/
 
 }
 
