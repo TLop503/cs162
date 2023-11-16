@@ -251,3 +251,25 @@ void Game::play_game(int w, int l, bool d){
 	return;
 
 }
+
+void Game::get_size(int& x, int& y, bool& debug) {
+	bool valid = false;
+	string temp = "no"; //middleman for debug check
+
+	do {
+	cout << "Width and length must be between 4 and 50 (inclusive)" << endl;
+	cout << "Please enter width of gameboard" << endl;
+	cin >> x;
+	cout << "Please enter length of gameboard" << endl;
+	cin >> y;
+
+	cout << "would you like to play in debug mode? enter y for yes, anything else for no" << endl; 
+	cin >> temp;
+	debug = (temp == "y"); //if temp is y then use debug mode
+
+	valid = (x < 51 && x > 3 && y < 51 && y > 3);
+	} while (!valid);
+
+	//TODO: remove before shipping
+	//cout << "DEBUG MESSSAGE: Size from within get_size(): " << x << " " << y << endl;
+}

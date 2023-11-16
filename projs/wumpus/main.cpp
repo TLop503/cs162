@@ -16,12 +16,9 @@ int main()
 	
 	Game g;
 
-	//get two inputs: size of the cave(wid and len)
-	
-
-
-	//get the 3rd input --> debug mode or not
-
+	//ask user for basics
+	g.get_size(wid, len, debug); //this is PBR so it should work
+	//cout << "DEBUG MESSAGE: dimensions in main(): " << wid << " " << len << endl;
 
 	//Play game
 	g.play_game(wid, len, debug);

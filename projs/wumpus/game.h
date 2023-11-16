@@ -50,7 +50,7 @@ public:
 	void play_game(int, int, bool);
 
 	//feel free (and you will need) to add more functions...
-
+	void get_size(int& x, int& y, bool& debug);
 
 
 
