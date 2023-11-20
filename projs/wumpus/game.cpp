@@ -5,6 +5,7 @@
 #include "wumpus.h"
 #include "player.h"
 #include "room.h"
+#include "rope.h"
 
 #include <iostream>
 
@@ -83,6 +84,9 @@ void Game::place_player(int xlim, int ylim) {
 		p.x_location = rand() % xlim;
 		p.y_location = rand() % ylim;
 	} while (grid[p.x_location][p.y_location].get_event() != nullptr);
+
+	events[6] = new Rope(p.x_location, p.y_location);
+	grid[p.x_location][p.y_location].set_event(events[6]);
 }
 
 
@@ -128,9 +132,11 @@ void Game::set_up(int l, int w){
 	events[4] = new Wumpus(xseed[4], yseed[4]);
 	//events[4]->assert_type();
 	events[5] = new Gold(xseed[5], yseed[5]);
+	
 	populate_events();
 	place_player(l,w);
-	cout << "DEBUG: set_up() complete" << endl;
+		
+	//cout << "DEBUG: set_up() complete" << endl;
 }
 
 
@@ -209,7 +215,7 @@ bool Game::check_win() const{
 	//Your code here:
 
 	cout << "Game::check_win() is not implemented..." << endl;
-	return !p.is_alive;
+	return (!p.is_alive || p.win);
 }
 
 void Game::move_up() {
@@ -413,6 +419,11 @@ void Game::play_game(int w, int l, bool d){
 		}
 	}
 
+	if (p.win) {
+		cout << "You win!" << endl << endl;
+	}
+
+	//future play again goes here
 
 	return;
 

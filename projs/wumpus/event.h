@@ -27,7 +27,7 @@ public:
 	char get_symbol() const;
     void print_percept() const;
 
-    virtual void do_event(Player &p);
+    virtual void do_event(Player &p) = 0;
 	
 };
 #endif

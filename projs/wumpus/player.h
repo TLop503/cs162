@@ -6,6 +6,7 @@ using namespace std;
 struct Player {
     bool is_alive = true;
     bool has_gold = false;
+    bool win = false;
 
     int bat_duration = 0;
 

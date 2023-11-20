@@ -27,7 +27,7 @@ private:
 	int yseed[6];
 
 	int num_events = 6;
-	Event* events[6];// = {nullptr, nullptr, nullptr, nullptr, nullptr};
+	Event* events[7];// = {nullptr, nullptr, nullptr, nullptr, nullptr};
 
 	Player p;
 
