@@ -16,6 +16,7 @@ class Wumpus : public Event {
     }
 
     void assert_type();
+    void do_event(Player &p);
 };
 
 #endif

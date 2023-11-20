@@ -389,7 +389,9 @@ void Game::play_game(int w, int l, bool d){
 
 		//3. may or may not encounter events
 		//Your code here:
-
+		if (grid[p.x_location][p.y_location].get_event() != nullptr) {
+			grid[p.x_location][p.y_location].get_event()->do_event(p);
+		}
 	}
 
 

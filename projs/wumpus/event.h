@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "player.h"
+
 using namespace std;
 
 //Event Interface
@@ -24,6 +26,8 @@ public:
     virtual void assert_type();
 	char get_symbol() const;
     void print_percept() const;
+
+    virtual void do_event(Player &p);
 	
 };
 #endif
