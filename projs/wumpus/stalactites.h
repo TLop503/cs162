@@ -11,6 +11,7 @@ class Stalactites : public Event {
             this->x = x;
             this->y = y;
             this->symbol = 's';
+            this->percept = "You hear water dripping";
         }
 
         void assert_type();

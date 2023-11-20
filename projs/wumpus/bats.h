@@ -11,6 +11,7 @@ class Bats : public Event {
         this->x = x;
         this->y = y;
         this->symbol = 'b';
+        this->percept = "You hear wings flapping.";
     }
 
     void assert_type();

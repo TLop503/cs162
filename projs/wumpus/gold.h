@@ -17,6 +17,7 @@ class Gold : public Event {
             this->x = x;
             this->y = y;
             this->symbol = 'g';
+            this->percept = "You see a glimmer nearby.";
         }
 
         void assert_type();    

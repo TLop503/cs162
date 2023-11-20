@@ -12,6 +12,7 @@ class Wumpus : public Event {
         this->x = x;
         this->y = y;
         this->symbol = 'w';
+        this->percept = "You smell a terrible stench";
     }
 
     void assert_type();
