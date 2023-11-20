@@ -62,6 +62,7 @@ public:
 
 	void display_events();
 	void populate_events();
+	void place_player(int xlim, int ylim);
 
 };
 #endif

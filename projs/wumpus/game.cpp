@@ -78,6 +78,14 @@ void Game::populate_events() {
 }
 
 
+void Game::place_player(int xlim, int ylim) {
+	do {
+		p.x_location = rand() % xlim;
+		p.y_location = rand() % ylim;
+	} while (grid[p.x_location][p.y_location].get_event() != nullptr);
+}
+
+
 void Game::set_up(int l, int w){
 	//going a few lines over b/c each event needs to be declared,
 	//but there aren't enough to justify iteration
@@ -121,7 +129,7 @@ void Game::set_up(int l, int w){
 	//events[4]->assert_type();
 	events[5] = new Gold(xseed[5], yseed[5]);
 	populate_events();
-
+	place_player(l,w);
 	cout << "DEBUG: set_up() complete" << endl;
 }
 
@@ -360,8 +368,9 @@ void Game::play_game(int w, int l, bool d){
 
 	char input, arrow_input;
 
-	p.x_location = 0;
-	p.y_location = 0;
+	//for some reason these values get manged between init and now, so reset them to 0;
+	// p.x_location = 0;
+	// p.y_location = 0;
 
 	while (Game::check_win() == false){
 		//print game board
