@@ -10,6 +10,7 @@ class Stalactites : public Event {
     Stalactites(int x, int y) : Event(x,y) {
         this->x = x;
         this->y = y;
+        this->symbol = 's';
     }
 
     void assert_type();

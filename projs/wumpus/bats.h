@@ -10,6 +10,7 @@ class Bats : public Event {
     Bats(int x, int y) : Event(x,y) {
         this->x = x;
         this->y = y;
+        this->symbol = 'b';
     }
 
     void assert_type();

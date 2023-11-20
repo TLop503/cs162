@@ -4,8 +4,10 @@
 #include "bats.h"
 #include "wumpus.h"
 #include "player.h"
+#include "room.h"
 
 #include <iostream>
+
 
 using namespace std;
 
@@ -66,6 +68,14 @@ void unique_rands(int (&x)[5], int (&y)[5], int xlim, int ylim) {
 }
 
 
+void Game::populate_events() {
+	for (int i = 0; i < 5; i++) {
+		//ith event has coords xseed and yseed
+		grid[xseed[i]][yseed[i]].set_event(events[i]);
+	}
+}
+
+
 void Game::set_up(int l, int w){
 	//going a few lines over b/c each event needs to be declared,
 	//but there aren't enough to justify iteration
@@ -98,6 +108,7 @@ void Game::set_up(int l, int w){
 
 	events[0] = new Bats(xseed[0], yseed[0]);
 	//events[0]->assert_type();
+	cout << events[0]->get_symbol() << endl;
 	events[1] = new Bats(xseed[1], yseed[1]);
 	//events[1]->assert_type();
 	events[2] = new Stalactites(xseed[2], yseed[2]);
@@ -107,7 +118,9 @@ void Game::set_up(int l, int w){
 	events[4] = new Wumpus(xseed[4], yseed[4]);
 	//events[4]->assert_type();
 
-	//cout << "DEBUG: set_up() complete" << endl;
+	populate_events();
+
+	cout << "DEBUG: set_up() complete" << endl;
 }
 
 
@@ -127,16 +140,30 @@ void Game::display_game() const{
 		{
 			//The first char indicates whether there is a player in that room or not
 			//if the room does not have the player, print space " "
-
+			if (!(i == p.y_location && j == p.x_location)) {
+				cout << " ";
+			}
 			//else, print "*"
-
+			else cout << "*";
 			//Fix the following
-			cout << " ";
+			//cout << " ";
 
 
 			//The next two chars indicate the event in the room
 			//if the room does not have an event, print "  ||" (2 spaces + ||)
-
+			if (grid[j][i].get_event() == nullptr) {
+				cout << "  ||";
+			}
+			else {
+				if (debug_view) {
+					//get symbol from event in grid at index j, i
+					cout << grid[j][i].get_event()->get_symbol(); 
+				}
+				else {
+					cout << " ";
+				}
+				cout << " ||";
+			}
 			//else,
 				//if debug_view is true
 					//print the corresponding char of the event
@@ -145,7 +172,7 @@ void Game::display_game() const{
 				// print " ||" (1 space + ||)
 
 			//Fix the following...
-			cout << "  ||";
+			//cout << "  ||";
 		}
 		cout << endl;
 	}
@@ -174,11 +201,11 @@ bool Game::check_win() const{
 void Game::move_up() {
 	//move player up
 	//Your code here:
-	if (p.y_location == (width - 1)) {
+	if (p.y_location == 0) {
 		cout << "There is a wall blocking your path." << endl;
 	}
 
-	else p.y_location++;
+	else p.y_location--;
 
 	cout << "Game::move_up() is not tested" << endl;
 	return;
@@ -187,11 +214,11 @@ void Game::move_up() {
 void Game::move_down() {
 	//move player up
 	//Your code here:
-	if (p.y_location == 0) {
+	if (p.y_location == (width - 1)) {
 		cout << "There is a wall blocking your path." << endl;
 	}
 
-	else p.y_location--;
+	else p.y_location++;
 
 	cout << "Game::move_down() is not tested" << endl;
 	return;

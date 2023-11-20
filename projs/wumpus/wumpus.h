@@ -11,6 +11,7 @@ class Wumpus : public Event {
     Wumpus(int x, int y) : Event(x,y) {
         this->x = x;
         this->y = y;
+        this->symbol = 'w';
     }
 
     void assert_type();

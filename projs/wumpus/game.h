@@ -60,7 +60,7 @@ public:
 	void get_size(int& x, int& y, bool& debug);
 
 	void display_events();
-
+	void populate_events();
 
 };
 #endif

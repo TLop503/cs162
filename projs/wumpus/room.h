@@ -19,6 +19,7 @@ public:
     Room(int x, int y);
 	
     void set_event(Event* e);
+    Event* get_event() const;
 
 };
 
