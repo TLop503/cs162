@@ -3,6 +3,7 @@
 #include "stalactites.h"
 #include "bats.h"
 #include "wumpus.h"
+#include "player.h"
 
 #include <iostream>
 
@@ -13,6 +14,7 @@ using namespace std;
 Game::Game(){
 	//Game constructor
 	//Your code here:
+	p.is_alive = true;
 }
 
 Game::~Game(){
@@ -166,23 +168,32 @@ bool Game::check_win() const{
 	//Your code here:
 
 	cout << "Game::check_win() is not implemented..." << endl;
-	return true;
+	return !p.is_alive;
 }
 
 void Game::move_up() {
 	//move player up
 	//Your code here:
+	if (p.y_location == (width - 1)) {
+		cout << "There is a wall blocking your path." << endl;
+	}
 
-	cout << "Game::move_up() is not implemented..." << endl;
+	else p.y_location++;
+
+	cout << "Game::move_up() is not tested" << endl;
 	return;
-
 }
 
 void Game::move_down() {
-	//move player down
+	//move player up
 	//Your code here:
+	if (p.y_location == 0) {
+		cout << "There is a wall blocking your path." << endl;
+	}
 
-	cout << "Game::move_down() is not implemented..." << endl;
+	else p.y_location--;
+
+	cout << "Game::move_down() is not tested" << endl;
 	return;
 }
 
@@ -190,18 +201,30 @@ void Game::move_left() {
 	//move player left
 	//Your code here:
 
-	cout << "Game::move_left() is not implemented..." << endl;
-	return;
+	if (p.x_location == 0) {
+		cout << "There is a wall blocking your path." << endl;
+	}
+
+	else p.x_location--;
+
+	cout << "Game::move_left() is not tested" << endl;
 
 }
 
 void Game::move_right() {
 	//move player right
 	//Your code here:
+	if (p.x_location == length - 1) {
+		cout << "There is a wall blocking your path." << endl;
+	}
 
-	cout << "Game::move_right() is not implemented..." << endl;
+	else p.x_location++;
+
+	cout << "Game::move_right() is not tested" << endl;
+	
 	return;
 }
+
 
 char Game::get_dir(){
 	//get direction of arrow:
@@ -272,21 +295,28 @@ char Game::get_input(){
 	//Note: error checking is needed!!
 	//Your code here:
 	char c;
+	bool valid = 0;
 
-	cout << endl << endl << "Player move..." << endl << endl;
-	cout << "W-up" << endl;
-	cout << "A-left" << endl;
-	cout << "S-down" << endl;
-	cout << "D-right" << endl;
-	cout << "f-fire an arrow" << endl;
+	do {
 
-	cout << "Enter input: " << endl;
-	cin >> c;
-	cin.ignore(256, '\n');
+		cout << endl << endl << "Player move..." << endl << endl;
+		cout << "W-up" << endl;
+		cout << "A-left" << endl;
+		cout << "S-down" << endl;
+		cout << "D-right" << endl;
+		cout << "f-fire an arrow" << endl;
 
+		cout << "Enter input: " << endl;
+		cin >> c;
+		cin.ignore(256, '\n');
+
+		valid = (c == 'w' || c == 'a' || c == 's' || c == 'd' || c == 'f');
+
+	} while (!valid);
 
 	return c;
 }
+
 
 //Note: you need to modify this function
 void Game::play_game(int w, int l, bool d){
@@ -303,6 +333,7 @@ void Game::play_game(int w, int l, bool d){
 
 		//display percerts around player's location
 		//Your code here:
+		display_events();
 
 		//Player move...
 		//1. get input
@@ -320,6 +351,14 @@ void Game::play_game(int w, int l, bool d){
 	return;
 
 }
+
+void Game::display_events() {
+	for (int i = 0; i < 5; i++) {
+		//if location is next to player;
+	}
+	cout << "Display events here" << endl;
+}
+
 
 void Game::get_size(int& x, int& y, bool& debug) {
 	bool valid = false;

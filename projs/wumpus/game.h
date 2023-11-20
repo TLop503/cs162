@@ -3,7 +3,9 @@
 
 #include <vector>
 #include <iostream> 
+
 #include "room.h"
+#include "player.h"
 
 using namespace std;
 
@@ -25,6 +27,8 @@ private:
 	int yseed[5];
 
 	Event* events[5];// = {nullptr, nullptr, nullptr, nullptr, nullptr};
+
+	Player p;
 
 public:
 
@@ -55,6 +59,7 @@ public:
 	//feel free (and you will need) to add more functions...
 	void get_size(int& x, int& y, bool& debug);
 
+	void display_events();
 
 
 };
