@@ -23,10 +23,11 @@ private:
 	bool debug_view;		//debug mode or not
 	vector<vector<Room>> grid;
 
-	int xseed[5]; //array of ints used for rand
-	int yseed[5];
+	int xseed[6]; //array of ints used for rand
+	int yseed[6];
 
-	Event* events[5];// = {nullptr, nullptr, nullptr, nullptr, nullptr};
+	int num_events = 6;
+	Event* events[6];// = {nullptr, nullptr, nullptr, nullptr, nullptr};
 
 	Player p;
 
@@ -38,7 +39,7 @@ public:
 	
 	void set_up(int, int);
 
-	void display_game() const;
+	void display_game();
 
 	bool check_win() const;
 

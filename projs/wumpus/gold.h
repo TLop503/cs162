@@ -11,12 +11,15 @@ using namespace std;
 
 //Wumpus Implementation
 class Gold : public Event {
-    public:
-        Gold();
-
-        void assert_type();
-    protected:
     private:
+    public:
+        Gold(int x, int y) : Event(x,y) {
+            this->x = x;
+            this->y = y;
+            this->symbol = 'g';
+        }
+
+        void assert_type();    
 };
 
 

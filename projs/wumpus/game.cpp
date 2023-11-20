@@ -17,12 +17,14 @@ Game::Game(){
 	//Game constructor
 	//Your code here:
 	p.is_alive = true;
+	p.x_location = 0;
+	p.y_location = 0;
 }
 
 Game::~Game(){
 	//Game destructor
 	//Your code here:
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < num_events; i++) {
 		if (events[i] != nullptr) {
 			delete events[i];
 		}
@@ -32,7 +34,7 @@ Game::~Game(){
 
 
 //helper function for set_up()
-void unique_rands(int (&x)[5], int (&y)[5], int xlim, int ylim) {
+void unique_rands(int (&x)[6], int (&y)[6], int xlim, int ylim) {
 	//setup initial index
 	x[0] = rand() % xlim;
 	y[0] = rand() % ylim;
@@ -40,7 +42,7 @@ void unique_rands(int (&x)[5], int (&y)[5], int xlim, int ylim) {
 	//cout << x[0] << ", " << y[0] << endl;
 
 	//for remaining indexes
-	for (int i = 1; i < 5; i++){
+	for (int i = 1; i < 6; i++){
 		bool valid = false;
 		do {
 			valid = true;
@@ -69,7 +71,7 @@ void unique_rands(int (&x)[5], int (&y)[5], int xlim, int ylim) {
 
 
 void Game::populate_events() {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < num_events; i++) {
 		//ith event has coords xseed and yseed
 		grid[xseed[i]][yseed[i]].set_event(events[i]);
 	}
@@ -117,7 +119,7 @@ void Game::set_up(int l, int w){
 	//events[3]->assert_type();
 	events[4] = new Wumpus(xseed[4], yseed[4]);
 	//events[4]->assert_type();
-
+	events[5] = new Gold(xseed[5], yseed[5]);
 	populate_events();
 
 	cout << "DEBUG: set_up() complete" << endl;
@@ -125,9 +127,11 @@ void Game::set_up(int l, int w){
 
 
 //Note: you need to modify this function
-void Game::display_game() const{
+void Game::display_game() {
 	cout << endl << endl;
 	cout << "Arrows remaining: " << this->num_arrows << endl;
+
+	cout << "P x: " << p.x_location << " y: " << p.y_location << endl;
 
 	string line = "";
 	for (int i = 0; i < this->width; ++i)
@@ -144,7 +148,9 @@ void Game::display_game() const{
 				cout << " ";
 			}
 			//else, print "*"
-			else cout << "*";
+			else {
+				cout << "*";
+			}
 			//Fix the following
 			//cout << " ";
 
@@ -354,6 +360,9 @@ void Game::play_game(int w, int l, bool d){
 
 	char input, arrow_input;
 
+	p.x_location = 0;
+	p.y_location = 0;
+
 	while (Game::check_win() == false){
 		//print game board
 		Game::display_game();
@@ -380,7 +389,7 @@ void Game::play_game(int w, int l, bool d){
 }
 
 void Game::display_events() {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < num_events; i++) {
 		//if location is next to player;
 	}
 	cout << "Display events here" << endl;

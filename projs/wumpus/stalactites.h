@@ -7,13 +7,13 @@
 class Stalactites : public Event {
     private:
     public:
-    Stalactites(int x, int y) : Event(x,y) {
-        this->x = x;
-        this->y = y;
-        this->symbol = 's';
-    }
+        Stalactites(int x, int y) : Event(x,y) {
+            this->x = x;
+            this->y = y;
+            this->symbol = 's';
+        }
 
-    void assert_type();
+        void assert_type();
 };
 
 #endif
