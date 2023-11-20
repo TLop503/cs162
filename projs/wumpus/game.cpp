@@ -389,10 +389,34 @@ void Game::play_game(int w, int l, bool d){
 }
 
 void Game::display_events() {
-	for (int i = 0; i < num_events; i++) {
-		//if location is next to player;
+	//check if room exists
+		//check for event
+			//get event, print percept
+
+	//on left
+	if (p.x_location != 0) {
+		if (grid[p.x_location - 1][p.y_location].get_event() != nullptr) {
+			grid[p.x_location - 1][p.y_location].get_event()->print_percept();
+		}
 	}
-	cout << "Display events here" << endl;
+	//on right
+	if (p.x_location != length - 1) {
+		if (grid[p.x_location + 1][p.y_location].get_event() != nullptr) {
+			grid[p.x_location + 1][p.y_location].get_event()->print_percept();
+		}
+	}
+	//on top
+	if (p.y_location != 0) {
+		if (grid[p.x_location][p.y_location - 1].get_event() != nullptr) {
+			grid[p.x_location][p.y_location - 1].get_event()->print_percept();
+		}
+	}
+	//on bottom
+	if (p.y_location != width - 1) {
+		if (grid[p.x_location][p.y_location + 1].get_event() != nullptr) {
+			grid[p.x_location][p.y_location + 1].get_event()->print_percept();
+		}
+	}
 }
 
 

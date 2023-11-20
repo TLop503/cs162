@@ -21,3 +21,7 @@ void Event::assert_type() {
 char Event::get_symbol() const {
     return this->symbol;
 }
+
+void Event::print_percept() const {
+    cout << percept << endl;
+}
