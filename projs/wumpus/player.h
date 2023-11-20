@@ -5,11 +5,12 @@ using namespace std;
 
 struct Player {
     bool is_alive = true;
+    bool has_gold = false;
 
+    int bat_duration = 0;
 
-
-    int x_location = 0;
-    int y_location = 0;
+    int x_location;
+    int y_location;
 };
 
 #endif

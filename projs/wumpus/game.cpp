@@ -16,9 +16,9 @@ using namespace std;
 Game::Game(){
 	//Game constructor
 	//Your code here:
+	//reassert, just in case
 	p.is_alive = true;
-	p.x_location = 0;
-	p.y_location = 0;
+	p.has_gold = false;
 }
 
 Game::~Game(){
@@ -314,19 +314,38 @@ void Game::move(char c) {
 		Game::fire_arrow();
 		return;
 	}
-	switch(c){
-		case 'w':
-			Game::move_up();
-			break;
-		case 'a':
-			Game::move_left();
-			break;
-		case 's':
-			Game::move_down();
-			break;
-		case 'd':
-			Game::move_right();
-			break;
+	if (p.bat_duration == 0) {
+		switch(c){
+			case 'w':
+				Game::move_up();
+				break;
+			case 'a':
+				Game::move_left();
+				break;
+			case 's':
+				Game::move_down();
+				break;
+			case 'd':
+				Game::move_right();
+				break;
+		}
+	}
+	else {
+		switch(c){
+			case 'w':
+				Game::move_down();
+				break;
+			case 'a':
+				Game::move_right();
+				break;
+			case 's':
+				Game::move_up();
+				break;
+			case 'd':
+				Game::move_left();
+				break;
+		}
+		p.bat_duration--;
 	}
 }
 
