@@ -462,7 +462,7 @@ void Game::play_game(int w, int l, bool d){
 		}
 
 		//move wumpus
-		wumpus_walker();
+		//wumpus_walker();
 	}
 
 	if (p.win) {
