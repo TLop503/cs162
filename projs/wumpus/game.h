@@ -64,5 +64,7 @@ public:
 	void populate_events();
 	void place_player(int xlim, int ylim);
 
+	void wumpus_walker();
+
 };
 #endif

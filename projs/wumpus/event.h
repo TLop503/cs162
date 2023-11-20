@@ -28,6 +28,15 @@ public:
     void print_percept() const;
 
     virtual void do_event(Player &p) = 0;
+    bool is_alive(); //for wumpus
 	
+
+    int get_x() {
+        return x;
+    }
+    int get_y() {
+        return y;
+    }
+    virtual void special_action();
 };
 #endif

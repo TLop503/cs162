@@ -129,7 +129,7 @@ void Game::set_up(int l, int w){
 	//events[2]->assert_type();
 	events[3] = new Stalactites(xseed[3], yseed[3]);
 	//events[3]->assert_type();
-	events[4] = new Wumpus(xseed[4], yseed[4]);
+	events[4] = new Wumpus(xseed[4], yseed[4], l, w);
 	//events[4]->assert_type();
 	events[5] = new Gold(xseed[5], yseed[5]);
 	
@@ -355,6 +355,49 @@ void Game::move(char c) {
 	}
 }
 
+
+void Game::wumpus_walker() {
+	/*
+		the wumpus algorithm isn't perfect, but this adds some character.
+		if the wumpus is near other events, it will sometimes try to move into them,
+		but won't be able to, so it stays in one place. This way, the wumpus
+		occassionally gets lost, instead of being a theoretical optimal random entity.
+		think of a dog with a cone on its head walking into a doorframe a few times.
+	
+		wumpus won't walk after defeat, handled in special action
+	*/
+
+
+	//remove old wumpus
+	int attempts = 4;
+	int old_x = events[4]->get_x();
+	int old_y = events[4]->get_y();
+
+	do {
+		//move wumpus to a new neighboring room
+		events[4]->special_action();
+
+		attempts--;
+
+		//if the new room is empty, move wumpus there and break
+		if (grid[events[4]->get_x()][events[4]->get_y()].get_event() == nullptr &&
+    		events[4]->get_x() != p.x_location && events[4]->get_y() != p.y_location)  
+		{
+			grid[old_x][old_y].set_event(nullptr);
+			grid[events[4]->get_x()][events[4]->get_y()].set_event(events[4]);
+			cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+			break;
+		}
+		//else, move wumpus back to old room and try again
+		else {
+			grid[old_x][old_y].set_event(events[4]);
+		}
+		
+	} while (attempts > 0); //try 4 times
+
+}
+
+
 char Game::get_input(){
 	//get action, move direction or firing an arrow
 
@@ -417,6 +460,9 @@ void Game::play_game(int w, int l, bool d){
 		if (grid[p.x_location][p.y_location].get_event() != nullptr) {
 			grid[p.x_location][p.y_location].get_event()->do_event(p);
 		}
+
+		//move wumpus
+		wumpus_walker();
 	}
 
 	if (p.win) {

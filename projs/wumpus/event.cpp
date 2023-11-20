@@ -25,3 +25,5 @@ char Event::get_symbol() const {
 void Event::print_percept() const {
     cout << percept << endl;
 }
+
+void Event::special_action() {}
