@@ -4,8 +4,8 @@
 
 using namespace std;
 
-string Fruit::get_name() const {
-    return name;
+void Fruit::get_name() const {
+    cout << "Default fruit" << endl;
 }
 
 string Fruit::get_color() const {

@@ -15,7 +15,7 @@ class Granny : public Apple {
         Granny(float weight, bool sweetness, string color, double price);
         
         void set_sweetness();
-        string get_name() const;
+        void get_name() const;
 
 };
 

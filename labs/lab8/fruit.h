@@ -15,7 +15,7 @@ class Fruit {
         Fruit();
         Fruit(string color, double price);
 
-        virtual string get_name() const;
+        virtual void get_name() const;
         string get_color() const;
         double get_price() const;
 

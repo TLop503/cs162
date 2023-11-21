@@ -1,0 +1,14 @@
+Which function are you going to make virtual?
+the constructor needs to be virtual so each derived class can implement it's own version as needed.
+
+How will you make it polymorphic?
+handling child classes as fruits as opposed to themselves will let them be used polymorphically
+
+Can it be a pure virtual function?
+it can be, though this might add work for simple fruits that need unique traits but not a unique constructor.
+
+Which class have you made an abstract base class?
+fruit, and to a lesser extent apple
+
+Do any of the destructors need to be virtual? If so, which one(s)?
+each parent class destructor needs to be virtual, as objects will be references via pointers.
