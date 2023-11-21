@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include "fruit.h"
 #include "apple.h"
@@ -23,4 +24,31 @@ int main(){
 
     print_fruit_info(a1);
     print_fruit_info(w1);
+
+    vector<Fruit*> fruits;
+    fruits.push_back(new Apple());
+    fruits.push_back(new Watermellon());
+    fruits.push_back(new Granny());
+    fruits.push_back(new Apple());
+    fruits.push_back(new Watermellon());
+    fruits.push_back(new Granny());
+    fruits.push_back(new Apple());
+    fruits.push_back(new Watermellon());
+    fruits.push_back(new Granny());
+    fruits.push_back(new Apple());
+
+    for (int i = 0; i < fruits.size(); i++) {
+        print_fruit_info(*fruits[i]);
+    }
+
+
+    cout << fruits.size() << endl;
+
+    cout << fruits.capacity() << endl;
+
+    for (int i = 0; i < fruits.size(); i++) {
+        delete fruits[i];
+    }
+
+
 }

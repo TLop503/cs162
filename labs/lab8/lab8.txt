@@ -12,3 +12,9 @@ fruit, and to a lesser extent apple
 
 Do any of the destructors need to be virtual? If so, which one(s)?
 each parent class destructor needs to be virtual, as objects will be references via pointers.
+
+
+-------------------
+
+
+yes, you need to dellocate the fruits.
