@@ -288,7 +288,7 @@ char Game::get_dir(){
 	cout << "Enter direction: " << endl;
 	cin >> dir;
 	cin.ignore(256, '\n');
-	arrows--;
+	num_arrows--;
 	return dir;
 }
 

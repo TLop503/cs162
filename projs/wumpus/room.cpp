@@ -13,5 +13,10 @@ void Room::set_event(Event* e) {
 }
 
 Event* Room::get_event() const {
-    return this->eve;
+    if (this->eve != nullptr) {
+        return this->eve;
+    }
+    else {
+        return nullptr;
+    }
 }
