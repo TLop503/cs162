@@ -19,6 +19,7 @@ protected:
     char symbol = '?';
     string percept = "default percept";
 
+
 public:
     Event();
     Event(int x, int y);

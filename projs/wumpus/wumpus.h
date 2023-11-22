@@ -24,6 +24,7 @@ class Wumpus : public Event {
     void do_event(Player &p);
     void wumpus_walk();
     void special_action();
+    void die();
     
     bool is_alive() {
         return alive;

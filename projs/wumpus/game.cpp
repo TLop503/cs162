@@ -122,7 +122,7 @@ void Game::set_up(int l, int w){
 
 	events[0] = new Bats(xseed[0], yseed[0]);
 	//events[0]->assert_type();
-	cout << events[0]->get_symbol() << endl;
+	//cout << events[0]->get_symbol() << endl;
 	events[1] = new Bats(xseed[1], yseed[1]);
 	//events[1]->assert_type();
 	events[2] = new Stalactites(xseed[2], yseed[2]);
@@ -214,7 +214,7 @@ bool Game::check_win() const{
 	//check if game over/win
 	//Your code here:
 
-	cout << "Game::check_win() is not implemented..." << endl;
+	//cout << "Game::check_win() is not implemented..." << endl;
 	return (!p.is_alive || p.win);
 }
 
@@ -307,7 +307,44 @@ void Game::wumpus_move(){
 void Game::fire_arrow(){
 	// The player may fire arrow...
 	char dir = get_dir();
+	int x = p.x_location;
+	int y = p.y_location;
+
+	cout << "DEBUG: Firing arrow in direction " << dir << endl;
+
 	//Your code here:
+	for (int i = 0; i < 3; i++) {
+		
+		//move arrow
+		if (dir == 'w' && y != 0) {
+			y--;
+		}
+		else if (dir == 'a' && x != 0) {
+			x--;
+		}
+		else if (dir == 's' && y != width - 1) {
+			y++;
+		}
+		else if (dir == 'd' && x != length - 1) {
+			x++;
+		}
+		else {
+			cout << "You hit a wall!" << endl;
+			return;
+		}
+		cout << "DEBUG: Player at " << p.x_location << ", " << p.y_location << endl;
+		cout << "DEBUG: Arrow at " << x << ", " << y << endl;
+		cout << "DEBUG: Wumpus at " << events[4]->get_x() << ", " << events[4]->get_y() << endl;
+		
+		//check if wumpus is hit
+		if (events[4]->get_x() == x && events[4]->get_y() == y) {
+			cout << "You killed the wumpus!" << endl;
+			p.win = true;
+			return;
+		}
+	}
+	//only if arrow misses
+	cout << "You missed!" << endl;
 	cout << "Game::fire_arrow() is not implemented..." << endl;
 
 	return;
