@@ -65,6 +65,7 @@ public:
 	void place_player(int xlim, int ylim);
 
 	void wumpus_walker();
+	void move_wumpus(char dir, int x, int y);
 
 };
 #endif

@@ -38,6 +38,12 @@ public:
     int get_y() {
         return y;
     }
+    void set_x(int x) {
+        this->x = x;
+    }
+    void set_y(int y) {
+        this->y = y;
+    }
     virtual void special_action();
 };
 #endif

@@ -13,7 +13,6 @@
 using namespace std;
 
 //Game Implementation
-
 Game::Game(){
 	//Game constructor
 	//Your code here:
@@ -21,6 +20,7 @@ Game::Game(){
 	p.is_alive = true;
 	p.has_gold = false;
 }
+
 
 Game::~Game(){
 	//Game destructor
@@ -132,10 +132,10 @@ void Game::set_up(int l, int w){
 	events[4] = new Wumpus(xseed[4], yseed[4], l, w);
 	//events[4]->assert_type();
 	events[5] = new Gold(xseed[5], yseed[5]);
-	
+
 	populate_events();
 	place_player(l,w);
-		
+
 	//cout << "DEBUG: set_up() complete" << endl;
 }
 
@@ -177,7 +177,7 @@ void Game::display_game() {
 			else {
 				if (debug_view) {
 					//get symbol from event in grid at index j, i
-					cout << grid[j][i].get_event()->get_symbol(); 
+					cout << grid[j][i].get_event()->get_symbol();
 				}
 				else {
 					cout << " ";
@@ -268,7 +268,7 @@ void Game::move_right() {
 	else p.x_location++;
 
 	cout << "Game::move_right() is not tested" << endl;
-	
+
 	return;
 }
 
@@ -314,7 +314,7 @@ void Game::fire_arrow(){
 
 	//Your code here:
 	for (int i = 0; i < 3; i++) {
-		
+
 		//move arrow
 		if (dir == 'w' && y != 0) {
 			y--;
@@ -335,7 +335,7 @@ void Game::fire_arrow(){
 		cout << "DEBUG: Player at " << p.x_location << ", " << p.y_location << endl;
 		cout << "DEBUG: Arrow at " << x << ", " << y << endl;
 		cout << "DEBUG: Wumpus at " << events[4]->get_x() << ", " << events[4]->get_y() << endl;
-		
+
 		//check if wumpus is hit
 		if (events[4]->get_x() == x && events[4]->get_y() == y) {
 			cout << "You killed the wumpus!" << endl;
@@ -393,46 +393,75 @@ void Game::move(char c) {
 }
 
 
-void Game::wumpus_walker() {
-	/*
-		the wumpus algorithm isn't perfect, but this adds some character.
-		if the wumpus is near other events, it will sometimes try to move into them,
-		but won't be able to, so it stays in one place. This way, the wumpus
-		occassionally gets lost, instead of being a theoretical optimal random entity.
-		think of a dog with a cone on its head walking into a doorframe a few times.
-	
-		wumpus won't walk after defeat, handled in special action
-	*/
 
+void Game::move_wumpus(char move, int x, int y) {
+		//move wumpus
 
-	//remove old wumpus
-	int attempts = 4;
-	int old_x = events[4]->get_x();
-	int old_y = events[4]->get_y();
+	//set room to nullptr
+	grid[events[4]->get_x()][events[4]->get_y()].set_event(nullptr);
 
-	do {
-		//move wumpus to a new neighboring room
-		events[4]->special_action();
-
-		attempts--;
-
-		//if the new room is empty, move wumpus there and break
-		if (grid[events[4]->get_x()][events[4]->get_y()].get_event() == nullptr &&
-    		events[4]->get_x() != p.x_location && events[4]->get_y() != p.y_location)  
-		{
-			grid[old_x][old_y].set_event(nullptr);
-			grid[events[4]->get_x()][events[4]->get_y()].set_event(events[4]);
-			cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+	switch(move){
+		case 'w':
+			events[4]->set_y(y - 1);
 			break;
+		case 'a':
+			events[4]->set_x(x - 1);
+			break;
+		case 's':
+			events[4]->set_y(y + 1);
+			break;
+		case 'd':
+			events[4]->set_x(x + 1);
+			break;
+	}
+
+	//set new room to wumpus
+	grid[events[4]->get_x()][events[4]->get_y()].set_event(events[4]);
+}
+
+
+void Game::wumpus_walker() {
+	//neighboring rooms may not exist (i.e. on the edge of the board)
+	//or may be occupied by the player or another event
+	//check for open spaces, then move to one of them
+	//otherwise don't move
+	//movement is by changing which room has a pointer to event[4]
+	//and then change the x and y values of event[4]
+
+	int x = events[4]->get_x();
+	int y = events[4]->get_y();
+
+	vector<char> valid_moves;
+
+	//check if each room exists, then if it is occupied. Add to vector if good
+	if (x != 0) {
+		if (grid[x - 1][y].get_event() == nullptr && x - 1 != p.x_location && y != p.y_location) {
+			valid_moves.push_back('a');
 		}
-		//else, move wumpus back to old room and try again
-		else {
-			grid[old_x][old_y].set_event(events[4]);
+	}
+	if (x != length - 1) {
+		if (grid[x + 1][y].get_event() == nullptr && x + 1 != p.x_location && y != p.y_location) {
+			valid_moves.push_back('d');
 		}
-		
-	} while (attempts > 0); //try 4 times
+	}
+	if (y != 0) {
+		if (grid[x][y - 1].get_event() == nullptr && x != p.x_location && y - 1 != p.y_location) {
+			valid_moves.push_back('w');
+		}
+	}
+	if (y != width - 1) {
+		if (grid[x][y + 1].get_event() == nullptr && x != p.x_location && y + 1 != p.y_location) {
+			valid_moves.push_back('s');
+		}
+	}
+
+	//if there are valid moves, pick one at random
+	int move = rand() % valid_moves.size();	
+
+	move_wumpus(valid_moves[move], x, y);
 
 }
+
 
 
 char Game::get_input(){
@@ -499,7 +528,7 @@ void Game::play_game(int w, int l, bool d){
 		}
 
 		//move wumpus
-		//wumpus_walker();
+		wumpus_walker();
 	}
 
 	if (p.win) {
