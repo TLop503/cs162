@@ -456,9 +456,10 @@ void Game::wumpus_walker() {
 	}
 
 	//if there are valid moves, pick one at random
-	int move = rand() % valid_moves.size();	
-
-	move_wumpus(valid_moves[move], x, y);
+	if (valid_moves.size() > 0) {
+		int move = rand() % valid_moves.size();	
+		move_wumpus(valid_moves[move], x, y);
+	}
 
 }
 
