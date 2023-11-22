@@ -25,22 +25,5 @@ void Wumpus::special_action() {
 }
 
 
-void Wumpus::wumpus_walk(){
-    int xdir, ydir;
-    bool good_dir = false;
-    do {
-        xdir = ((rand() % 3) - 1);
-        ydir = ((rand() % 3) - 1);
-        
-        if (x + xdir >= 0 && x + xdir < xlim && y + ydir >= 0 && y + ydir < ylim) {
-            good_dir = true;
-        }
-    } while (!good_dir); //maybe make this a while loop?
-    if (rand() % 2) {
-        x = x + xdir;
-    }
-    else {
-        y = y + ydir;
-    }
-}
+
 
