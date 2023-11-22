@@ -20,10 +20,7 @@ void Wumpus::do_event(Player &p) {
 
 void Wumpus::special_action() {
     if (alive) {
-        wumpus_walk();
+        cout << "deprecated" << endl;
     }
 }
-
-
-
 
