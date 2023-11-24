@@ -35,7 +35,16 @@ Game::~Game(){
 
 
 //helper function for set_up()
+/**************************************************
+ * Name: unique_rands
+ * Description: fill arrays with unique random numbers via very inefficient method
+ * 	but it works and it's only 6 numbers
+ * Parameters: arrays of ints x and y to fill, and ints xlim and ylim for max values
+ * Pre-conditions: arrays exist and are empty
+ * Post-conditions: arrays will be filled with unique random numbers. note unique refers to the pairs, not the numbers.
+ ***********************************************/
 void unique_rands(int (&x)[6], int (&y)[6], int xlim, int ylim) {
+	srand(time(NULL));
 	//setup initial index
 	x[0] = rand() % xlim;
 	y[0] = rand() % ylim;
@@ -90,6 +99,7 @@ void Game::place_player(int xlim, int ylim) {
 }
 
 
+//slightly over line count b/c each event needs to be declared uniquely
 void Game::set_up(int l, int w){
 	//going a few lines over b/c each event needs to be declared,
 	//but there aren't enough to justify iteration
@@ -113,7 +123,6 @@ void Game::set_up(int l, int w){
 
 	// randomly insert events (2 bats, 2 stalactites, 1 wumpus, 1 gold)
 	// into the board
-	srand(time(NULL));
 	// for (int i = 0; i < 5; i++){
 	// 	xseed[i] = rand() % l;
 	// 	yseed[i] = rand() % w;

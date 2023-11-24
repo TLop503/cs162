@@ -33,14 +33,50 @@ private:
 
 public:
 
-	//suggested functions:
+/**************************************************
+ * Name: default constructor
+ * Description: sets player to alive and goldless
+ * Parameters: none
+ * Pre-conditions: game is initialized
+ * Post-conditions: game will be craeted, but not set up yet
+ ***********************************************/
 	Game();
+
+/**************************************************
+ * Name: destructor
+ * Description: checks each event in event grid, then deletes it if it exists
+ * Parameters: none
+ * Pre-conditions: technically none
+ * Post-conditions: dynamic memory will be freed
+ ***********************************************/
 	~Game();
 	
+/**************************************************
+ * Name: set_up
+ * Description: given dimensions, set up game vector and populate it with events 
+ * Parameters: ints l and w for length and width
+ * Pre-conditions: player has entered dimensions
+ * Post-conditions: game will be ready to play with events and player in place
+ ***********************************************/
 	void set_up(int, int);
 
+
+/**************************************************
+ * Name: display_game
+ * Description: print the game board, w/ or w/o debug view
+ * Parameters: none
+ * Pre-conditions: grid is initialized, debug chosen or not
+ * Post-conditions: grid will be printed with info to terminal
+ ***********************************************/
 	void display_game();
 
+/**************************************************
+ * Name: check_win
+ * Description: just checks if p.win is true
+ * Parameters: none
+ * Pre-conditions: player exists
+ * Post-conditions: game ends if true
+ ***********************************************/
 	bool check_win() const;
 
 	char get_dir();
