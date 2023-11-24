@@ -25,7 +25,7 @@ Game::Game(){
 Game::~Game(){
 	//Game destructor
 	//Your code here:
-	for (int i = 0; i < num_events; i++) {
+	for (int i = 0; i < num_events + 1; i++) {
 		if (events[i] != nullptr) {
 			delete events[i];
 		}
@@ -579,11 +579,16 @@ void Game::get_size(int& x, int& y, bool& debug) {
 	string temp = "no"; //middleman for debug check
 
 	do {
-	cout << "Width and length must be between 4 and 50 (inclusive)" << endl;
-	cout << "Please enter width of gameboard" << endl;
+	cout << "Welcome to Hunt the Wumpus!" << endl;
+	cout << "Please enter size of square gameboard" << endl;
+	cout << "Gameboard is a square b/c I didn't want to debug on Thanksgiving." << endl;
+	//cout << "Width and length must be between 4 and 50 (inclusive)" << endl;
+	cout << "Please enter size of square gameboard, between 4 and 50 (inclusive)" << endl;
 	cin >> x;
-	cout << "Please enter length of gameboard" << endl;
-	cin >> y;
+	//cout << "Please enter length of gameboard" << endl;
+	//cin >> y;
+
+	y = x; //square board
 
 	cout << "would you like to play in debug mode? enter y for yes, anything else for no" << endl;
 	cin >> temp;
