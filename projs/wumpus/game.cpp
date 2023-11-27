@@ -236,7 +236,7 @@ void Game::move_up() {
 
 	else p.y_location--;
 
-	cout << "Game::move_up() is not tested" << endl;
+	//cout << "Game::move_up() is not tested" << endl;
 	return;
 }
 
@@ -249,7 +249,7 @@ void Game::move_down() {
 
 	else p.y_location++;
 
-	cout << "Game::move_down() is not tested" << endl;
+	// cout << "Game::move_down() is not tested" << endl;
 	return;
 }
 
@@ -263,7 +263,7 @@ void Game::move_left() {
 
 	else p.x_location--;
 
-	cout << "Game::move_left() is not tested" << endl;
+	// cout << "Game::move_left() is not tested" << endl;
 
 }
 
@@ -276,7 +276,7 @@ void Game::move_right() {
 
 	else p.x_location++;
 
-	cout << "Game::move_right() is not tested" << endl;
+	// cout << "Game::move_right() is not tested" << endl;
 
 	return;
 }
@@ -308,7 +308,7 @@ void Game::wumpus_move(){
 	//Hint: generate a random number from 0-3, if the number is not 0, then move
 
 	//Your code here:
-	cout << "Game::wumpus_move() is not implemented..." << endl;
+	// cout << "Game::wumpus_move() is not implemented..." << endl;
 
 	return;
 }
@@ -319,7 +319,7 @@ void Game::fire_arrow(){
 	int x = p.x_location;
 	int y = p.y_location;
 
-	cout << "DEBUG: Firing arrow in direction " << dir << endl;
+	// cout << "DEBUG: Firing arrow in direction " << dir << endl;
 
 	//Your code here:
 	for (int i = 0; i < 3; i++) {
@@ -341,9 +341,9 @@ void Game::fire_arrow(){
 			cout << "You hit a wall!" << endl;
 			return;
 		}
-		cout << "DEBUG: Player at " << p.x_location << ", " << p.y_location << endl;
-		cout << "DEBUG: Arrow at " << x << ", " << y << endl;
-		cout << "DEBUG: Wumpus at " << events[4]->get_x() << ", " << events[4]->get_y() << endl;
+		// cout << "DEBUG: Player at " << p.x_location << ", " << p.y_location << endl;
+		// cout << "DEBUG: Arrow at " << x << ", " << y << endl;
+		// cout << "DEBUG: Wumpus at " << events[4]->get_x() << ", " << events[4]->get_y() << endl;
 
 		//check if wumpus is hit
 		if (events[4]->get_x() == x && events[4]->get_y() == y) {
@@ -354,7 +354,7 @@ void Game::fire_arrow(){
 	}
 	//only if arrow misses
 	cout << "You missed!" << endl;
-	cout << "Game::fire_arrow() is not implemented..." << endl;
+	// cout << "Game::fire_arrow() is not implemented..." << endl;
 
 	return;
 
@@ -518,10 +518,13 @@ void Game::play_game(int w, int l, bool d){
 
 	while (Game::check_win() == false){
 		//print game board
+		//try walking wumpus first?
+		wumpus_walker();
 		Game::display_game();
 
 		//display percerts around player's location
 		//Your code here:
+		
 		display_events();
 
 		//Player move...
@@ -537,8 +540,6 @@ void Game::play_game(int w, int l, bool d){
 			grid[p.x_location][p.y_location].get_event()->do_event(p);
 		}
 
-		//move wumpus
-		wumpus_walker();
 	}
 
 	if (p.win) {
