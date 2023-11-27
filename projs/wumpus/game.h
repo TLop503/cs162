@@ -70,6 +70,7 @@ public:
  ***********************************************/
 	void display_game();
 
+
 /**************************************************
  * Name: check_win
  * Description: just checks if p.win is true
@@ -79,14 +80,56 @@ public:
  ***********************************************/
 	bool check_win() const;
 
+
+/**************************************************
+ * Name: get_dir
+ * Description: gets user input for dir of arrow
+ * Parameters: none
+ * Pre-conditions: user wants to use arrow
+ * Post-conditions: returns cleaned input
+ ***********************************************/
 	char get_dir();
+
+
+/**************************************************
+ * Name: wumpus move
+ * Description: skeleton code function
+ * Parameters: none
+ * Pre-conditions: since wumpus walks this isn't needed
+ * Post-conditions: n/a
+ ***********************************************/
 	void wumpus_move();
+
+
+/**************************************************
+ * Name: fire_arrow
+ * Description: initiates arrow math
+ * Parameters: none
+ * Pre-conditions: player wants to use arrow
+ * Post-conditions: checks each room in arrow path for events, if wumpus, win game
+ ***********************************************/
 	void fire_arrow();
 
+/**************************************************
+ * Name: move_%dir%
+ * Description: increments player position by 1 in given direction
+ * Parameters: none
+ * Pre-conditions: player has called move function with unput
+ * Post-conditions: player will be moved, or wall message printed
+ ***********************************************/
 	void move_up();
 	void move_down();
 	void move_left();
 	void move_right();
+	
+
+/**************************************************
+ * Name: move
+ * Description: calls corresponding move function based on input, and inverts if batted
+ * Parameters: direction
+ * Pre-conditions: player has input
+ * Post-conditions: calls corresponding move function
+ ***********************************************/
 	void move(char);
 
 	char get_input();
