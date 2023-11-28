@@ -135,11 +135,11 @@ public:
 /**************************************************
  * Name: get_input()
  * Description: gets user input and verifies it is valid
- * Parameters: none
+ * Parameters: bool arrow - if arrows are allowed
  * Pre-conditions: none
  * Post-conditions: will return valid input wasdf
  ***********************************************/
-	char get_input();
+	char get_input(bool arrow);
 
 
 /**************************************************

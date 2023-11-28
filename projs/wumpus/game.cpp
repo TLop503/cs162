@@ -149,7 +149,7 @@ void Game::set_up(int l, int w){
 }
 
 
-//Note: you need to modify this function
+//this is over the line limit, but only does one thing. It's just visually complex so many lines are nedded.
 void Game::display_game() {
 	cout << endl << endl;
 	cout << "Arrows remaining: " << this->num_arrows << endl;
@@ -288,15 +288,8 @@ char Game::get_dir(){
 	//Note: error checking is needed!!
 	//Your code here:
 	cout << "Fire an arrow...." << endl;
-	cout << "W-up" << endl;
-	cout << "A-left" << endl;
-	cout << "S-down" << endl;
-	cout << "D-right" << endl;
-
-
 	cout << "Enter direction: " << endl;
-	cin >> dir;
-	cin.ignore(256, '\n');
+	dir = get_input(false);
 	num_arrows--;
 	return dir;
 }
@@ -313,6 +306,8 @@ void Game::wumpus_move(){
 	return;
 }
 
+
+//over line limit b/c of readability for if tree
 void Game::fire_arrow(){
 	// The player may fire arrow...
 	char dir = get_dir();
@@ -444,29 +439,29 @@ void Game::wumpus_walker() {
 
 	//check if each room exists, then if it is occupied. Add to vector if good
 	if (x != 0) {
-		if (grid[x - 1][y].get_event() == nullptr && x - 1 != p.x_location && y != p.y_location) {
+		if (grid[x - 1][y].get_event() == nullptr && !( x - 1 == p.x_location && y == p.y_location)) {
 			valid_moves.push_back('a');
 		}
 	}
 	if (x != length - 1) {
-		if (grid[x + 1][y].get_event() == nullptr && x + 1 != p.x_location && y != p.y_location) {
+		if (grid[x + 1][y].get_event() == nullptr && !(x + 1 == p.x_location && y == p.y_location)) {
 			valid_moves.push_back('d');
 		}
 	}
 	if (y != 0) {
-		if (grid[x][y - 1].get_event() == nullptr && x != p.x_location && y - 1 != p.y_location) {
+		if (grid[x][y - 1].get_event() == nullptr && !(x == p.x_location && y - 1 == p.y_location)) {
 			valid_moves.push_back('w');
 		}
 	}
 	if (y != width - 1) {
-		if (grid[x][y + 1].get_event() == nullptr && x != p.x_location && y + 1 != p.y_location) {
+		if (grid[x][y + 1].get_event() == nullptr && !(x == p.x_location && y + 1 == p.y_location)) {
 			valid_moves.push_back('s');
 		}
 	}
 
 	//if there are valid moves, pick one at random
 	if (valid_moves.size() > 0) {
-		int move = rand() % valid_moves.size();	
+		int move = rand() % valid_moves.size();
 		move_wumpus(valid_moves[move], x, y);
 	}
 
@@ -474,7 +469,7 @@ void Game::wumpus_walker() {
 
 
 
-char Game::get_input(){
+char Game::get_input(bool arrow){
 	//get action, move direction or firing an arrow
 
 	//Note: error checking is needed!!
@@ -484,18 +479,17 @@ char Game::get_input(){
 
 	do {
 
-		cout << endl << endl << "Player move..." << endl << endl;
 		cout << "W-up" << endl;
 		cout << "A-left" << endl;
 		cout << "S-down" << endl;
 		cout << "D-right" << endl;
-		cout << "f-fire an arrow" << endl;
+		if (arrow) {cout << "f-fire an arrow" << endl;}
 
 		cout << "Enter input: " << endl;
 		cin >> c;
 		cin.ignore(256, '\n');
 
-		valid = (c == 'w' || c == 'a' || c == 's' || c == 'd' || c == 'f');
+		valid = (c == 'w' || c == 'a' || c == 's' || c == 'd' || (c == 'f' && arrow));
 
 	} while (!valid);
 
@@ -517,28 +511,30 @@ void Game::play_game(int w, int l, bool d){
 	// p.y_location = 0;
 
 	while (Game::check_win() == false){
-		//print game board
-		//try walking wumpus first?
-		wumpus_walker();
+		//print game board?
+
 		Game::display_game();
 
 		//display percerts around player's location
-		//Your code here:
-		
 		display_events();
 
 		//Player move...
 		//1. get input
-		input = Game::get_input();
+		cout << endl << endl << "Player move..." << endl << endl;
+		input = Game::get_input(true);
 
 		//2. move player
 		Game::move(input);
+
 
 		//3. may or may not encounter events
 		//Your code here:
 		if (grid[p.x_location][p.y_location].get_event() != nullptr) {
 			grid[p.x_location][p.y_location].get_event()->do_event(p);
 		}
+
+		//4. walk the wumpus
+		wumpus_walker();
 
 	}
 

@@ -10,10 +10,10 @@ int main()
 {
 	//set the random seed
 	srand(time(NULL));
-	
+
 	int wid = 5, len = 5;
 	bool debug = false;
-	
+
 	Game g;
 
 	//ask user for basics
