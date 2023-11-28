@@ -132,18 +132,84 @@ public:
  ***********************************************/
 	void move(char);
 
+/**************************************************
+ * Name: get_input()
+ * Description: gets user input and verifies it is valid
+ * Parameters: none
+ * Pre-conditions: none
+ * Post-conditions: will return valid input wasdf
+ ***********************************************/
 	char get_input();
 
+
+/**************************************************
+ * Name: play_game
+ * Description: main game loop, moves player, checjs for events, moves wumpus, checks for win
+ * Parameters: ints for dimensions of board and bool for debug
+ * Pre-conditions: player has entered inputs
+ * Post-conditions: game ends, leading to destructors
+ ***********************************************/
 	void play_game(int, int, bool);
 
-	//feel free (and you will need) to add more functions...
+
+/**************************************************
+ * Name: get_size
+ * Description: asks user for dimensions and debug mode
+ * Parameters: PBR ints for dimensions, bool for debug mode
+ * Pre-conditions: setup has started
+ * Post-conditions: will update vars to choices to be used by play_game
+ ***********************************************/
 	void get_size(int& x, int& y, bool& debug);
 
+
+/**************************************************
+ * Name: display_events
+ * Description: print percepts for neighboring rooms
+ * Parameters: none
+ * Pre-conditions: grid exists and is of legitimate size
+ * Post-conditions: prints percepts for each neighboring room that exists
+ ***********************************************/
 	void display_events();
+
+/**************************************************
+ * Name: populate_events
+ * Description: assign each event to a random room
+ * Parameters: none
+ * Pre-conditions: internally generate randoms to fill seed array
+ * Post-conditions: events will have unique non-overlapping positions
+ ***********************************************/
 	void populate_events();
+
+
+/**************************************************
+ * Name: place player
+ * Description: uses BogoPlace (tm) to place player in a random room by
+ *  picking ranomd rooms until one that is empty is found
+ * Parameters: none
+ * Pre-conditions: player exists
+ * Post-conditions: player coords will be updated
+ ***********************************************/
 	void place_player(int xlim, int ylim);
 
+
+/**************************************************
+ * Name: wumpus_walker
+ * Description: uses bogowump(tm) to move wumpus to a random room by picking a ranodm neighboring room
+ * and checking if it is empty, if not, pick another
+ * if wumpus doesn't find an empty room in 4 attempts it gets bored and stays put
+ * Parameters: none
+ * Pre-conditions: wumpus has a location
+ * Post-conditions: wumpus will be moved
+ ***********************************************/
 	void wumpus_walker();
+
+/**************************************************
+ * Name: move_wumpus
+ * Description: called by wumpus_walker to move wumpus to a given room by updating coords and event pointers
+ * Parameters: char for direction, ints for coords
+ * Pre-conditions: valid room is choosen
+ * Post-conditions: pointers and coords will be updated
+ ***********************************************/
 	void move_wumpus(char dir, int x, int y);
 
 };
