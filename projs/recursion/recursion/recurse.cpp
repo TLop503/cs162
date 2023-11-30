@@ -20,7 +20,4 @@ int main() {
 	cout << ways_to_top(37) << endl; //overflowed
 	cout << ways_to_top(38) << endl; //overflowed
 
-
-
-
 }
