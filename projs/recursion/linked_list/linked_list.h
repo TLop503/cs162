@@ -32,7 +32,10 @@ public:
 	void sort_descending(); // sort the nodes in descending order
 
 	// you can add extra member variables or functions as desired
-
+	Linked_List(){
+		length = 0;
+		head = new Node();
+	}
 };
 
 
