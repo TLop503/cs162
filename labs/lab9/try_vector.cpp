@@ -24,38 +24,37 @@ int main (){
 
    //Step 1.....
    //uncomment the following to test Copy Construtor
-   // vector<int> v2 = v; //envoke cc
-   // cout << "v2 size: " << v2.size() << endl; //should display 1
+    vector<int> v2 = v; //envoke cc
+    cout << "v2 size: " << v2.size() << endl; //should display 1
 
    //uncomment the following to test AOO
-   // vector<int> v3;
-   // v3.push_back(10);
-   // v3.push_back(100);
-   // v3.push_back(1000);
-   // cout << "v3 size: " << v3.size() << endl; //should display 3
-   // v3 = v; //envoke aoo
-   // cout << "v3 size: " << v3.size() << endl; //should display 1
+   vector<int> v3;
+   v3.push_back(10);
+   v3.push_back(100);
+   v3.push_back(1000);
+   cout << "v3 size: " << v3.size() << endl; //should display 3
+   v3 = v; //envoke aoo
+   cout << "v3 size: " << v3.size() << endl; //should display 1
 
 
    //Step 2...
-   // cout << "v[0]: " << v[0] << endl; //should display 23
-   // cout << "stdv[0]: " << stdv[0] << endl; //should display 23
+   cout << "v[0]: " << v[0] << endl; //should display 23
+   cout << "stdv[0]: " << stdv[0] << endl; //should display 23
 
-   // v3.push_back(500);
-   // cout << "v3[1]: " << v3[1] << endl; //should display 500
-   // cout << "v[1]: " << v[1] << endl; //should display a garbage or crash the program
+   v3.push_back(500);
+   cout << "v3[1]: " << v3[1] << endl; //should display 500
+   cout << "v[1]: " << v[1] << endl; //should display a garbage or crash the program
    
-   // v3.insert(0, 100);
-   // v3.insert(2, 15);
-   // cout << "v3[0]: " << v3[0] << endl; // should display 100
-   // cout << "v3[2]: " << v3[2] << endl; // should display 15
-   // cout << "v3[3]: " << v3[3] << endl; // should display 500
+   v3.insert(0, 100);
+   v3.insert(2, 15);
+   cout << "v3[0]: " << v3[0] << endl; // should display 100
+   cout << "v3[2]: " << v3[2] << endl; // should display 15
+   cout << "v3[3]: " << v3[3] << endl; // should display 500
    
 
    //Step 3...
    //Include your own testing code to prove that
    //your push_back(), resize(), and reserve() works
-
 
    return 0;
 }
