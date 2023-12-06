@@ -52,9 +52,10 @@ void Linked_List::push_front(int val){
 	// insert a new value at the front of the list 
 
 	Node* new_head = new Node(val);
+	new_head->next = nullptr; //probably redundant
 
 	//set next of new head to be old head
-	new_head.next = head;
+
 	//then set head to be next in lines
 	head = new_head;
 	length++;
@@ -63,15 +64,16 @@ void Linked_List::push_front(int val){
 
 void Linked_List::push_back(int val){
 	// insert a new value at the back of the list 
+	node* new_node = new node(val);
+	new_node->next = nullptr;
 
 	//go to back
 	Node* itr = head;
-	
 	while (itr.next != nullptr) {
-		itr = itr.next;
+		itr = itr->next;
 	}
 	//set next node to new node
-	itr.next = new Node(val);
+	itr->next = new Node(val);
 	length++;
 	return;
 }
@@ -79,7 +81,10 @@ void Linked_List::push_back(int val){
 void Linked_List::insert(int val, int index){
 	// insert a new value in the list at the specified index 
 	// Your code goes here:
-
+	//make new node
+	//go to node before target index
+	//set node to next
+	// set old next to new node
 	return;
 }
 
@@ -93,7 +98,9 @@ void Linked_List::pop_back(){
 void Linked_List::pop_front(){
 	// remove the node at the front of the list
 	// Your code goes here:
-
+	node* second = head->next;
+	delete head;
+	head = second_element;
 	return;
 }
 
