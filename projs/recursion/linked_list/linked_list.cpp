@@ -98,9 +98,9 @@ void Linked_List::pop_back(){
 void Linked_List::pop_front(){
 	// remove the node at the front of the list
 	// Your code goes here:
-	node* second = head->next;
+	Node* second = head->next;
 	delete head;
-	head = second_element;
+	head = second;
 	return;
 }
 
