@@ -10,11 +10,11 @@ void Linked_List::print(){
 	// output a list of all integers contained within the list
 	// Your code goes here:
 	cout << "\n";
-	cout << head.val << endl;
+	cout << head->val << endl;
 	Node* itr;
-	while (itr.next != nullptr) {
-		itr = itr.next;
-		cout << itr.value << endl;
+	while (itr->next != nullptr) {
+		itr = itr->next;
+		cout << itr->val << endl;
 	}
 	return;
 }
@@ -36,7 +36,7 @@ void Linked_List::clear(){
 			itr = itr->next;
 		}
 		//delete last node
-		delete *itr->next;
+		delete itr->next;
 		//reset pointer
 		itr->next = nullptr;
 		//go to top of list
