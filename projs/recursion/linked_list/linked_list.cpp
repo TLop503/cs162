@@ -29,20 +29,20 @@ void Linked_List::clear(){
 	Node* itr = head;
 
 	//while head's next exists
-	while (itr.next != nullptr) {
+	while (itr->next != nullptr) {
 		
 		//go to back of list
-		while (itr.next != nullptr) {
-			itr = itr.next;
+		while (itr->next != nullptr) {
+			itr = itr->next;
 		}
 		//delete last node
-		delete *itr.next;
+		delete *itr->next;
 		//reset pointer
-		itr.next = nullptr;
+		itr->next = nullptr;
 		//go to top of list
 		itr = head;
 	}
-	delete *head;
+	delete head;
 	head = nullptr;
 	length = 0;
 	return;
@@ -64,12 +64,12 @@ void Linked_List::push_front(int val){
 
 void Linked_List::push_back(int val){
 	// insert a new value at the back of the list 
-	node* new_node = new node(val);
+	Node* new_node = new Node(val);
 	new_node->next = nullptr;
 
 	//go to back
 	Node* itr = head;
-	while (itr.next != nullptr) {
+	while (itr->next != nullptr) {
 		itr = itr->next;
 	}
 	//set next node to new node
