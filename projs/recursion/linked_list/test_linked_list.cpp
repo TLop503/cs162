@@ -29,6 +29,8 @@ int main(int argc, char const *argv[])
 		cout << "Test 1 FAILED\n\n";
 	pause();
 
+	//Test 1 is good so far
+
 	cout << "**********Test 2***********\n";
 	cout << "Adding nodes...\n";
 	cout << "Test 2.1: Testing push_front()\n";
@@ -44,6 +46,8 @@ int main(int argc, char const *argv[])
 	cout << "Actual length  : " << l.get_length() << "\n";
 	cout << "Test 2.1 completed.\n";
 	pause();
+
+	//2.1 works
 
 	cout << "Removing nodes...\n";
 	cout << "Test 2.2: Testing pop_front()\n";
@@ -61,6 +65,7 @@ int main(int argc, char const *argv[])
 	cout << "Continue removing...\n";
 	l.pop_front();
 	l.pop_front();
+	// /cout << "DEGUB FLAG" << endl;
 	l.pop_front(); //no more nodes, shouldn't remove anything 
 	cout << "Print list...\n";
 	cout << "Expected: \n";
@@ -71,14 +76,16 @@ int main(int argc, char const *argv[])
 	cout << "Test 2.2 completed.\n";
 	pause();
 
+	//test 2.2 works
+
 	cout << "Adding nodes...\n";
-	cout << "Test 2.2: Testing push_back()\n";
+	cout << "Test 2.3: Testing push_back()\n";
 	l.push_back(5);
-	l.push_back(1);
+	l.push_back(10);
 	l.push_back(2);
 	l.push_back(7);
 	l.push_back(7919);
-	cout << "Expected: 5 1 2 7 7919\n";
+	cout << "Expected: 5 10 2 7 7919\n";
 	cout << "Actual  :"; 
 	l.print();
 	cout << "Expected length: 5\n";
@@ -91,7 +98,7 @@ int main(int argc, char const *argv[])
 	l.pop_back();
 	l.pop_back();
 	cout << "Print list...\n";
-	cout << "Expected: 5 1 2\n";
+	cout << "Expected: 5 10 2\n";
 	cout << "Actual  :"; 
 	l.print();
 	cout << "Expected length: 3\n";

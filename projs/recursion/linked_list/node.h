@@ -1,6 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <iostream>
+
 class Node{
 public:
 	int val; // the value that this node stores
@@ -9,8 +11,10 @@ public:
 	Node(){
 		this->next = nullptr;
 	}
-	Node(unsigned int val) {
+	Node(int val) {
+		//std::cout << "New node with value " << val << std::endl;
 		this->val = val;
+		//std::cout << "value: " << this->val << std::endl;
 		this->next = nullptr;
 	}
 };
