@@ -118,7 +118,7 @@ void Linked_List::remove(int index){
 	// Your code goes here:
 	Node* itr = head;
 	//find node before target
-	for (int i = 0; i < index - 1; i+) {
+	for (int i = 0; i < index - 1; i++) {
 		itr = itr->next;
 	}
 	//store val of new next node
