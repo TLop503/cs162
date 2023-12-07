@@ -34,7 +34,7 @@ public:
 	// you can add extra member variables or functions as desired
 	Linked_List(){
 		length = 0;
-		head = new Node();
+		//head = new Node();
 	}
 };
 

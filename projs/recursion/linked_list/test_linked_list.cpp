@@ -93,6 +93,8 @@ int main(int argc, char const *argv[])
 	cout << "Test 2.3 completed.\n";
 	pause();
 
+	//2.3 works
+
 	cout << "Removing nodes...\n";
 	cout << "Test 2.4: Testing pop_back()\n";
 	l.pop_back();
@@ -105,10 +107,13 @@ int main(int argc, char const *argv[])
 	cout << "Actual length  : " << l.get_length() << "\n";
 	pause();
 
+	//2.4.1 works
+
 	cout << "Continue removing...\n";
 	l.pop_back();
 	l.pop_back();
 	l.pop_back();
+	cout << "last one..." << endl;
 	l.pop_back(); //no more nodes, shouldn't remove anything 
 	cout << "Print list...\n";
 	cout << "Expected: \n";
@@ -118,6 +123,8 @@ int main(int argc, char const *argv[])
 	cout << "Actual length  : " << l.get_length() << "\n";
 	cout << "Test 2.4 completed.\n";
 	pause();
+
+	//2.4 works
 
 	cout << "Adding nodes...\n";
 	l.push_front(5);
@@ -130,6 +137,8 @@ int main(int argc, char const *argv[])
 	l.push_back(2);
 	l.push_back(7);
 	l.push_back(7919);
+	cout << "Test 2.4.1: Debug dump of list before insert:" << endl;
+	l.print();
 	cout << "Test 2.5: Testing insert()\n";
 	l.insert(11, 0);   // insert 11 at the front of the list
 	l.insert(20, 100); // 100 is not a valid index, therefore 20 is not inserted
@@ -142,6 +151,8 @@ int main(int argc, char const *argv[])
 	cout << "Actual length  : " << l.get_length() << "\n";
 	cout << "Test 2.5 completed.\n";
 	pause();
+
+	//2.5 works
 
 	cout << "Removing nodes...\n";
 	cout << "Test 2.6: Testing remove()\n";
@@ -156,6 +167,8 @@ int main(int argc, char const *argv[])
 	cout << "Actual length  : " << l.get_length() << "\n";
 	cout << "Test 2.6 completed.\n";
 	pause();
+
+	//2.6 works
 
 
 	cout << "**********Test 3***********\n";

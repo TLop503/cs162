@@ -17,7 +17,7 @@ void Linked_List::print(){
 	//cout << itr->next << "!!!!!!!!!!!!";
 	while (itr != nullptr) {
 		//cout << "test" << endl;
-		cout << itr->val << " ";		
+		cout << itr->val << " ";
 		itr = itr->next;
 	}
 	cout << "\n";
@@ -35,7 +35,7 @@ void Linked_List::clear(){
 
 	//while head's next exists
 	while (itr != nullptr) {
-		
+
 		//go to back of list
 		while (itr->next != nullptr) {
 			itr = itr->next;
@@ -54,7 +54,7 @@ void Linked_List::clear(){
 }
 
 void Linked_List::push_front(int val){
-	// insert a new value at the front of the list 
+	// insert a new value at the front of the list
 
 
 	Node* new_head = new Node(val);
@@ -92,28 +92,46 @@ void Linked_List::push_back(int val){
 }
 
 void Linked_List::insert(int val, int index){
-	// insert a new value in the list at the specified index 
-	// Your code goes here:
-	//make new node
-	//go to node before target index
-	//set node to next
-	// set old next to new node
-	return;
+    if (index > this->length) { //if trying to access oob just pushback
+        //push_back(val); //but for assignment it's supposed to just fail
+        return;
+    }
+
+    Node* new_node = new Node(val);
+
+    if (head == nullptr || index == 0) { //if first value just set head
+        new_node->next = head;
+        head = new_node;
+    } else {
+        Node* itr = head;
+        for (int i = 0; i < index - 1; i++) {
+            itr = itr->next;
+        }
+        new_node->next = itr->next;
+        itr->next = new_node;
+    }
+    length++;
+    return;
 }
 
 void Linked_List::pop_back(){
-	// remove the node at the back of the list
-	// Your code goes here:
-	Node* itr = head;
-	//while the next node's next node isn't null ptr
-	//this finds the node before the last one, so that it can be deleted
-	while (itr->next->next != nullptr) {
-		itr = itr->next;
-	}
-	delete itr->next;
-	itr->next = nullptr;
-	length--;
-	return;
+    if (head == nullptr) {
+        return;
+    }
+
+    // If the list only contains one element
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+    } else {
+        Node* itr = head;
+        while (itr->next->next != nullptr) {
+            itr = itr->next;
+        }
+        delete itr->next;
+        itr->next = nullptr;
+    }
+    length--;
 }
 
 void Linked_List::pop_front(){
@@ -136,21 +154,29 @@ void Linked_List::pop_front(){
 }
 
 void Linked_List::remove(int index){
-	// remove the node at index of the list
-	// Your code goes here:
-	Node* itr = head;
-	//find node before target
-	for (int i = 0; i < index - 1; i++) {
-		itr = itr->next;
+    if (index > this->length || head == nullptr) { //if trying to access oob just pushback
+        //push_back(val); //but for assignment it's supposed to just fail
+        return;
+    }
+	if (index == 0) {
+		pop_front();
+		return;
 	}
-	//store val of new next node
-	Node* temp = itr->next->next;
-	//nuke
-	delete itr->next;
-	//pave
-	itr->next = temp;
-
-	return;
+	else if (index == length - 1) {
+		pop_back();
+		return;
+    } else {
+        Node* itr = head;
+		Node* temp;
+        for (int i = 0; i < index - 1; i++) {
+            itr = itr->next;
+        }
+		temp = itr->next->next;
+		delete itr->next;
+        itr->next = temp;
+    }
+    length--;
+    return;
 }
 
 void Linked_List::sort_ascending(){
