@@ -91,7 +91,15 @@ void Linked_List::insert(int val, int index){
 void Linked_List::pop_back(){
 	// remove the node at the back of the list
 	// Your code goes here:
-
+	Node* itr = head;
+	//while the next node's next node isn't null ptr
+	//this finds the node before the last one, so that it can be deleted
+	while (itr->next->next != nullptr) {
+		itr = itr->next;
+	}
+	delete itr->next;
+	itr->next = nullptr;
+	length--;
 	return;
 }
 
@@ -101,12 +109,24 @@ void Linked_List::pop_front(){
 	Node* second = head->next;
 	delete head;
 	head = second;
+	length--;
 	return;
 }
 
 void Linked_List::remove(int index){
 	// remove the node at index of the list
 	// Your code goes here:
+	Node* itr = head;
+	//find node before target
+	for (int i = 0; i < index - 1; i+) {
+		itr = itr->next;
+	}
+	//store val of new next node
+	Node* temp = itr->next->next;
+	//nuke
+	delete itr->next;
+	//pave
+	itr->next = temp;
 
 	return;
 }
