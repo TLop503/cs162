@@ -180,17 +180,19 @@ void Linked_List::remove(int index){
 }
 
 Node* get_middle(Node* head) {
-    Node* slow_ptr = head;
-    Node* fast_ptr = head;
-
-    if (head != nullptr) {
-        while (fast_ptr != nullptr && fast_ptr->next != nullptr) {
-            fast_ptr = fast_ptr->next->next;
-            slow_ptr = slow_ptr->next;
-        }
+    if (head == nullptr) {
+        return head;
     }
 
-    return slow_ptr;
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast->next != nullptr && fast->next->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
 }
 
 
@@ -202,52 +204,44 @@ Node* merge(Node* head_a, Node* head_b) {
     // for each node in list
     while (head_a != nullptr && head_b != nullptr) {
         if (head_a->val <= head_b->val) {
-            merged->next = head_a; // add to merged
-            head_a = head_a->next; // and then iterate
+            merged->next = head_a;
+            head_a = head_a->next;
         } else {
             merged->next = head_b;
             head_b = head_b->next;
         }
-        // then iterate merged list
         merged = merged->next;
     }
 
-    // cleanup what's left
-    while (head_a != nullptr) {
+    // If there are remaining nodes in either list
+    if (head_a != nullptr) {
         merged->next = head_a;
-        head_a = head_a->next;
-        merged = merged->next;
-    }
-    while (head_b != nullptr) {
+    } else {
         merged->next = head_b;
-        head_b = head_b->next;
-        merged = merged->next;
     }
 
-	delete merged; //free memory, and the contents are accessible from out
-    return out->next; // return first node from heads. 
-    // this isn't just out b/c that stores garbage
+    return out->next;
 }
 
 Node* sort(Node* head) {
-	//check for size 1
-	if (!head->next) {
-		return head;
-	}
+    //check for size 0 or 1
+    if (!head || !head->next) {
+        return head;
+    }
 
-	Node* middle = get_middle(head);
-	Node* new_head = middle->next;
-	middle->next = nullptr; //seperate 2 lists
+    Node* middle = get_middle(head);
+    Node* new_head = middle->next;
+    middle->next = nullptr; //seperate 2 lists
 
-	Node* out = merge(sort(head), sort(new_head));
-	return out;
+    Node* out = merge(sort(head), sort(new_head));
+    return out;
 }
 
 void Linked_List::sort_ascending(){
 	// sort the nodes in ascending order. You must implement the recursive Merge Sort algorithm
 	// Note: it's okay if sort_ascending() calls a recursive private function to perform the sorting.
 	// Your code goes here:
-	sort(head);
+	head = sort(head);
 	return;
 }
 
