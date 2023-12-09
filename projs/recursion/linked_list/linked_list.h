@@ -36,6 +36,10 @@ public:
 		length = 0;
 		//head = new Node();
 	}
+
+	~Linked_List(){
+		clear();
+	}
 };
 
 

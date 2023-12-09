@@ -24,34 +24,22 @@ void Linked_List::print(){
 	return;
 }
 
-void Linked_List::clear(){
-	// delete the entire list (remove all nodes and reset length to 0)
-	// Your code goes here:
+void Linked_List::clear() {
+    //starts deleting from the front to the back
 
-	// O(n^2)?
+    Node* current = head;
+    Node* nextNode = nullptr;
 
+    while (current != nullptr) {
+        nextNode = current->next;  // Save the next node before deleting the current one
+        delete current;
+        current = nextNode;
+    }
 
-	Node* itr = head;
-
-	//while head's next exists
-	while (itr != nullptr) {
-
-		//go to back of list
-		while (itr->next != nullptr) {
-			itr = itr->next;
-		}
-		//delete last node
-		delete itr->next;
-		//reset pointer
-		itr->next = nullptr;
-		//go to top of list
-		itr = head;
-	}
-	delete head;
-	head = nullptr;
-	length = 0;
-	return;
+    head = nullptr;
+    length = 0;
 }
+
 
 void Linked_List::push_front(int val){
 	// insert a new value at the front of the list
@@ -65,6 +53,7 @@ void Linked_List::push_front(int val){
 	//then set head to be next in lines
 	new_head->next = head;
 	head = new_head;
+    delete new_head;
 	//cout << "updated head value: " << head->val << endl;
 	length++;
 	return;
@@ -87,6 +76,7 @@ void Linked_List::push_back(int val){
         }
         itr->next = new_node;
     }
+    delete new_node;
     length++;
 	return;
 }
@@ -110,6 +100,7 @@ void Linked_List::insert(int val, int index){
         new_node->next = itr->next;
         itr->next = new_node;
     }
+    delete new_node;
     length++;
     return;
 }
@@ -220,10 +211,39 @@ Node* merge(Node* head_a, Node* head_b) {
         merged->next = head_b;
     }
 
+    delete merged;
     return out->next;
 }
 
-Node* sort(Node* head) {
+//merge descending order
+Node* merge_descending(Node* head_a, Node* head_b) {
+    Node* merged = new Node(); // Initialize merged node
+    Node* out = merged; // so merged can be accessed later
+
+    // for each node in list
+    while (head_a != nullptr && head_b != nullptr) {
+        if (head_a->val >= head_b->val) {
+            merged->next = head_a;
+            head_a = head_a->next;
+        } else {
+            merged->next = head_b;
+            head_b = head_b->next;
+        }
+        merged = merged->next;
+    }
+
+    // If there are remaining nodes in either list
+    if (head_a != nullptr) {
+        merged->next = head_a;
+    } else {
+        merged->next = head_b;
+    }
+
+    delete merged;
+    return out->next;
+}
+
+Node* sort(Node* head, bool ascending = true) {
     //check for size 0 or 1
     if (!head || !head->next) {
         return head;
@@ -231,9 +251,14 @@ Node* sort(Node* head) {
 
     Node* middle = get_middle(head);
     Node* new_head = middle->next;
+    Node* out = nullptr;
     middle->next = nullptr; //seperate 2 lists
 
-    Node* out = merge(sort(head), sort(new_head));
+    if (ascending) {
+        out = merge(sort(head), sort(new_head));
+    } else {
+        out = merge_descending(sort(head, false), sort(new_head, false));
+    }
     return out;
 }
 
@@ -248,6 +273,6 @@ void Linked_List::sort_ascending(){
 void Linked_List::sort_descending(){
 	// sort the nodes in descending order
 	// Your code goes here:
-
+    head = sort(head, false);
 	return;
 }
