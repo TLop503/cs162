@@ -185,10 +185,9 @@ Node* get_middle(Node* head) {
 
 //merge 2 sorted lists
 Node* merge(Node* head_a, Node* head_b) {
-    Node* merged = new Node(); // Initialize merged node
-    Node* out = merged; // so merged can be accessed later
+    Node dummy; //temp head for outputting later
+    Node* merged = &dummy;
 
-    // for each node in list
     while (head_a != nullptr && head_b != nullptr) {
         if (head_a->val <= head_b->val) {
             merged->next = head_a;
@@ -200,14 +199,13 @@ Node* merge(Node* head_a, Node* head_b) {
         merged = merged->next;
     }
 
-    // If there are remaining nodes in either list
     if (head_a != nullptr) {
         merged->next = head_a;
     } else {
         merged->next = head_b;
     }
 
-    return out->next;
+    return dummy.next;
 }
 
 Node* sort(Node* head) {
