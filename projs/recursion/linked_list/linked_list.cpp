@@ -24,33 +24,20 @@ void Linked_List::print(){
 	return;
 }
 
-void Linked_List::clear(){
-	// delete the entire list (remove all nodes and reset length to 0)
-	// Your code goes here:
+void Linked_List::clear() {
+    //starts deleting from the front to the back
 
-	// O(n^2)?
+    Node* current = head;
+    Node* nextNode = nullptr;
 
+    while (current != nullptr) {
+        nextNode = current->next;  // Save the next node before deleting the current one
+        delete current;
+        current = nextNode;
+    }
 
-	Node* itr = head;
-
-	//while head's next exists
-	while (itr != nullptr) {
-
-		//go to back of list
-		while (itr->next != nullptr) {
-			itr = itr->next;
-		}
-		//delete last node
-		delete itr->next;
-		//reset pointer
-		itr->next = nullptr;
-		//go to top of list
-		itr = head;
-	}
-	delete head;
-	head = nullptr;
-	length = 0;
-	return;
+    head = nullptr;
+    length = 0;
 }
 
 void Linked_List::push_front(int val){
@@ -246,8 +233,24 @@ void Linked_List::sort_ascending(){
 }
 
 void Linked_List::sort_descending(){
-	// sort the nodes in descending order
-	// Your code goes here:
+    // sort the nodes in ascending order
+    sort_ascending();
 
-	return;
+    //and then invert the list
+
+    Node* prev = nullptr;
+    Node* current = head;
+    Node* next_node = nullptr;
+
+    while (current != nullptr) { //traverse list
+        //"reverse" each link to invert order
+
+        next_node = current->next; 
+        current->next = prev;
+        prev = current;
+        current = next_node;
+    }
+
+    head = prev;
+    return;
 }
