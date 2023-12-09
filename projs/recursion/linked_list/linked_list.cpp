@@ -1,11 +1,23 @@
 #include "linked_list.h"
 
+/**************************************************
+ * Name: get_length()
+ * Description: simple getter
+ ***********************************************/
 int Linked_List::get_length() {
 	// note: there is no set_length(unsigned int) (the reasoning should be intuitive)
 	// Your code goes here:
 	return length;
 }
 
+
+/**************************************************
+ * Name: print
+ * Description: pprints each value in the list
+ * Parameters: n/a
+ * Pre-conditions: list exists
+ * Post-conditions: will just cout
+ ***********************************************/
 void Linked_List::print(){
 	// output a list of all integers contained within the list
 	// Your code goes here:
@@ -24,6 +36,14 @@ void Linked_List::print(){
 	return;
 }
 
+
+/**************************************************
+ * Name: clear
+ * Description: will delete each node, starting at the head
+ * Parameters: none
+ * Pre-conditions: can be called by destructor
+ * Post-conditions: head will point to nullptr
+ ***********************************************/
 void Linked_List::clear() {
     //starts deleting from the front to the back
 
@@ -40,9 +60,16 @@ void Linked_List::clear() {
     length = 0;
 }
 
+
+/**************************************************
+ * Name: push_front
+ * Description: appends a new node to the front of the list
+ * Parameters: val - the value to be stored in the new node
+ * Pre-conditions: list exists
+ * Post-conditions: size will be incremented
+ ***********************************************/
 void Linked_List::push_front(int val){
 	// insert a new value at the front of the list
-
 
 	Node* new_head = new Node(val);
 	//cout << "New node value: " << new_head->val << endl;
@@ -57,6 +84,14 @@ void Linked_List::push_front(int val){
 	return;
 }
 
+
+/**************************************************
+ * Name: push_back
+ * Description: push front, but for back
+ * Parameters: val - the value to be stored in the new node
+ * Pre-conditions: list exists
+ * Post-conditions: size will be incremented
+ ***********************************************/
 void Linked_List::push_back(int val){
 
 	//cout << "pushing back: " << val << endl;
@@ -78,6 +113,14 @@ void Linked_List::push_back(int val){
 	return;
 }
 
+
+/**************************************************
+ * Name: insert
+ * Description: adds new value at specified index
+ * Parameters: val - the value to be stored in the new node, index - where to insert
+ * Pre-conditions: index is valid, otherwise fail
+ * Post-conditions: new value will exist at specified index
+ ***********************************************/
 void Linked_List::insert(int val, int index){
     if (index > this->length) { //if trying to access oob just pushback
         //push_back(val); //but for assignment it's supposed to just fail
@@ -101,6 +144,14 @@ void Linked_List::insert(int val, int index){
     return;
 }
 
+
+/**************************************************
+ * Name: pop_back
+ * Description: Deletes the last node in the list
+ * Parameters: none
+ * Pre-conditions: node exists, otherwise fail
+ * Post-conditions: node will be removed
+ ***********************************************/
 void Linked_List::pop_back(){
     if (head == nullptr) {
         return;
@@ -121,6 +172,12 @@ void Linked_List::pop_back(){
     length--;
 }
 
+
+
+/**************************************************
+ * Name: pop_front
+ * Description: identical to pop_back, but for front
+ ***********************************************/
 void Linked_List::pop_front(){
 	// remove the node at the front of the list
 	// Your code goes here:
@@ -140,6 +197,14 @@ void Linked_List::pop_front(){
 	return;
 }
 
+
+/**************************************************
+ * Name: remove
+ * Description: nuke node at given index
+ * Parameters: index - where to remove
+ * Pre-conditions: index must exist, else fail
+ * Post-conditions: node will be removed
+ ***********************************************/
 void Linked_List::remove(int index){
     if (index > this->length || head == nullptr) { //if trying to access oob just pushback
         //push_back(val); //but for assignment it's supposed to just fail
@@ -166,6 +231,14 @@ void Linked_List::remove(int index){
     return;
 }
 
+
+/**************************************************
+ * Name: get_middle
+ * Description: find the middle node of a linked list
+ * Parameters: head - the head node of the linked list
+ * Pre-conditions: head must not be null
+ * Post-conditions: returns the middle node of the linked list
+ ***********************************************/
 Node* get_middle(Node* head) {
     if (head == nullptr) {
         return head;
@@ -183,7 +256,13 @@ Node* get_middle(Node* head) {
 }
 
 
-//merge 2 sorted lists
+/**************************************************
+ * Name: merge
+ * Description: merge two sorted linked lists
+ * Parameters: head_a, head_b - the head nodes of the two sorted linked lists
+ * Pre-conditions: head_a and head_b must not be null
+ * Post-conditions: returns the head node of the merged linked list
+ ***********************************************/
 Node* merge(Node* head_a, Node* head_b) {
     Node dummy; //temp head for outputting later
     Node* merged = &dummy;
@@ -208,6 +287,14 @@ Node* merge(Node* head_a, Node* head_b) {
     return dummy.next;
 }
 
+
+/**************************************************
+ * Name: sort
+ * Description: sort a linked list using merge sort
+ * Parameters: head - the head node of the linked list
+ * Pre-conditions: head must not be null
+ * Post-conditions: returns the head node of the sorted linked list
+ ***********************************************/
 Node* sort(Node* head) {
     //check for size 0 or 1
     if (!head || !head->next) {
@@ -222,6 +309,14 @@ Node* sort(Node* head) {
     return out;
 }
 
+
+/**************************************************
+ * Name: sort_ascending
+ * Description: sort the nodes in ascending order
+ * Parameters: n/a
+ * Pre-conditions: list exists
+ * Post-conditions: list will be sorted
+ ***********************************************/
 void Linked_List::sort_ascending(){
 	// sort the nodes in ascending order. You must implement the recursive Merge Sort algorithm
 	// Note: it's okay if sort_ascending() calls a recursive private function to perform the sorting.
@@ -230,6 +325,14 @@ void Linked_List::sort_ascending(){
 	return;
 }
 
+
+/**************************************************
+ * Name: sort_descending
+ * Description: sort the nodes in descending order by just inverting the ascending sort
+ * Parameters: n/a
+ * Pre-conditions: list exists
+ * Post-conditions: list will be sorted
+ ***********************************************/
 void Linked_List::sort_descending(){
     // sort the nodes in ascending order
     sort_ascending();
