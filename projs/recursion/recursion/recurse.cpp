@@ -15,9 +15,9 @@ int main() {
 	cout << ways_to_top(20) << endl;
 	cout << ways_to_top(29) << endl;
 	cout << ways_to_top(30) << endl;
-	cout << ways_to_top(35) << endl;
-	cout << ways_to_top(36) << endl;
-	cout << ways_to_top(37) << endl; //overflowed
-	cout << ways_to_top(38) << endl; //overflowed
+	// cout << ways_to_top(35) << endl;
+	// cout << ways_to_top(36) << endl;
+	// cout << ways_to_top(37) << endl; //overflowed
+	// cout << ways_to_top(38) << endl; //overflowed
 
 }
