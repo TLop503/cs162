@@ -28,6 +28,9 @@ Recursive merge sort works by first splitting the list into a bunch of smaller l
 Then, each sublist is compared, starting at the head. The lowest value is taken from the 2 heads, and the comparison is run again. This creates a sorted sublist. Each of these sorted sublists
 are merged again and again until eventually there is just 1 big list with the original size that has been sorted.
 For the descending sort, I was too busy to do the extra credit so I just call the sort ascending function and then invert the list order.
+Because of the nature of the sublist method, merge sort follows an O(nlog(n)) complexity. N doubling only adds 2n + 1 step in the algorithm, which is much more efficient than most other algs.
+Increasing n increases the time the algorithm takes near-linearly, hence the logalinear label. Additionally, this method always works in the same fashion, making best and worse case
+complexity identical.
 
 ------------------------------------------
 
