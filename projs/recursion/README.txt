@@ -39,7 +39,7 @@ How to run the code:
 Note this is written assuming the user knows very little about linux commands as per the assignment.
 
 assuming you are already in this directory. just run "./runme.sh". This is a script I wrote to automatically
-clean up any partially made files, and then recompile and run each program. Eeach program will run interactively in the terminal.
+clean up any partially made files, and then recompile and run each program (using makefiles). Eeach program will run interactively in the terminal.
 You will need to press enter when prompted to continue through the programs.
 
 Alternatively, use "cd/linked_list;make clean; make; valgrind linklist;" to test the linked list and "cd/recursion;make clean; make; valgrind recur"
