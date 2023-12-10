@@ -21,7 +21,7 @@ but is out of scope for this assignment.
 Part 2: Linked List
 This program just implements a homebrew version of the linked list class. The list is singly linked.
 Users can use all of the standard data manipulation functions such as pushback or remove, as well as sort ascendingly or descendingly.
-Lists can be scaled to meet whatever size is needed, and are dynamically allocated.
+Lists can be scaled to meet whatever size is needed, and are dynamically allocated. Since not required, copy constructors and AOOs are not implemented.
 
 Part 2.a: Merge sort explanation:
 Recursive merge sort works by first splitting the list into a bunch of smaller lists, and then reassembling them in order. The list is first recursively split down into single nodes.
